@@ -1,0 +1,200 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "node_modules/@latticexyz/world/src/revertWithBytes.sol",
+    "id": 125314,
+    "exportedSymbols": {
+      "revertWithBytes": [
+        125313
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:687:116",
+    "nodes": [
+      {
+        "id": 125305,
+        "nodeType": "PragmaDirective",
+        "src": "32:25:116",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".21"
+        ]
+      },
+      {
+        "id": 125313,
+        "nodeType": "FunctionDefinition",
+        "src": "501:217:116",
+        "nodes": [],
+        "body": {
+          "id": 125312,
+          "nodeType": "Block",
+          "src": "552:166:116",
+          "nodes": [],
+          "statements": [
+            {
+              "AST": {
+                "nativeSrc": "565:151:116",
+                "nodeType": "YulBlock",
+                "src": "565:151:116",
+                "statements": [
+                  {
+                    "expression": {
+                      "arguments": [
+                        {
+                          "arguments": [
+                            {
+                              "name": "reason",
+                              "nativeSrc": "683:6:116",
+                              "nodeType": "YulIdentifier",
+                              "src": "683:6:116"
+                            },
+                            {
+                              "kind": "number",
+                              "nativeSrc": "691:4:116",
+                              "nodeType": "YulLiteral",
+                              "src": "691:4:116",
+                              "type": "",
+                              "value": "0x20"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "add",
+                            "nativeSrc": "679:3:116",
+                            "nodeType": "YulIdentifier",
+                            "src": "679:3:116"
+                          },
+                          "nativeSrc": "679:17:116",
+                          "nodeType": "YulFunctionCall",
+                          "src": "679:17:116"
+                        },
+                        {
+                          "arguments": [
+                            {
+                              "name": "reason",
+                              "nativeSrc": "704:6:116",
+                              "nodeType": "YulIdentifier",
+                              "src": "704:6:116"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "mload",
+                            "nativeSrc": "698:5:116",
+                            "nodeType": "YulIdentifier",
+                            "src": "698:5:116"
+                          },
+                          "nativeSrc": "698:13:116",
+                          "nodeType": "YulFunctionCall",
+                          "src": "698:13:116"
+                        }
+                      ],
+                      "functionName": {
+                        "name": "revert",
+                        "nativeSrc": "672:6:116",
+                        "nodeType": "YulIdentifier",
+                        "src": "672:6:116"
+                      },
+                      "nativeSrc": "672:40:116",
+                      "nodeType": "YulFunctionCall",
+                      "src": "672:40:116"
+                    },
+                    "nativeSrc": "672:40:116",
+                    "nodeType": "YulExpressionStatement",
+                    "src": "672:40:116"
+                  }
+                ]
+              },
+              "evmVersion": "paris",
+              "externalReferences": [
+                {
+                  "declaration": 125308,
+                  "isOffset": false,
+                  "isSlot": false,
+                  "src": "683:6:116",
+                  "valueSize": 1
+                },
+                {
+                  "declaration": 125308,
+                  "isOffset": false,
+                  "isSlot": false,
+                  "src": "704:6:116",
+                  "valueSize": 1
+                }
+              ],
+              "id": 125311,
+              "nodeType": "InlineAssembly",
+              "src": "556:160:116"
+            }
+          ]
+        },
+        "documentation": {
+          "id": 125306,
+          "nodeType": "StructuredDocumentation",
+          "src": "287:213:116",
+          "text": " @notice Reverts the transaction using the provided raw bytes as the revert reason.\n @dev Uses assembly to perform the revert operation with the raw bytes.\n @param reason The raw bytes revert reason."
+        },
+        "implemented": true,
+        "kind": "freeFunction",
+        "modifiers": [],
+        "name": "revertWithBytes",
+        "nameLocation": "510:15:116",
+        "parameters": {
+          "id": 125309,
+          "nodeType": "ParameterList",
+          "parameters": [
+            {
+              "constant": false,
+              "id": 125308,
+              "mutability": "mutable",
+              "name": "reason",
+              "nameLocation": "539:6:116",
+              "nodeType": "VariableDeclaration",
+              "scope": 125313,
+              "src": "526:19:116",
+              "stateVariable": false,
+              "storageLocation": "memory",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes_memory_ptr",
+                "typeString": "bytes"
+              },
+              "typeName": {
+                "id": 125307,
+                "name": "bytes",
+                "nodeType": "ElementaryTypeName",
+                "src": "526:5:116",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes_storage_ptr",
+                  "typeString": "bytes"
+                }
+              },
+              "visibility": "internal"
+            }
+          ],
+          "src": "525:21:116"
+        },
+        "returnParameters": {
+          "id": 125310,
+          "nodeType": "ParameterList",
+          "parameters": [],
+          "src": "552:0:116"
+        },
+        "scope": 125314,
+        "stateMutability": "pure",
+        "virtual": false,
+        "visibility": "internal"
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 116
+}

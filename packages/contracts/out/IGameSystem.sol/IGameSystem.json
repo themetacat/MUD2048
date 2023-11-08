@@ -1,0 +1,327 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getMatrix",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "initMatrix",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "dir",
+          "type": "string"
+        }
+      ],
+      "name": "move",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "getMatrix()": "5ad3a0a8",
+    "initMatrix()": "5841370c",
+    "move(string)": "0bfb0697"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getMatrix\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"initMatrix\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"dir\",\"type\":\"string\"}],\"name\":\"move\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"This interface is automatically generated from the corresponding system contract. Do not edit manually.\",\"kind\":\"dev\",\"methods\":{},\"title\":\"IGameSystem\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/codegen/world/IGameSystem.sol\":\"IGameSystem\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":3000},\"remappings\":[\":@latticexyz/=node_modules/@latticexyz/\",\":ds-test/=node_modules/ds-test/src/\",\":forge-std/=node_modules/forge-std/src/\"]},\"sources\":{\"src/codegen/world/IGameSystem.sol\":{\"keccak256\":\"0x83d4ff7d035d8b73fd72a9afb12662a8c160d3e1abfbd0f9fe3ba7eb85db1424\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a04fa7dd48009d511a3ccfdcae159a4eab8a5087245e8844008eb04289303dae\",\"dweb:/ipfs/QmZh5A2qkTWnwppWL3hN5UTd1Ai48V33W1Qo4pKgWQyKNV\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.21+commit.d9974bed"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getMatrix",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "initMatrix"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "dir",
+              "type": "string"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "move"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@latticexyz/=node_modules/@latticexyz/",
+        "ds-test/=node_modules/ds-test/src/",
+        "forge-std/=node_modules/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 3000
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/codegen/world/IGameSystem.sol": "IGameSystem"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/codegen/world/IGameSystem.sol": {
+        "keccak256": "0x83d4ff7d035d8b73fd72a9afb12662a8c160d3e1abfbd0f9fe3ba7eb85db1424",
+        "urls": [
+          "bzz-raw://a04fa7dd48009d511a3ccfdcae159a4eab8a5087245e8844008eb04289303dae",
+          "dweb:/ipfs/QmZh5A2qkTWnwppWL3hN5UTd1Ai48V33W1Qo4pKgWQyKNV"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/codegen/world/IGameSystem.sol",
+    "id": 81415,
+    "exportedSymbols": {
+      "IGameSystem": [
+        81414
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:381:139",
+    "nodes": [
+      {
+        "id": 81399,
+        "nodeType": "PragmaDirective",
+        "src": "32:25:139",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".21"
+        ]
+      },
+      {
+        "id": 81414,
+        "nodeType": "ContractDefinition",
+        "src": "250:162:139",
+        "nodes": [
+          {
+            "id": 81403,
+            "nodeType": "FunctionDefinition",
+            "src": "276:31:139",
+            "nodes": [],
+            "functionSelector": "5841370c",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initMatrix",
+            "nameLocation": "285:10:139",
+            "parameters": {
+              "id": 81401,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "295:2:139"
+            },
+            "returnParameters": {
+              "id": 81402,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "306:0:139"
+            },
+            "scope": 81414,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 81408,
+            "nodeType": "FunctionDefinition",
+            "src": "311:53:139",
+            "nodes": [],
+            "functionSelector": "5ad3a0a8",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getMatrix",
+            "nameLocation": "320:9:139",
+            "parameters": {
+              "id": 81404,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "329:2:139"
+            },
+            "returnParameters": {
+              "id": 81407,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 81406,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 81408,
+                  "src": "355:7:139",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 81405,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "355:7:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "354:9:139"
+            },
+            "scope": 81414,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 81413,
+            "nodeType": "FunctionDefinition",
+            "src": "368:42:139",
+            "nodes": [],
+            "functionSelector": "0bfb0697",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "move",
+            "nameLocation": "377:4:139",
+            "parameters": {
+              "id": 81411,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 81410,
+                  "mutability": "mutable",
+                  "name": "dir",
+                  "nameLocation": "396:3:139",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 81413,
+                  "src": "382:17:139",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 81409,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "382:6:139",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "381:19:139"
+            },
+            "returnParameters": {
+              "id": 81412,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "409:0:139"
+            },
+            "scope": 81414,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IGameSystem",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 81400,
+          "nodeType": "StructuredDocumentation",
+          "src": "108:141:139",
+          "text": " @title IGameSystem\n @dev This interface is automatically generated from the corresponding system contract. Do not edit manually."
+        },
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          81414
+        ],
+        "name": "IGameSystem",
+        "nameLocation": "260:11:139",
+        "scope": 81415,
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 139
+}

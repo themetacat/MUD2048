@@ -1,0 +1,21 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "test/CounterTest.t.sol",
+    "id": 82934,
+    "exportedSymbols": {},
+    "nodeType": "SourceUnit",
+    "src": "1028:0:143",
+    "nodes": [],
+    "license": "MIT"
+  },
+  "id": 143
+}

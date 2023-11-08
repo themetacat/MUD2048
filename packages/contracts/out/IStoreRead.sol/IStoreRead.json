@@ -1,0 +1,3314 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "keyTuple",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint8",
+          "name": "dynamicFieldIndex",
+          "type": "uint8"
+        }
+      ],
+      "name": "getDynamicField",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "keyTuple",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint8",
+          "name": "dynamicFieldIndex",
+          "type": "uint8"
+        }
+      ],
+      "name": "getDynamicFieldLength",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "keyTuple",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint8",
+          "name": "dynamicFieldIndex",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "start",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "end",
+          "type": "uint256"
+        }
+      ],
+      "name": "getDynamicFieldSlice",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "keyTuple",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint8",
+          "name": "fieldIndex",
+          "type": "uint8"
+        },
+        {
+          "internalType": "FieldLayout",
+          "name": "fieldLayout",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getField",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "keyTuple",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint8",
+          "name": "fieldIndex",
+          "type": "uint8"
+        }
+      ],
+      "name": "getField",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getFieldLayout",
+      "outputs": [
+        {
+          "internalType": "FieldLayout",
+          "name": "fieldLayout",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "keyTuple",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint8",
+          "name": "fieldIndex",
+          "type": "uint8"
+        },
+        {
+          "internalType": "FieldLayout",
+          "name": "fieldLayout",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getFieldLength",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "keyTuple",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint8",
+          "name": "fieldIndex",
+          "type": "uint8"
+        }
+      ],
+      "name": "getFieldLength",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getKeySchema",
+      "outputs": [
+        {
+          "internalType": "Schema",
+          "name": "keySchema",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "keyTuple",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "FieldLayout",
+          "name": "fieldLayout",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getRecord",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "staticData",
+          "type": "bytes"
+        },
+        {
+          "internalType": "PackedCounter",
+          "name": "encodedLengths",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "dynamicData",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "keyTuple",
+          "type": "bytes32[]"
+        }
+      ],
+      "name": "getRecord",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "staticData",
+          "type": "bytes"
+        },
+        {
+          "internalType": "PackedCounter",
+          "name": "encodedLengths",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "dynamicData",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "keyTuple",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint8",
+          "name": "fieldIndex",
+          "type": "uint8"
+        },
+        {
+          "internalType": "FieldLayout",
+          "name": "fieldLayout",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getStaticField",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "ResourceId",
+          "name": "tableId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getValueSchema",
+      "outputs": [
+        {
+          "internalType": "Schema",
+          "name": "valueSchema",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "getDynamicField(bytes32,bytes32[],uint8)": "1e788977",
+    "getDynamicFieldLength(bytes32,bytes32[],uint8)": "dbbf0e21",
+    "getDynamicFieldSlice(bytes32,bytes32[],uint8,uint256,uint256)": "4dc77d97",
+    "getField(bytes32,bytes32[],uint8)": "d03edb8c",
+    "getField(bytes32,bytes32[],uint8,bytes32)": "05242d2f",
+    "getFieldLayout(bytes32)": "3a77c2c2",
+    "getFieldLength(bytes32,bytes32[],uint8)": "a53417ed",
+    "getFieldLength(bytes32,bytes32[],uint8,bytes32)": "9f1fcf0a",
+    "getKeySchema(bytes32)": "d4285dc2",
+    "getRecord(bytes32,bytes32[])": "cc49db7e",
+    "getRecord(bytes32,bytes32[],bytes32)": "419b58fd",
+    "getStaticField(bytes32,bytes32[],uint8,bytes32)": "8c364d59",
+    "getValueSchema(bytes32)": "e228a4a3"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"keyTuple\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"dynamicFieldIndex\",\"type\":\"uint8\"}],\"name\":\"getDynamicField\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"keyTuple\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"dynamicFieldIndex\",\"type\":\"uint8\"}],\"name\":\"getDynamicFieldLength\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"keyTuple\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"dynamicFieldIndex\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"start\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"end\",\"type\":\"uint256\"}],\"name\":\"getDynamicFieldSlice\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"keyTuple\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"fieldIndex\",\"type\":\"uint8\"},{\"internalType\":\"FieldLayout\",\"name\":\"fieldLayout\",\"type\":\"bytes32\"}],\"name\":\"getField\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"keyTuple\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"fieldIndex\",\"type\":\"uint8\"}],\"name\":\"getField\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"}],\"name\":\"getFieldLayout\",\"outputs\":[{\"internalType\":\"FieldLayout\",\"name\":\"fieldLayout\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"keyTuple\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"fieldIndex\",\"type\":\"uint8\"},{\"internalType\":\"FieldLayout\",\"name\":\"fieldLayout\",\"type\":\"bytes32\"}],\"name\":\"getFieldLength\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"keyTuple\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"fieldIndex\",\"type\":\"uint8\"}],\"name\":\"getFieldLength\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"}],\"name\":\"getKeySchema\",\"outputs\":[{\"internalType\":\"Schema\",\"name\":\"keySchema\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"keyTuple\",\"type\":\"bytes32[]\"},{\"internalType\":\"FieldLayout\",\"name\":\"fieldLayout\",\"type\":\"bytes32\"}],\"name\":\"getRecord\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"staticData\",\"type\":\"bytes\"},{\"internalType\":\"PackedCounter\",\"name\":\"encodedLengths\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"dynamicData\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"keyTuple\",\"type\":\"bytes32[]\"}],\"name\":\"getRecord\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"staticData\",\"type\":\"bytes\"},{\"internalType\":\"PackedCounter\",\"name\":\"encodedLengths\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"dynamicData\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"keyTuple\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint8\",\"name\":\"fieldIndex\",\"type\":\"uint8\"},{\"internalType\":\"FieldLayout\",\"name\":\"fieldLayout\",\"type\":\"bytes32\"}],\"name\":\"getStaticField\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"ResourceId\",\"name\":\"tableId\",\"type\":\"bytes32\"}],\"name\":\"getValueSchema\",\"outputs\":[{\"internalType\":\"Schema\",\"name\":\"valueSchema\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getDynamicField(bytes32,bytes32[],uint8)\":{\"notice\":\"Get a single dynamic field from the given tableId and key tuple at the given dynamic field index. (Dynamic field index = field index - number of static fields)\"},\"getDynamicFieldLength(bytes32,bytes32[],uint8)\":{\"notice\":\"Get the byte length of a single dynamic field from the given tableId and key tuple\"},\"getDynamicFieldSlice(bytes32,bytes32[],uint8,uint256,uint256)\":{\"notice\":\"Get a byte slice (including start, excluding end) of a single dynamic field from the given tableId and key tuple, with the given value field layout. The slice is unchecked and will return invalid data if `start`:`end` overflow.\"},\"getField(bytes32,bytes32[],uint8)\":{\"notice\":\"Get a single field from the given tableId and key tuple, loading the field layout from storage\"},\"getField(bytes32,bytes32[],uint8,bytes32)\":{\"notice\":\"Get a single field from the given tableId and key tuple, with the given field layout\"},\"getFieldLength(bytes32,bytes32[],uint8)\":{\"notice\":\"Get the byte length of a single field from the given tableId and key tuple, loading the field layout from storage\"},\"getFieldLength(bytes32,bytes32[],uint8,bytes32)\":{\"notice\":\"Get the byte length of a single field from the given tableId and key tuple, with the given value field layout\"},\"getRecord(bytes32,bytes32[])\":{\"notice\":\"Get full record (all fields, static and dynamic data) for the given tableId and key tuple, loading the field layout from storage\"},\"getRecord(bytes32,bytes32[],bytes32)\":{\"notice\":\"Get full record (all fields, static and dynamic data) for the given tableId and key tuple, with the given field layout\"},\"getStaticField(bytes32,bytes32[],uint8,bytes32)\":{\"notice\":\"Get a single static field from the given tableId and key tuple, with the given value field layout. Note: the field value is left-aligned in the returned bytes32, the rest of the word is not zeroed out. Consumers are expected to truncate the returned value as needed.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"node_modules/@latticexyz/store/src/IStoreRead.sol\":\"IStoreRead\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":3000},\"remappings\":[\":@latticexyz/=node_modules/@latticexyz/\",\":ds-test/=node_modules/ds-test/src/\",\":forge-std/=node_modules/forge-std/src/\"]},\"sources\":{\"node_modules/@latticexyz/schema-type/src/solidity/SchemaType.sol\":{\"keccak256\":\"0x770eff7a38b9b7b1613dc11ca09db4f28b42a117c9b39b2a06a650a58a250bdb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://39f544110658a53def52c2a4e33b8b158b95a4f14fccea58d5268b6e728d86d4\",\"dweb:/ipfs/QmTesj6tjSFbfAiKUitXapdNYWPStS8bLkB3r22qfyHwUC\"]},\"node_modules/@latticexyz/store/src/FieldLayout.sol\":{\"keccak256\":\"0x2a0536cd6cecc479d0b81d5aad6380231f4d6873beadc54814d801c2036b02c0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e07c041e19146a9ec258cc700a450b4d49440202895eb12f3bb17508427c23ba\",\"dweb:/ipfs/QmXoqrCGDSkuFgNSMURRFdjokjREL78nLDzNaUi6rjefy9\"]},\"node_modules/@latticexyz/store/src/IStoreRead.sol\":{\"keccak256\":\"0xd2180d53ecd31069b1166f170ecdcd85917ac50f45fc26fb39b49cee7ba00e37\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1494bb0a3228e2d194bddaed4761fd3ca865979f0e3f3a53acd271143a4aa0ac\",\"dweb:/ipfs/Qmaddnzzmu99iP9dTWK9ZeByh5dZyjY9SpVnRdvyr2fBAo\"]},\"node_modules/@latticexyz/store/src/PackedCounter.sol\":{\"keccak256\":\"0x44ddfa9eb8a861462c550f0a9d66c40c68acdb347a61fa765949608407a2c7fb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://47ee957f4b19cab9e20bf5fc569c015eca13852fb3351f2a105a8be9c48204c0\",\"dweb:/ipfs/QmNkyzDobVQLoq9BtQ8HtgsPLiqnmi97EZx1wsu6wp8nKH\"]},\"node_modules/@latticexyz/store/src/ResourceId.sol\":{\"keccak256\":\"0x40983c580b8958e55db4520095934a535e98544ffe8228327e598973eb6647ed\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://839d658fa2bb2b1f09a08149d2bf0c26a26c301ad2dda8154fc99458085a695d\",\"dweb:/ipfs/Qmd5jHHYrgqraPqF8bjzT4xyjsoPk8K7pkxXLLfz6MRT6d\"]},\"node_modules/@latticexyz/store/src/Schema.sol\":{\"keccak256\":\"0x58aef318ba03f8ff8866ef70f8a30f549b150657ea699734aefe16c298956401\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7dc104690a7e2bcf5ce1afadcd58f8ef4d639b4b92b9ad9293656235d54395f3\",\"dweb:/ipfs/QmYJJvEv5KBJ3kzf9AkgRn7Uu5dp4exGTRddf4cae1btgE\"]},\"node_modules/@latticexyz/store/src/constants.sol\":{\"keccak256\":\"0x9e37c64c119ef07ad914bc589ee3f6d67946ab95877978c1ee3e2c1ffae07076\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3fad47e542025382aa28e8171253e34f93b2f149434b67a26989542d70218793\",\"dweb:/ipfs/QmW6JsKNwPc6oAMrgcikgR2EPwMUtQANiuZSQSGCd29HHC\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.21+commit.d9974bed"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "keyTuple",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "uint8",
+              "name": "dynamicFieldIndex",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getDynamicField",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "",
+              "type": "bytes"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "keyTuple",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "uint8",
+              "name": "dynamicFieldIndex",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getDynamicFieldLength",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "keyTuple",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "uint8",
+              "name": "dynamicFieldIndex",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "start",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "end",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getDynamicFieldSlice",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "keyTuple",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "uint8",
+              "name": "fieldIndex",
+              "type": "uint8"
+            },
+            {
+              "internalType": "FieldLayout",
+              "name": "fieldLayout",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getField",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "keyTuple",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "uint8",
+              "name": "fieldIndex",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getField",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getFieldLayout",
+          "outputs": [
+            {
+              "internalType": "FieldLayout",
+              "name": "fieldLayout",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "keyTuple",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "uint8",
+              "name": "fieldIndex",
+              "type": "uint8"
+            },
+            {
+              "internalType": "FieldLayout",
+              "name": "fieldLayout",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getFieldLength",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "keyTuple",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "uint8",
+              "name": "fieldIndex",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getFieldLength",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getKeySchema",
+          "outputs": [
+            {
+              "internalType": "Schema",
+              "name": "keySchema",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "keyTuple",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "FieldLayout",
+              "name": "fieldLayout",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getRecord",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "staticData",
+              "type": "bytes"
+            },
+            {
+              "internalType": "PackedCounter",
+              "name": "encodedLengths",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes",
+              "name": "dynamicData",
+              "type": "bytes"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "keyTuple",
+              "type": "bytes32[]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getRecord",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "staticData",
+              "type": "bytes"
+            },
+            {
+              "internalType": "PackedCounter",
+              "name": "encodedLengths",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes",
+              "name": "dynamicData",
+              "type": "bytes"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "keyTuple",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "uint8",
+              "name": "fieldIndex",
+              "type": "uint8"
+            },
+            {
+              "internalType": "FieldLayout",
+              "name": "fieldLayout",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getStaticField",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "ResourceId",
+              "name": "tableId",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getValueSchema",
+          "outputs": [
+            {
+              "internalType": "Schema",
+              "name": "valueSchema",
+              "type": "bytes32"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "getDynamicField(bytes32,bytes32[],uint8)": {
+            "notice": "Get a single dynamic field from the given tableId and key tuple at the given dynamic field index. (Dynamic field index = field index - number of static fields)"
+          },
+          "getDynamicFieldLength(bytes32,bytes32[],uint8)": {
+            "notice": "Get the byte length of a single dynamic field from the given tableId and key tuple"
+          },
+          "getDynamicFieldSlice(bytes32,bytes32[],uint8,uint256,uint256)": {
+            "notice": "Get a byte slice (including start, excluding end) of a single dynamic field from the given tableId and key tuple, with the given value field layout. The slice is unchecked and will return invalid data if `start`:`end` overflow."
+          },
+          "getField(bytes32,bytes32[],uint8)": {
+            "notice": "Get a single field from the given tableId and key tuple, loading the field layout from storage"
+          },
+          "getField(bytes32,bytes32[],uint8,bytes32)": {
+            "notice": "Get a single field from the given tableId and key tuple, with the given field layout"
+          },
+          "getFieldLength(bytes32,bytes32[],uint8)": {
+            "notice": "Get the byte length of a single field from the given tableId and key tuple, loading the field layout from storage"
+          },
+          "getFieldLength(bytes32,bytes32[],uint8,bytes32)": {
+            "notice": "Get the byte length of a single field from the given tableId and key tuple, with the given value field layout"
+          },
+          "getRecord(bytes32,bytes32[])": {
+            "notice": "Get full record (all fields, static and dynamic data) for the given tableId and key tuple, loading the field layout from storage"
+          },
+          "getRecord(bytes32,bytes32[],bytes32)": {
+            "notice": "Get full record (all fields, static and dynamic data) for the given tableId and key tuple, with the given field layout"
+          },
+          "getStaticField(bytes32,bytes32[],uint8,bytes32)": {
+            "notice": "Get a single static field from the given tableId and key tuple, with the given value field layout. Note: the field value is left-aligned in the returned bytes32, the rest of the word is not zeroed out. Consumers are expected to truncate the returned value as needed."
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@latticexyz/=node_modules/@latticexyz/",
+        "ds-test/=node_modules/ds-test/src/",
+        "forge-std/=node_modules/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 3000
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "node_modules/@latticexyz/store/src/IStoreRead.sol": "IStoreRead"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "node_modules/@latticexyz/schema-type/src/solidity/SchemaType.sol": {
+        "keccak256": "0x770eff7a38b9b7b1613dc11ca09db4f28b42a117c9b39b2a06a650a58a250bdb",
+        "urls": [
+          "bzz-raw://39f544110658a53def52c2a4e33b8b158b95a4f14fccea58d5268b6e728d86d4",
+          "dweb:/ipfs/QmTesj6tjSFbfAiKUitXapdNYWPStS8bLkB3r22qfyHwUC"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@latticexyz/store/src/FieldLayout.sol": {
+        "keccak256": "0x2a0536cd6cecc479d0b81d5aad6380231f4d6873beadc54814d801c2036b02c0",
+        "urls": [
+          "bzz-raw://e07c041e19146a9ec258cc700a450b4d49440202895eb12f3bb17508427c23ba",
+          "dweb:/ipfs/QmXoqrCGDSkuFgNSMURRFdjokjREL78nLDzNaUi6rjefy9"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@latticexyz/store/src/IStoreRead.sol": {
+        "keccak256": "0xd2180d53ecd31069b1166f170ecdcd85917ac50f45fc26fb39b49cee7ba00e37",
+        "urls": [
+          "bzz-raw://1494bb0a3228e2d194bddaed4761fd3ca865979f0e3f3a53acd271143a4aa0ac",
+          "dweb:/ipfs/Qmaddnzzmu99iP9dTWK9ZeByh5dZyjY9SpVnRdvyr2fBAo"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@latticexyz/store/src/PackedCounter.sol": {
+        "keccak256": "0x44ddfa9eb8a861462c550f0a9d66c40c68acdb347a61fa765949608407a2c7fb",
+        "urls": [
+          "bzz-raw://47ee957f4b19cab9e20bf5fc569c015eca13852fb3351f2a105a8be9c48204c0",
+          "dweb:/ipfs/QmNkyzDobVQLoq9BtQ8HtgsPLiqnmi97EZx1wsu6wp8nKH"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@latticexyz/store/src/ResourceId.sol": {
+        "keccak256": "0x40983c580b8958e55db4520095934a535e98544ffe8228327e598973eb6647ed",
+        "urls": [
+          "bzz-raw://839d658fa2bb2b1f09a08149d2bf0c26a26c301ad2dda8154fc99458085a695d",
+          "dweb:/ipfs/Qmd5jHHYrgqraPqF8bjzT4xyjsoPk8K7pkxXLLfz6MRT6d"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@latticexyz/store/src/Schema.sol": {
+        "keccak256": "0x58aef318ba03f8ff8866ef70f8a30f549b150657ea699734aefe16c298956401",
+        "urls": [
+          "bzz-raw://7dc104690a7e2bcf5ce1afadcd58f8ef4d639b4b92b9ad9293656235d54395f3",
+          "dweb:/ipfs/QmYJJvEv5KBJ3kzf9AkgRn7Uu5dp4exGTRddf4cae1btgE"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@latticexyz/store/src/constants.sol": {
+        "keccak256": "0x9e37c64c119ef07ad914bc589ee3f6d67946ab95877978c1ee3e2c1ffae07076",
+        "urls": [
+          "bzz-raw://3fad47e542025382aa28e8171253e34f93b2f149434b67a26989542d70218793",
+          "dweb:/ipfs/QmW6JsKNwPc6oAMrgcikgR2EPwMUtQANiuZSQSGCd29HHC"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "node_modules/@latticexyz/store/src/IStoreRead.sol",
+    "id": 120731,
+    "exportedSymbols": {
+      "FieldLayout": [
+        61138
+      ],
+      "IStoreRead": [
+        120730
+      ],
+      "PackedCounter": [
+        61634
+      ],
+      "ResourceId": [
+        62261
+      ],
+      "Schema": [
+        62344
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:3814:74",
+    "nodes": [
+      {
+        "id": 120532,
+        "nodeType": "PragmaDirective",
+        "src": "32:25:74",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".21"
+        ]
+      },
+      {
+        "id": 120534,
+        "nodeType": "ImportDirective",
+        "src": "59:52:74",
+        "nodes": [],
+        "absolutePath": "node_modules/@latticexyz/store/src/PackedCounter.sol",
+        "file": "./PackedCounter.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 120731,
+        "sourceUnit": 62258,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 120533,
+              "name": "PackedCounter",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 61634,
+              "src": "68:13:74",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 120536,
+        "nodeType": "ImportDirective",
+        "src": "112:48:74",
+        "nodes": [],
+        "absolutePath": "node_modules/@latticexyz/store/src/FieldLayout.sol",
+        "file": "./FieldLayout.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 120731,
+        "sourceUnit": 61558,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 120535,
+              "name": "FieldLayout",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 61138,
+              "src": "121:11:74",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 120538,
+        "nodeType": "ImportDirective",
+        "src": "161:38:74",
+        "nodes": [],
+        "absolutePath": "node_modules/@latticexyz/store/src/Schema.sol",
+        "file": "./Schema.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 120731,
+        "sourceUnit": 62813,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 120537,
+              "name": "Schema",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 62344,
+              "src": "170:6:74",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 120540,
+        "nodeType": "ImportDirective",
+        "src": "200:46:74",
+        "nodes": [],
+        "absolutePath": "node_modules/@latticexyz/store/src/ResourceId.sol",
+        "file": "./ResourceId.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 120731,
+        "sourceUnit": 62333,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 120539,
+              "name": "ResourceId",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 62261,
+              "src": "209:10:74",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 120730,
+        "nodeType": "ContractDefinition",
+        "src": "248:3597:74",
+        "nodes": [
+          {
+            "id": 120549,
+            "nodeType": "FunctionDefinition",
+            "src": "273:92:74",
+            "nodes": [],
+            "functionSelector": "3a77c2c2",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getFieldLayout",
+            "nameLocation": "282:14:74",
+            "parameters": {
+              "id": 120544,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120543,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "308:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120549,
+                  "src": "297:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120542,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120541,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "297:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "297:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "297:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "296:20:74"
+            },
+            "returnParameters": {
+              "id": 120548,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120547,
+                  "mutability": "mutable",
+                  "name": "fieldLayout",
+                  "nameLocation": "352:11:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120549,
+                  "src": "340:23:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_FieldLayout_$61138",
+                    "typeString": "FieldLayout"
+                  },
+                  "typeName": {
+                    "id": 120546,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120545,
+                      "name": "FieldLayout",
+                      "nameLocations": [
+                        "340:11:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 61138,
+                      "src": "340:11:74"
+                    },
+                    "referencedDeclaration": 61138,
+                    "src": "340:11:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_FieldLayout_$61138",
+                      "typeString": "FieldLayout"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "339:25:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120558,
+            "nodeType": "FunctionDefinition",
+            "src": "369:87:74",
+            "nodes": [],
+            "functionSelector": "e228a4a3",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getValueSchema",
+            "nameLocation": "378:14:74",
+            "parameters": {
+              "id": 120553,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120552,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "404:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120558,
+                  "src": "393:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120551,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120550,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "393:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "393:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "393:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "392:20:74"
+            },
+            "returnParameters": {
+              "id": 120557,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120556,
+                  "mutability": "mutable",
+                  "name": "valueSchema",
+                  "nameLocation": "443:11:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120558,
+                  "src": "436:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_Schema_$62344",
+                    "typeString": "Schema"
+                  },
+                  "typeName": {
+                    "id": 120555,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120554,
+                      "name": "Schema",
+                      "nameLocations": [
+                        "436:6:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62344,
+                      "src": "436:6:74"
+                    },
+                    "referencedDeclaration": 62344,
+                    "src": "436:6:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_Schema_$62344",
+                      "typeString": "Schema"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "435:20:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120567,
+            "nodeType": "FunctionDefinition",
+            "src": "460:83:74",
+            "nodes": [],
+            "functionSelector": "d4285dc2",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getKeySchema",
+            "nameLocation": "469:12:74",
+            "parameters": {
+              "id": 120562,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120561,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "493:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120567,
+                  "src": "482:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120560,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120559,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "482:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "482:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "482:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "481:20:74"
+            },
+            "returnParameters": {
+              "id": 120566,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120565,
+                  "mutability": "mutable",
+                  "name": "keySchema",
+                  "nameLocation": "532:9:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120567,
+                  "src": "525:16:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_Schema_$62344",
+                    "typeString": "Schema"
+                  },
+                  "typeName": {
+                    "id": 120564,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120563,
+                      "name": "Schema",
+                      "nameLocations": [
+                        "525:6:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62344,
+                      "src": "525:6:74"
+                    },
+                    "referencedDeclaration": 62344,
+                    "src": "525:6:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_Schema_$62344",
+                      "typeString": "Schema"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "524:18:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120584,
+            "nodeType": "FunctionDefinition",
+            "src": "693:184:74",
+            "nodes": [],
+            "documentation": {
+              "id": 120568,
+              "nodeType": "StructuredDocumentation",
+              "src": "547:143:74",
+              "text": " Get full record (all fields, static and dynamic data) for the given tableId and key tuple, loading the field layout from storage"
+            },
+            "functionSelector": "cc49db7e",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getRecord",
+            "nameLocation": "702:9:74",
+            "parameters": {
+              "id": 120575,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120571,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "728:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120584,
+                  "src": "717:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120570,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120569,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "717:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "717:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "717:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120574,
+                  "mutability": "mutable",
+                  "name": "keyTuple",
+                  "nameLocation": "760:8:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120584,
+                  "src": "741:27:74",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_calldata_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 120572,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "741:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 120573,
+                    "nodeType": "ArrayTypeName",
+                    "src": "741:9:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "711:61:74"
+            },
+            "returnParameters": {
+              "id": 120583,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120577,
+                  "mutability": "mutable",
+                  "name": "staticData",
+                  "nameLocation": "809:10:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120584,
+                  "src": "796:23:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 120576,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "796:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120580,
+                  "mutability": "mutable",
+                  "name": "encodedLengths",
+                  "nameLocation": "835:14:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120584,
+                  "src": "821:28:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_PackedCounter_$61634",
+                    "typeString": "PackedCounter"
+                  },
+                  "typeName": {
+                    "id": 120579,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120578,
+                      "name": "PackedCounter",
+                      "nameLocations": [
+                        "821:13:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 61634,
+                      "src": "821:13:74"
+                    },
+                    "referencedDeclaration": 61634,
+                    "src": "821:13:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_PackedCounter_$61634",
+                      "typeString": "PackedCounter"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120582,
+                  "mutability": "mutable",
+                  "name": "dynamicData",
+                  "nameLocation": "864:11:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120584,
+                  "src": "851:24:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 120581,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "851:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "795:81:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120604,
+            "nodeType": "FunctionDefinition",
+            "src": "1017:213:74",
+            "nodes": [],
+            "documentation": {
+              "id": 120585,
+              "nodeType": "StructuredDocumentation",
+              "src": "881:133:74",
+              "text": " Get full record (all fields, static and dynamic data) for the given tableId and key tuple, with the given field layout"
+            },
+            "functionSelector": "419b58fd",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getRecord",
+            "nameLocation": "1026:9:74",
+            "parameters": {
+              "id": 120595,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120588,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "1052:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120604,
+                  "src": "1041:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120587,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120586,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "1041:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "1041:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "1041:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120591,
+                  "mutability": "mutable",
+                  "name": "keyTuple",
+                  "nameLocation": "1084:8:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120604,
+                  "src": "1065:27:74",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_calldata_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 120589,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1065:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 120590,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1065:9:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120594,
+                  "mutability": "mutable",
+                  "name": "fieldLayout",
+                  "nameLocation": "1110:11:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120604,
+                  "src": "1098:23:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_FieldLayout_$61138",
+                    "typeString": "FieldLayout"
+                  },
+                  "typeName": {
+                    "id": 120593,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120592,
+                      "name": "FieldLayout",
+                      "nameLocations": [
+                        "1098:11:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 61138,
+                      "src": "1098:11:74"
+                    },
+                    "referencedDeclaration": 61138,
+                    "src": "1098:11:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_FieldLayout_$61138",
+                      "typeString": "FieldLayout"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1035:90:74"
+            },
+            "returnParameters": {
+              "id": 120603,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120597,
+                  "mutability": "mutable",
+                  "name": "staticData",
+                  "nameLocation": "1162:10:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120604,
+                  "src": "1149:23:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 120596,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1149:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120600,
+                  "mutability": "mutable",
+                  "name": "encodedLengths",
+                  "nameLocation": "1188:14:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120604,
+                  "src": "1174:28:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_PackedCounter_$61634",
+                    "typeString": "PackedCounter"
+                  },
+                  "typeName": {
+                    "id": 120599,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120598,
+                      "name": "PackedCounter",
+                      "nameLocations": [
+                        "1174:13:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 61634,
+                      "src": "1174:13:74"
+                    },
+                    "referencedDeclaration": 61634,
+                    "src": "1174:13:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_PackedCounter_$61634",
+                      "typeString": "PackedCounter"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120602,
+                  "mutability": "mutable",
+                  "name": "dynamicData",
+                  "nameLocation": "1217:11:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120604,
+                  "src": "1204:24:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 120601,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1204:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1148:81:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120618,
+            "nodeType": "FunctionDefinition",
+            "src": "1346:143:74",
+            "nodes": [],
+            "documentation": {
+              "id": 120605,
+              "nodeType": "StructuredDocumentation",
+              "src": "1234:109:74",
+              "text": " Get a single field from the given tableId and key tuple, loading the field layout from storage"
+            },
+            "functionSelector": "d03edb8c",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getField",
+            "nameLocation": "1355:8:74",
+            "parameters": {
+              "id": 120614,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120608,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "1380:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120618,
+                  "src": "1369:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120607,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120606,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "1369:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "1369:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "1369:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120611,
+                  "mutability": "mutable",
+                  "name": "keyTuple",
+                  "nameLocation": "1412:8:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120618,
+                  "src": "1393:27:74",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_calldata_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 120609,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1393:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 120610,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1393:9:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120613,
+                  "mutability": "mutable",
+                  "name": "fieldIndex",
+                  "nameLocation": "1432:10:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120618,
+                  "src": "1426:16:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 120612,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1426:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1363:83:74"
+            },
+            "returnParameters": {
+              "id": 120617,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120616,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "1483:4:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120618,
+                  "src": "1470:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 120615,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1470:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1469:19:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120635,
+            "nodeType": "FunctionDefinition",
+            "src": "1595:172:74",
+            "nodes": [],
+            "documentation": {
+              "id": 120619,
+              "nodeType": "StructuredDocumentation",
+              "src": "1493:99:74",
+              "text": " Get a single field from the given tableId and key tuple, with the given field layout"
+            },
+            "functionSelector": "05242d2f",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getField",
+            "nameLocation": "1604:8:74",
+            "parameters": {
+              "id": 120631,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120622,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "1629:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120635,
+                  "src": "1618:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120621,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120620,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "1618:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "1618:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "1618:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120625,
+                  "mutability": "mutable",
+                  "name": "keyTuple",
+                  "nameLocation": "1661:8:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120635,
+                  "src": "1642:27:74",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_calldata_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 120623,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1642:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 120624,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1642:9:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120627,
+                  "mutability": "mutable",
+                  "name": "fieldIndex",
+                  "nameLocation": "1681:10:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120635,
+                  "src": "1675:16:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 120626,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1675:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120630,
+                  "mutability": "mutable",
+                  "name": "fieldLayout",
+                  "nameLocation": "1709:11:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120635,
+                  "src": "1697:23:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_FieldLayout_$61138",
+                    "typeString": "FieldLayout"
+                  },
+                  "typeName": {
+                    "id": 120629,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120628,
+                      "name": "FieldLayout",
+                      "nameLocations": [
+                        "1697:11:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 61138,
+                      "src": "1697:11:74"
+                    },
+                    "referencedDeclaration": 61138,
+                    "src": "1697:11:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_FieldLayout_$61138",
+                      "typeString": "FieldLayout"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1612:112:74"
+            },
+            "returnParameters": {
+              "id": 120634,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120633,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "1761:4:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120635,
+                  "src": "1748:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 120632,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1748:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1747:19:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120652,
+            "nodeType": "FunctionDefinition",
+            "src": "2065:168:74",
+            "nodes": [],
+            "documentation": {
+              "id": 120636,
+              "nodeType": "StructuredDocumentation",
+              "src": "1771:291:74",
+              "text": " Get a single static field from the given tableId and key tuple, with the given value field layout.\n Note: the field value is left-aligned in the returned bytes32, the rest of the word is not zeroed out.\n Consumers are expected to truncate the returned value as needed."
+            },
+            "functionSelector": "8c364d59",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getStaticField",
+            "nameLocation": "2074:14:74",
+            "parameters": {
+              "id": 120648,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120639,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "2105:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120652,
+                  "src": "2094:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120638,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120637,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "2094:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "2094:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "2094:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120642,
+                  "mutability": "mutable",
+                  "name": "keyTuple",
+                  "nameLocation": "2137:8:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120652,
+                  "src": "2118:27:74",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_calldata_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 120640,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2118:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 120641,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2118:9:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120644,
+                  "mutability": "mutable",
+                  "name": "fieldIndex",
+                  "nameLocation": "2157:10:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120652,
+                  "src": "2151:16:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 120643,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2151:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120647,
+                  "mutability": "mutable",
+                  "name": "fieldLayout",
+                  "nameLocation": "2185:11:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120652,
+                  "src": "2173:23:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_FieldLayout_$61138",
+                    "typeString": "FieldLayout"
+                  },
+                  "typeName": {
+                    "id": 120646,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120645,
+                      "name": "FieldLayout",
+                      "nameLocations": [
+                        "2173:11:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 61138,
+                      "src": "2173:11:74"
+                    },
+                    "referencedDeclaration": 61138,
+                    "src": "2173:11:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_FieldLayout_$61138",
+                      "typeString": "FieldLayout"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2088:112:74"
+            },
+            "returnParameters": {
+              "id": 120651,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120650,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120652,
+                  "src": "2224:7:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 120649,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2224:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2223:9:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120666,
+            "nodeType": "FunctionDefinition",
+            "src": "2419:150:74",
+            "nodes": [],
+            "documentation": {
+              "id": 120653,
+              "nodeType": "StructuredDocumentation",
+              "src": "2237:179:74",
+              "text": " Get a single dynamic field from the given tableId and key tuple at the given dynamic field index.\n (Dynamic field index = field index - number of static fields)"
+            },
+            "functionSelector": "1e788977",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDynamicField",
+            "nameLocation": "2428:15:74",
+            "parameters": {
+              "id": 120662,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120656,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "2460:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120666,
+                  "src": "2449:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120655,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120654,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "2449:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "2449:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "2449:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120659,
+                  "mutability": "mutable",
+                  "name": "keyTuple",
+                  "nameLocation": "2490:8:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120666,
+                  "src": "2473:25:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 120657,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2473:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 120658,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2473:9:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120661,
+                  "mutability": "mutable",
+                  "name": "dynamicFieldIndex",
+                  "nameLocation": "2510:17:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120666,
+                  "src": "2504:23:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 120660,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2504:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2443:88:74"
+            },
+            "returnParameters": {
+              "id": 120665,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120664,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120666,
+                  "src": "2555:12:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 120663,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2555:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2554:14:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120680,
+            "nodeType": "FunctionDefinition",
+            "src": "2704:137:74",
+            "nodes": [],
+            "documentation": {
+              "id": 120667,
+              "nodeType": "StructuredDocumentation",
+              "src": "2573:128:74",
+              "text": " Get the byte length of a single field from the given tableId and key tuple, loading the field layout from storage"
+            },
+            "functionSelector": "a53417ed",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getFieldLength",
+            "nameLocation": "2713:14:74",
+            "parameters": {
+              "id": 120676,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120670,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "2744:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120680,
+                  "src": "2733:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120669,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120668,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "2733:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "2733:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "2733:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120673,
+                  "mutability": "mutable",
+                  "name": "keyTuple",
+                  "nameLocation": "2774:8:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120680,
+                  "src": "2757:25:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 120671,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2757:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 120672,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2757:9:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120675,
+                  "mutability": "mutable",
+                  "name": "fieldIndex",
+                  "nameLocation": "2794:10:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120680,
+                  "src": "2788:16:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 120674,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2788:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2727:81:74"
+            },
+            "returnParameters": {
+              "id": 120679,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120678,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120680,
+                  "src": "2832:7:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 120677,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2832:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2831:9:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120697,
+            "nodeType": "FunctionDefinition",
+            "src": "2972:166:74",
+            "nodes": [],
+            "documentation": {
+              "id": 120681,
+              "nodeType": "StructuredDocumentation",
+              "src": "2845:124:74",
+              "text": " Get the byte length of a single field from the given tableId and key tuple, with the given value field layout"
+            },
+            "functionSelector": "9f1fcf0a",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getFieldLength",
+            "nameLocation": "2981:14:74",
+            "parameters": {
+              "id": 120693,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120684,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "3012:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120697,
+                  "src": "3001:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120683,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120682,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "3001:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "3001:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "3001:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120687,
+                  "mutability": "mutable",
+                  "name": "keyTuple",
+                  "nameLocation": "3042:8:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120697,
+                  "src": "3025:25:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 120685,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3025:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 120686,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3025:9:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120689,
+                  "mutability": "mutable",
+                  "name": "fieldIndex",
+                  "nameLocation": "3062:10:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120697,
+                  "src": "3056:16:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 120688,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3056:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120692,
+                  "mutability": "mutable",
+                  "name": "fieldLayout",
+                  "nameLocation": "3090:11:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120697,
+                  "src": "3078:23:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_FieldLayout_$61138",
+                    "typeString": "FieldLayout"
+                  },
+                  "typeName": {
+                    "id": 120691,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120690,
+                      "name": "FieldLayout",
+                      "nameLocations": [
+                        "3078:11:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 61138,
+                      "src": "3078:11:74"
+                    },
+                    "referencedDeclaration": 61138,
+                    "src": "3078:11:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_FieldLayout_$61138",
+                      "typeString": "FieldLayout"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2995:110:74"
+            },
+            "returnParameters": {
+              "id": 120696,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120695,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120697,
+                  "src": "3129:7:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 120694,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3129:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3128:9:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120711,
+            "nodeType": "FunctionDefinition",
+            "src": "3242:151:74",
+            "nodes": [],
+            "documentation": {
+              "id": 120698,
+              "nodeType": "StructuredDocumentation",
+              "src": "3142:97:74",
+              "text": " Get the byte length of a single dynamic field from the given tableId and key tuple"
+            },
+            "functionSelector": "dbbf0e21",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDynamicFieldLength",
+            "nameLocation": "3251:21:74",
+            "parameters": {
+              "id": 120707,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120701,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "3289:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120711,
+                  "src": "3278:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120700,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120699,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "3278:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "3278:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "3278:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120704,
+                  "mutability": "mutable",
+                  "name": "keyTuple",
+                  "nameLocation": "3319:8:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120711,
+                  "src": "3302:25:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 120702,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3302:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 120703,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3302:9:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120706,
+                  "mutability": "mutable",
+                  "name": "dynamicFieldIndex",
+                  "nameLocation": "3339:17:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120711,
+                  "src": "3333:23:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 120705,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3333:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3272:88:74"
+            },
+            "returnParameters": {
+              "id": 120710,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120709,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120711,
+                  "src": "3384:7:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 120708,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3384:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3383:9:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 120729,
+            "nodeType": "FunctionDefinition",
+            "src": "3647:196:74",
+            "nodes": [],
+            "documentation": {
+              "id": 120712,
+              "nodeType": "StructuredDocumentation",
+              "src": "3397:247:74",
+              "text": " Get a byte slice (including start, excluding end) of a single dynamic field from the given tableId and key tuple, with the given value field layout.\n The slice is unchecked and will return invalid data if `start`:`end` overflow."
+            },
+            "functionSelector": "4dc77d97",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDynamicFieldSlice",
+            "nameLocation": "3656:20:74",
+            "parameters": {
+              "id": 120725,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120715,
+                  "mutability": "mutable",
+                  "name": "tableId",
+                  "nameLocation": "3693:7:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120729,
+                  "src": "3682:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                    "typeString": "ResourceId"
+                  },
+                  "typeName": {
+                    "id": 120714,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 120713,
+                      "name": "ResourceId",
+                      "nameLocations": [
+                        "3682:10:74"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 62261,
+                      "src": "3682:10:74"
+                    },
+                    "referencedDeclaration": 62261,
+                    "src": "3682:10:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_userDefinedValueType$_ResourceId_$62261",
+                      "typeString": "ResourceId"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120718,
+                  "mutability": "mutable",
+                  "name": "keyTuple",
+                  "nameLocation": "3723:8:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120729,
+                  "src": "3706:25:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 120716,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3706:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 120717,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3706:9:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120720,
+                  "mutability": "mutable",
+                  "name": "dynamicFieldIndex",
+                  "nameLocation": "3743:17:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120729,
+                  "src": "3737:23:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 120719,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3737:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120722,
+                  "mutability": "mutable",
+                  "name": "start",
+                  "nameLocation": "3774:5:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120729,
+                  "src": "3766:13:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 120721,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3766:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120724,
+                  "mutability": "mutable",
+                  "name": "end",
+                  "nameLocation": "3793:3:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120729,
+                  "src": "3785:11:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 120723,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3785:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3676:124:74"
+            },
+            "returnParameters": {
+              "id": 120728,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 120727,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "3837:4:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 120729,
+                  "src": "3824:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 120726,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3824:5:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3823:19:74"
+            },
+            "scope": 120730,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IStoreRead",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          120730
+        ],
+        "name": "IStoreRead",
+        "nameLocation": "258:10:74",
+        "scope": 120731,
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 74
+}

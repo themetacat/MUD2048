@@ -1,0 +1,211 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "src/codegen/index.sol",
+    "id": 77340,
+    "exportedSymbols": {
+      "GameState": [
+        78048
+      ],
+      "GameStateTableId": [
+        77396
+      ],
+      "Matrix": [
+        79698
+      ],
+      "MatrixTableId": [
+        78115
+      ],
+      "Movable": [
+        80407
+      ],
+      "MovableTableId": [
+        79755
+      ],
+      "Score": [
+        81397
+      ],
+      "ScoreTableId": [
+        80474
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:329:134",
+    "nodes": [
+      {
+        "id": 77327,
+        "nodeType": "PragmaDirective",
+        "src": "32:25:134",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".21"
+        ]
+      },
+      {
+        "id": 77330,
+        "nodeType": "ImportDirective",
+        "src": "108:63:134",
+        "nodes": [],
+        "absolutePath": "src/codegen/tables/Movable.sol",
+        "file": "./tables/Movable.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 77340,
+        "sourceUnit": 80418,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 77328,
+              "name": "Movable",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 80407,
+              "src": "117:7:134",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          },
+          {
+            "foreign": {
+              "id": 77329,
+              "name": "MovableTableId",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 79755,
+              "src": "126:14:134",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 77333,
+        "nodeType": "ImportDirective",
+        "src": "172:69:134",
+        "nodes": [],
+        "absolutePath": "src/codegen/tables/GameState.sol",
+        "file": "./tables/GameState.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 77340,
+        "sourceUnit": 78059,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 77331,
+              "name": "GameState",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 78048,
+              "src": "181:9:134",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          },
+          {
+            "foreign": {
+              "id": 77332,
+              "name": "GameStateTableId",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 77396,
+              "src": "192:16:134",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 77336,
+        "nodeType": "ImportDirective",
+        "src": "242:57:134",
+        "nodes": [],
+        "absolutePath": "src/codegen/tables/Score.sol",
+        "file": "./tables/Score.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 77340,
+        "sourceUnit": 81398,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 77334,
+              "name": "Score",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 81397,
+              "src": "251:5:134",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          },
+          {
+            "foreign": {
+              "id": 77335,
+              "name": "ScoreTableId",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 80474,
+              "src": "258:12:134",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 77339,
+        "nodeType": "ImportDirective",
+        "src": "300:60:134",
+        "nodes": [],
+        "absolutePath": "src/codegen/tables/Matrix.sol",
+        "file": "./tables/Matrix.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 77340,
+        "sourceUnit": 79699,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 77337,
+              "name": "Matrix",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 79698,
+              "src": "309:6:134",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          },
+          {
+            "foreign": {
+              "id": 77338,
+              "name": "MatrixTableId",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 78115,
+              "src": "317:13:134",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 134
+}
