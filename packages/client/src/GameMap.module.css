@@ -1,0 +1,54 @@
+.container{
+    display: inline-grid;
+    --tw-bg-opacity: 1;
+    background-color: #352f21;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    /* width: 300px;
+    height: 300px; */
+    grid-row-gap: 20px !important; /* 上下间隔 */
+    grid-column-gap: 20px !important; /* 左右间隔 */
+    padding: 20px;
+    color:#fff;
+}
+/* styles.module.css */
+
+.two2 {
+   
+    background-color: rgb(5, 10, 12)
+  }
+  .four4 {
+    background-color: rgb(5, 10, 12);
+  }
+  
+  .eight8 {
+    background-color:  #0a130c;
+  }
+
+
+  .sixtyFour64{background-color:  #0d1014}
+  .sixteen16{background-color: #121a14}
+  .twentyEight128{background-color: #15140e}
+  .thrityTwo32{background-color: #0d1014}
+  .twoHundred256{background-color: #15140e}
+  .fiveHundred512{background-color: #110f0b}
+  .oneThousand1024{background-color: #0f1423;font-size: 24px !important;}
+  .twoThousand2048{background-color: #131824;font-size: 24px !important;}
+  
+
+  /* background-color: #a6c
+  background-color: #93c */
+  .cell {
+    /* width: 70px;
+    height: 70px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  

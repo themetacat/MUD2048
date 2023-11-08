@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { Entity } from "@latticexyz/recs";
 import { twMerge } from "tailwind-merge";
 import { useMUD } from "./MUDContext";
+import  styles from './GameMap.module.css';
 
 type Props = {
   width: number;
@@ -67,7 +68,8 @@ export const GameMap = ({
                 </div>
               )}
       </div>
-    <div className="inline-grid bg-lime-500 relative overflow-hidden" style={{ width: 300, height: 300, backgroundColor: "antiquewhite"}}>
+    <div   className={`${styles.container}`}>
+    {/* // className="inline-grid bg-lime-500 relative overflow-hidden" style={{ width: 300, height: 300, backgroundColor: "antiquewhite",color:"#fff"}}> */}
       {rows.map((y) =>
         columns.map((x) => {
 
@@ -78,18 +80,33 @@ export const GameMap = ({
                 "w-8 h-8  flex items-center justify-center",
               )}
               style={{
-                width: 65,
-                height: 65,
+                width: '70px',
+                height:'70px',
                 gridColumn: x + 1,
                 gridRow: y + 1,
-                fontSize: "30px",
+                fontSize: "20px",
                 fontWeight: "bold",
+                borderRadius:'5px',
               }}
             >
               {game_con && game_con[0] && game_con[0].ma[y * width + x] !== 0 && (
-                <div>
-                  {game_con[0].ma[y * width + x]}
-                </div>
+                <div className={`
+                ${styles.cell}
+                ${game_con[0].ma[y * width + x] === 2 && styles.two2}
+               ${game_con[0].ma[y * width + x] === 4 && styles.four4}
+               ${game_con[0].ma[y * width + x] === 8 && styles.eight8}
+               ${game_con[0].ma[y * width + x] === 64 && styles.sixtyFour64}
+               ${game_con[0].ma[y * width + x] === 16 && styles.sixteen16}
+               ${game_con[0].ma[y * width + x] === 128 && styles.twentyEight128}
+               ${game_con[0].ma[y * width + x] === 32 && styles.thrityTwo32}
+               ${game_con[0].ma[y * width + x] === 256 && styles.twoHundred256}
+               ${game_con[0].ma[y * width + x] === 512 && styles.fiveHundred512}
+               ${game_con[0].ma[y * width + x] === 1024 && styles.oneThousand1024}
+               ${game_con[0].ma[y * width + x] === 2048 && styles.twoThousand2048}
+               `}
+               >
+                 {game_con[0].ma[y * width + x]}
+               </div>
               )}
             </div>
           );
