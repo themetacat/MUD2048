@@ -129,6 +129,9 @@ contract GameSystem is System {
         }
       }
     }
+    if(matrixArray[15] == 0){
+      return;
+    }
     GameState.set(player, false);
 
   }
