@@ -52,7 +52,7 @@ export async function getNetworkConfig() {
   /*
    * Find the chain (unless it isn't in the list of supported chains).
    */
-  const chainIndex = supportedChains.findIndex((c) => c.id === chainId);
+  const chainIndex = supportedChains.findIndex((c:any) => c.id === chainId);
   const chain = supportedChains[chainIndex];
   if (!chain) {
     throw new Error(`Chain ${chainId} not found`);

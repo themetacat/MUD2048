@@ -21,8 +21,8 @@ setup().then(async (result) => {
     const { mount: mountDevTools } = await import("@latticexyz/dev-tools");
     mountDevTools({
       config: mudConfig,
-      publicClient: result.network.publicClient,
-      walletClient: result.network.walletClient,
+      publicClient: result.network.publicClient as any,
+      walletClient: result.network.walletClient as any,
       latestBlock$: result.network.latestBlock$,
       storedBlockLogs$: result.network.storedBlockLogs$,
       worldAddress: result.network.worldContract.address,
