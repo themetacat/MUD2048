@@ -1,8 +1,10 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import { Entity } from "@latticexyz/recs";
 import { twMerge } from "tailwind-merge";
 import { useMUD } from "./MUDContext";
 import styles from "./GameMap.module.css";
+
+import { getGradeList } from "../../../service";
 
 type Props = {
   width: number;
@@ -33,6 +35,7 @@ export const GameMap = ({
     network: { playerEntity },
   } = useMUD();
 
+  const [dataListSum, setDataList] = useState([]);
   const rows = new Array(width).fill(0).map((_, i) => i);
   const columns = new Array(height).fill(0).map((_, i) => i);
 
@@ -44,38 +47,57 @@ export const GameMap = ({
     }
   }, [encounter]);
 
+  const dataHandle = () => {
+    const dataList = getGradeList();
+    dataList.then(
+      (dataListCon) => setDataList(dataListCon.data[0])
+      // console.log(dataListCon.data[0])
+    );
+  };
+
+  useEffect(() => {
+    const dataList = getGradeList();
+    dataList.then((dataListCon) => {
+      setDataList(dataListCon.data);
+    });
+  }, []);
+
   return (
-    <div>
-      <span onClick={onTileClick}>play ---- </span>
-      <span onClick={onTileClick2}> check</span>
+    <>
       <div>
-        SCORE:{game_con && game_con[0] && <div>{game_con[0].currentScore}</div>}
-      </div>
-      <div>BEST:{best}</div>
-      <div>{!gamestate && <div>OVER</div>}</div>
-      <div className={`${styles.container}`}>
-        {/* // className="inline-grid bg-lime-500 relative overflow-hidden" style={{ width: 300, height: 300, backgroundColor: "antiquewhite",color:"#fff"}}> */}
-        {rows.map((y) =>
-          columns.map((x) => {
-            return (
-              <div
-                key={`${x},${y}`}
-                className={twMerge("w-8 h-8  flex items-center justify-center")}
-                style={{
-                  width: "70px",
-                  height: "70px",
-                  gridColumn: x + 1,
-                  gridRow: y + 1,
-                  fontSize: "20px",
-                  fontWeight: "bold",
-                  borderRadius: "5px",
-                }}
-              >
-                {game_con &&
-                  game_con[0] &&
-                  game_con[0].ma[y * width + x] !== 0 && (
-                    <div
-                      className={`
+        <span onClick={onTileClick}>play ---- </span>
+        <span onClick={onTileClick2}> check</span>
+        <div>
+          SCORE:
+          {game_con && game_con[0] && <div>{game_con[0].currentScore}</div>}
+        </div>
+        <div>BEST:{best}</div>
+        <div>{!gamestate && <div>OVER</div>}</div>
+        <div className={`${styles.container}`}>
+          {/* // className="inline-grid bg-lime-500 relative overflow-hidden" style={{ width: 300, height: 300, backgroundColor: "antiquewhite",color:"#fff"}}> */}
+          {rows.map((y) =>
+            columns.map((x) => {
+              return (
+                <div
+                  key={`${x},${y}`}
+                  className={twMerge(
+                    "w-8 h-8  flex items-center justify-center"
+                  )}
+                  style={{
+                    width: "70px",
+                    height: "70px",
+                    gridColumn: x + 1,
+                    gridRow: y + 1,
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    borderRadius: "5px",
+                  }}
+                >
+                  {game_con &&
+                    game_con[0] &&
+                    game_con[0].ma[y * width + x] !== 0 && (
+                      <div
+                        className={`
                         ${styles.cell}
                         ${game_con[0].ma[y * width + x] === 2 && styles.two2}
                         ${game_con[0].ma[y * width + x] === 4 && styles.four4}
@@ -113,15 +135,35 @@ export const GameMap = ({
                           styles.twoThousand2048
                         }
                       `}
-                    >
-                      {game_con[0].ma[y * width + x]}
-                    </div>
-                  )}
-              </div>
-            );
-          })
-        )}
+                      >
+                        {game_con[0].ma[y * width + x]}
+                      </div>
+                    )}
+                </div>
+              );
+            })
+          )}
+        </div>
       </div>
-    </div>
+      <div>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Address</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {dataListSum &&
+              dataListSum.map((item: any) => (
+                <tr key={item.id}>
+                  <td className={styles.tr}>{item.address}</td>
+                  <td>{item.score}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };

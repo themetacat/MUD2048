@@ -5,8 +5,7 @@
     border-radius: 5px;
     position: relative;
     overflow: hidden;
-    /* width: 300px;
-    height: 300px; */
+ 
     grid-row-gap: 20px !important; /* 上下间隔 */
     grid-column-gap: 20px !important; /* 左右间隔 */
     padding: 20px;
@@ -50,5 +49,17 @@
     padding: 20px;
     border-radius: 5px;
   }
+  .tr{
+    width: 400px;
+    display: inline-block;
+    
+  }
+  .table {
+    border-collapse: collapse;
+  }
   
+
   
+  td, th {
+    border: 1px solid #000;
+  }
