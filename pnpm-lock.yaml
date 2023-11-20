@@ -129,8 +129,8 @@ importers:
         specifier: https://github.com/dapphub/ds-test.git
         version: github.com/dapphub/ds-test/e282159d5170298eb2455a6c05280ab5a73a4ef0
       forge-std:
-        specifier: https://github.com/foundry-rs/forge-std.git#74cfb77e308dd188d2f58864aaf44963ae6b88b1
-        version: github.com/foundry-rs/forge-std/74cfb77e308dd188d2f58864aaf44963ae6b88b1
+        specifier: https://github.com/foundry-rs/forge-std.git
+        version: github.com/foundry-rs/forge-std/c22437a63d1c3418869bc35a7c55a5175a09b701
       prettier:
         specifier: ^2.6.2
         version: registry.npmmirror.com/prettier@2.8.8
@@ -155,10 +155,10 @@ packages:
     version: 1.0.0
     dev: true
 
-  github.com/foundry-rs/forge-std/74cfb77e308dd188d2f58864aaf44963ae6b88b1:
-    resolution: {commit: 74cfb77e308dd188d2f58864aaf44963ae6b88b1, repo: git+ssh://git@github.com/foundry-rs/forge-std.git, type: git}
+  github.com/foundry-rs/forge-std/c22437a63d1c3418869bc35a7c55a5175a09b701:
+    resolution: {tarball: https://codeload.github.com/foundry-rs/forge-std/tar.gz/c22437a63d1c3418869bc35a7c55a5175a09b701}
     name: forge-std
-    version: 1.6.0
+    version: 1.7.2
     dev: true
 
   registry.npmmirror.com/@aashutoshrathi/word-wrap@1.2.6:

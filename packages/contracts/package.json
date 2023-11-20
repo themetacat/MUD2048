@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/node": "^18.15.11",
     "ds-test": "https://github.com/dapphub/ds-test.git",
-    "forge-std": "https://github.com/foundry-rs/forge-std.git#74cfb77e308dd188d2f58864aaf44963ae6b88b1",
+    "forge-std": "https://github.com/foundry-rs/forge-std.git",
     "prettier": "^2.6.2",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "solhint": "^3.3.7",
