@@ -22,7 +22,7 @@
   },
   "engines": {
     "node": "18.x",
-    "pnpm": "8.x"
+    "pnpm": "8.10.5"
   },
   "dependencies": {
     "qs": "^6.11.2"
