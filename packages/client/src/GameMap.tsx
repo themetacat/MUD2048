@@ -46,21 +46,25 @@ export const GameMap = ({
       setShowEncounter(false);
     }
   }, [encounter]);
-
-  const dataHandle = () => {
+  
+  const dataHandle = useCallback(() => {
+    
+    
     const dataList = getGradeList();
     dataList.then(
-      (dataListCon) => setDataList(dataListCon.data[0])
+      (dataListCon) =>setDataList(dataListCon.data))
       // console.log(dataListCon.data[0])
-    );
-  };
-
+  },[best]);
+  // if(best){
+  //   dataHandle()
+  // }
   useEffect(() => {
-    const dataList = getGradeList();
-    dataList.then((dataListCon) => {
-      setDataList(dataListCon.data);
-    });
-  }, []);
+    dataHandle()
+    // const dataList = getGradeList();
+    // dataList.then((dataListCon) => {
+    //   setDataList(dataListCon.data);
+    // });
+  }, [best,dataHandle]);
 
   return (
     <>
