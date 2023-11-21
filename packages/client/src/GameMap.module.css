@@ -63,3 +63,10 @@
   td, th {
     border: 1px solid #000;
   }
+  .PLAY{
+    width: 100px;
+    height: 30px;
+    background-color: antiquewhite;
+    cursor: pointer;
+    display: inline-block;
+  }

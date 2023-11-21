@@ -65,7 +65,7 @@ export const GameMap = ({
   return (
     <>
       <div>
-        <span onClick={onTileClick}>play ---- </span>
+        <span onClick={onTileClick} className={styles.PLAY}>play ---- </span>
         <span onClick={onTileClick2}> check</span>
         <div>
           SCORE:
