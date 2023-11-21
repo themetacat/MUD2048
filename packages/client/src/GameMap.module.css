@@ -1,7 +1,7 @@
 .container{
     display: inline-grid;
     --tw-bg-opacity: 1;
-    background-color: #352f21;
+    background-color: #2e2e2e;
     border-radius: 5px;
     position: relative;
     overflow: hidden;
@@ -10,6 +10,7 @@
     grid-row-gap: 20px !important; /* 上下间隔 */
     grid-column-gap: 20px !important; /* 左右间隔 */
     padding: 20px;
+    margin-right: 20px;
     color:#fff;
 }
 
@@ -49,24 +50,88 @@
     padding: 20px;
     border-radius: 5px;
   }
-  .tr{
-    width: 400px;
+  .trData{
+    /* width: 200px;
     display: inline-block;
-    
+    text-align: center; */
+    margin-top: 12px;
+  }
+  .trData td:first-child{
+   
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+    margin-top: 12px;
+  }
+  .trData td:last-child{
+    margin-top: 12px;
+    display: inline-block;
   }
   .table {
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
+    border: 1px solid #000;
+    margin: 20px;
+    border-radius: 10px;
+    background: linear-gradient(#565776, #a6a6b0);
+
+
   }
   
-
+.tableFooter{
+  padding-top: 20px;
+}
   
   td, th {
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
   }
   .PLAY{
-    width: 100px;
-    height: 30px;
-    background-color: antiquewhite;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0px;
+    margin: 0px;
     cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    font-family: Kanit;
+    line-height: 1.75;
+    min-width: 64px;
+    padding: 8px 22px;
+    color: rgba(0, 0, 0, 0.87);
+    width: 100%;
+    border: 2px solid rgb(55, 55, 65);
+    border-radius: 10px;
+    box-shadow: rgb(55, 55, 65) 0px 10px 0px 0px;
+    background-color:  #8083cb;
+    text-transform: none;
+    font-weight: bold;
+    font-size: 24px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    height: 80px;
+  }
+  .conta{
+    display: flex;
+   
+  }
+  .transac{
     display: inline-block;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    margin-top: 20px;
+    border: 2px solid rgb(55, 55, 65);
+    border-radius: 10px;
+    box-shadow: rgb(55, 55, 65) 0px 10px 0px 0px;
+    background-color: #76779b;
+    max-height: 170px;
+    flex: 1 1 0%;
+    overflow-y: auto;
+    margin-bottom: 36px;
+    width: 100%;
   }

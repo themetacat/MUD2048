@@ -1,0 +1,28 @@
+.cssfs1tlz{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 45px 0px;
+    margin-top: 70px !important;
+    width: 1200px;
+    margin: 0 auto;
+    
+  }
+  .btn_group{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: #fff;
+    
+  }
+  .btn_group a{
+    margin-right: 32px;
+  }
+  .btn_gap{
+    flex: 1 1 0%;
+  }
+  .btn_logo{
+    width: 24px;
+    height: 24px;
+  }
