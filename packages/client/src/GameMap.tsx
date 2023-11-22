@@ -85,14 +85,21 @@ export const GameMap = ({
       right: "ArrowRight",
     };
     const event = new KeyboardEvent("keydown", { key: keyMap[direction as "up" | "left" | "down" | "right"] });
-    document.dispatchEvent(event);
+    window.dispatchEvent(event);
   
     // 2秒后将加载状态设置为 false
     setTimeout(() => {
       setLoading(prevLoading => ({ ...prevLoading, [direction]: false }));
     }, 2000);
   };
-
+  // const handleClick = (direction: string) => {
+  //   const btnElement = document.getElementById(`btn${direction}`);
+  //   if (btnElement) {
+  //     btnElement.blur(); // 添加此行代码，将焦点从按钮上移除，以避免触发连续的点击事件
+  //   }
+  //   handleButtonClick(direction);
+  // };
+  
   // 在你的组件中添加一个事件监听器
 useEffect(() => {
   const handleKeyDown = (event:any) => {
