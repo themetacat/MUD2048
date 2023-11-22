@@ -236,6 +236,7 @@ margin-right: 20px;
     max-height: 170px;
     flex: 1 1 0%;
     overflow-y: auto;
+    height: 140px;
     margin-bottom: 36px;
     width: 100%;
   }
