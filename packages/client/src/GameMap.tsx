@@ -75,29 +75,22 @@ export const GameMap = ({
 
   const handleButtonClick = (direction:any) => {
     // 在这里处理按钮点击逻辑
-    // console.log(direction)
-    // direction 参数可以是 "up", "left", "down", "right" 之一
-    // 在这里设置 loading 状态
-    // setLoading(true);
-
-    // // 在这里处理按钮点击逻辑
-
-    // // 模拟异步加载，这里可以是实际的异步操作，比如请求数据
-    // setTimeout(() => {
-    //   // 设置 loading 状态为 false
-    //   setLoading(false);
-    //   setKey(key + 1); // 改变key值以重新渲染元素
-    // }, 2000); // 假设加载过程需要2秒钟
-
-
     setLoading(prevLoading => ({ ...prevLoading, [direction]: true }));
-
-    // 执行异步操作，完成后将加载状态设置为 false
-    // doAsyncTask().then(() => {
-      setTimeout(() => {
+  
+    // 模拟按下对应的方向键
+    const keyMap = {
+      up: "ArrowUp",
+      left: "ArrowLeft",
+      down: "ArrowDown",
+      right: "ArrowRight",
+    };
+    const event = new KeyboardEvent("keydown", { key: keyMap[direction as "up" | "left" | "down" | "right"] });
+    document.dispatchEvent(event);
+  
+    // 2秒后将加载状态设置为 false
+    setTimeout(() => {
       setLoading(prevLoading => ({ ...prevLoading, [direction]: false }));
-    }, 2000); 
-    // });
+    }, 2000);
   };
 
   // 在你的组件中添加一个事件监听器
