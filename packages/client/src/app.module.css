@@ -426,7 +426,6 @@ font-size: 25px;
   margin:0 auto;
   top: 50%;
   left: 50%;
-  /* margin-top: 80px; */
   transform: translate(-50%,-50%);
   text-align: center;
   width: 1200px;
