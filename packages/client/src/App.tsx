@@ -37,15 +37,12 @@ export const App = () => {
   
   return (
 <>
-{syncProgress?.step !== SyncStep.LIVE && (
-  <div>{syncProgress.message} ({Math.floor(syncProgress.percentage)}%)</div>
-)}
-    {/* {syncProgress && syncProgress.step !== SyncStep.LIVE? (
+    {syncProgress && syncProgress.step !== SyncStep.LIVE? (
 
       <div>
         {syncProgress.message} ({Math.floor(syncProgress.percentage)}%)
       </div>
-    ) : ( */}
+    ) : (
    
     <div className={style.page}>
       <div className={style.homeContent}>
@@ -191,15 +188,15 @@ export const App = () => {
         </div>
       </div>
       <div className={style.GameBoard}>
-      {/* {syncProgress  && ( <GameBoard />)} */}
+      {syncProgress  && ( <GameBoard />)}
      
-     <GameBoard />
+     {/* <GameBoard /> */}
         </div>
         <div style={{ position: "fixed", bottom: "0px", width: "100%" }}>
           <Footer />
         </div>
     </div>
-        {/* )}  */}
+        )} 
         </>
       );
     };
