@@ -193,8 +193,7 @@ export const App = () => {
       </div>
       <div className={style.GameBoard}>
       {/* {!(syncProgress && syncProgress?.step !== SyncStep.LIVE) && ( <GameBoard />)} */}
-      {/* {syncProgress&&<GameBoard />} */}
-      11111
+      {syncProgress&&<GameBoard />}
         </div>
         <div style={{ position: "fixed", bottom: "0px", width: "100%" }}>
           <Footer />

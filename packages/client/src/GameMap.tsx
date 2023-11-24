@@ -5,7 +5,7 @@ import { useMUD } from "./MUDContext";
 import styles from "./GameMap.module.css";
 import { createSystemCalls } from "./mud/createSystemCalls";
 import { getGradeList } from "../../../service";
-
+import { useComponentValue } from "@latticexyz/react";
 import image from "../../../images/loading.png";
 
 type Props = {
