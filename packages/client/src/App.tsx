@@ -3,7 +3,9 @@ import { useMUD } from "./MUDContext";
 import { singletonEntity } from "@latticexyz/store-sync/recs";
 import { GameBoard } from "./GameBoard";
 import style from "./app.module.css";
-import Footer from './footer'
+import { SyncState } from "@latticexyz/network";
+import Footer from '../src/footer'
+import {SyncStep} from "@latticexyz/store-sync"
 
 
 import image from '../../../images/20230809103925.png'
@@ -13,12 +15,23 @@ export const App = () => {
   //   components: { Counter },
   //   systemCalls: { increment },
   // } = useMUD();
+  const {
+    components: { SyncProgress },
+  } = useMUD();
 
+  
+  const syncProgress = useComponentValue(SyncProgress, singletonEntity);
   // const counter = useComponentValue(Counter, singletonEntity);
   const goBack = () => {
     console.log("goback");
   };
   return (
+    <div className="w-screen h-screen flex items-center justify-center">
+    {syncProgress && syncProgress.step !== SyncStep.LIVE ? (
+      <div>
+        {syncProgress.message} ({Math.floor(syncProgress.percentage)}%)
+      </div>
+    ) : (
     <div className={style.page}>
       <div className={style.homeContent}>
         <div className={style.homeC}>
@@ -163,11 +176,15 @@ export const App = () => {
         </div>
       </div>
       <div className={style.GameBoard}>
+        
       <GameBoard />
         </div>
         <div style={{ position: "fixed", bottom: "0px", width: "100%" }}>
           <Footer />
         </div>
     </div>
-  );
-};
+        )}
+        </div>
+      );
+    };
+

@@ -3,15 +3,16 @@ import { Entity } from "@latticexyz/recs";
 import { twMerge } from "tailwind-merge";
 import { useMUD } from "./MUDContext";
 import styles from "./GameMap.module.css";
-
+import { createSystemCalls } from "./mud/createSystemCalls";
 import { getGradeList } from "../../../service";
 
-import image from '../../../images/loading.png'
+import image from "../../../images/loading.png";
 
 type Props = {
   width: number;
   height: number;
   onTileClick?: () => void;
+  onTileClick3?: () => Promise<boolean>;
   onTileClick2?: () => void;
   best: any;
   gamestate: any;
@@ -28,6 +29,7 @@ export const GameMap = ({
   height,
   best,
   onTileClick,
+  onTileClick3,
   onTileClick2,
   game_con,
   gamestate,
@@ -46,9 +48,25 @@ export const GameMap = ({
     down: false,
     right: false,
   });
-  
+
   const [key, setKey] = useState(0);
+  const [resultVal, setResultVal] = useState(false);
   const [showEncounter, setShowEncounter] = useState(false);
+
+  // 使用await关键字等待Promise对象的解析，并处理true值
+  const handleClickAndGetTrue = useCallback(async () => {
+    try {
+      const result = await onTileClick3?.() as any;
+      console.log(result, 66666); // 在这里处理true值'
+      setResultVal(result)
+    } catch (error) {
+      console.error(error);
+    }
+  },[onTileClick3]);
+
+  // console.log( onTileClick3?.())
+
+
   // Reset show encounter when we leave encounter
   useEffect(() => {
     if (!encounter) {
@@ -72,11 +90,11 @@ export const GameMap = ({
     // });
   }, [best, dataHandle]);
 
-
-  const handleButtonClick = (direction:any) => {
+  const handleButtonClick = (direction: any) => {
     // 在这里处理按钮点击逻辑
-    setLoading(prevLoading => ({ ...prevLoading, [direction]: true }));
-  
+    // handleClickAndGetTrue();
+    setLoading((prevLoading) => ({ ...prevLoading, [direction]: true }));
+
     // 模拟按下对应的方向键
     const keyMap = {
       up: "ArrowUp",
@@ -84,52 +102,57 @@ export const GameMap = ({
       down: "ArrowDown",
       right: "ArrowRight",
     };
-    const event = new KeyboardEvent("keydown", { key: keyMap[direction as "up" | "left" | "down" | "right"] });
+    const event = new KeyboardEvent("keydown", {
+      key: keyMap[direction as "up" | "left" | "down" | "right"],
+    });
     window.dispatchEvent(event);
-  
+
     // 2秒后将加载状态设置为 false
     setTimeout(() => {
-      setLoading(prevLoading => ({ ...prevLoading, [direction]: false }));
-    }, 2000);
+        setLoading((prevLoading) => ({ ...prevLoading, [direction]: false }));
+    
+    }, 3000);
   };
-  // const handleClick = (direction: string) => {
-  //   const btnElement = document.getElementById(`btn${direction}`);
-  //   if (btnElement) {
-  //     btnElement.blur(); // 添加此行代码，将焦点从按钮上移除，以避免触发连续的点击事件
+
+
+  // useEffect(() => {
+  //   const handleKeyDown = (event: any) => {
+  //     console.log('几次');
+      
+  //     // 判断当前按下的键是否为方向键
+  //     if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)) {
+  //       switch (event.key) {
+  //         case "ArrowUp":
+  //           handleButtonClick("up");
+  //           break;
+  //         case "ArrowLeft":
+  //           handleButtonClick("left");
+  //           break;
+  //         case "ArrowDown":
+  //           handleButtonClick("down");
+  //           break;
+  //         case "ArrowRight":
+  //           handleButtonClick("right");
+  //           break;
+  //         default:
+  //           break;
+  //       }
+  //     }
   //   }
-  //   handleButtonClick(direction);
-  // };
   
-  // 在你的组件中添加一个事件监听器
-useEffect(() => {
-  const handleKeyDown = (event:any) => {
-    switch (event.key) {
-      case 'ArrowUp':
-        handleButtonClick('up');
-        break;
-      case 'ArrowLeft':
-        handleButtonClick('left');
-        break;
-      case 'ArrowDown':
-        handleButtonClick('down');
-        break;
-      case 'ArrowRight':
-        handleButtonClick('right');
-        break;
-      default:
-        break;
-    }
-  };
+  //   // 添加事件监听器
+  //   document.addEventListener("keydown", handleKeyDown);
+  
+  //   // 在组件卸载时移除事件监听器
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
 
-  // 添加事件监听器
-  document.addEventListener('keydown', handleKeyDown);
-
-  // 在组件卸载时移除事件监听器
-  return () => {
-    document.removeEventListener('keydown', handleKeyDown);
-  };
-}, []);
-
+  const gameData = game_con && game_con[0] && game_con[0].ma;
+  console.log(game_con&&game_con[0].ma)
+ console.log(resultVal,'resultVal')
+ 
   return (
     <div className={styles.conta}>
       {/* <div style={{ flexGrow:"1",width:"400px"}}> */}
@@ -172,13 +195,11 @@ useEffect(() => {
         <div className={`${styles.container}`}>
           {rows.map((y) =>
             columns.map((x) => {
+          
               return (
                 <div
                   key={`${x},${y}`}
                   className={styles.square}
-                  // className={twMerge(
-                  //   "w-8 h-8  flex items-center justify-center"
-                  // )}
                   style={{
                     width:'99px !important',
                     height: '100px !important',
@@ -189,9 +210,11 @@ useEffect(() => {
                     borderRadius: "5px",
                   }}
                 >
-                  {game_con &&
+               
+                  {
+                  game_con &&
                     game_con[0] &&
-                    game_con[0].ma[y * width + x] !== 0 && (
+                    Number(game_con[0].ma[y * width + x]) !== 0 && (
                       <div
                         className={`
                         ${styles.cell}
@@ -232,14 +255,21 @@ useEffect(() => {
                         }
                       `}
                       >
-                        {game_con[0].ma[y * width + x]}
+                        
+                        {Number(game_con[0].ma[y * width + x])}
+                        
                       </div>
-                    )}
+                    )
+                    }
+
                 </div>
               );
             })
           )}
         </div>
+        {/* <div className={`${styles.container}`}>
+          <div className="grid-container">{grid.flat()}</div>
+        </div> */}
         <div>
           <span onClick={onTileClick} className={styles.PLAY}>
             New Game
@@ -247,260 +277,265 @@ useEffect(() => {
           {/* <span onClick={onTileClick2}> check</span> */}
           <span className={styles.transac}>Transactions history</span>
           <div className={styles.btnmea}>
-          {loading["up"]? (
-          <img  key={key}  src={image} className={styles.commonCls1} />
-        ) :<button
-              className={styles.btn}
-              tabIndex={0}
-              type="button"
-              onClick={() => handleButtonClick("up")}
-              id="btn1"
-              key={key} 
-            >
-              <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
-                <svg
-                  className={styles.MuiSvgIcon}
-                  focusable="false"
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  height="24px"
-                  width="24px"
-                >
-                  <g
-                    fill="none"
-                    fillRule="evenodd"
-                    id="页面-1"
-                    stroke="none"
-                    strokeWidth="1"
+            {loading["up"] ? (
+              <img key={key} src={image} className={styles.commonCls1} />
+            ) : (
+              <button
+                className={styles.btn}
+                tabIndex={0}
+                type="button"
+                onClick={() => handleButtonClick("up")}
+                id="btn1"
+                key={key}
+              >
+                <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
+                  <svg
+                    className={styles.MuiSvgIcon}
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    height="24px"
+                    width="24px"
                   >
                     <g
-                      id="Game"
-                      transform="translate(-925.000000, -325.000000)"
+                      fill="none"
+                      fillRule="evenodd"
+                      id="页面-1"
+                      stroke="none"
+                      strokeWidth="1"
                     >
                       <g
-                        id="编组-16"
-                        transform="translate(925.000000, 325.000000)"
+                        id="Game"
+                        transform="translate(-925.000000, -325.000000)"
                       >
-                        <rect
-                          height="24"
-                          id="矩形"
-                          width="24"
-                          x="0"
-                          y="0"
-                        ></rect>
                         <g
-                          id="编组-3"
-                          transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) translate(0.000000, 2.769231)"
+                          id="编组-16"
+                          transform="translate(925.000000, 325.000000)"
                         >
-                          <path
-                            d="M11.0769231,18.4615385 L11.076,13.846 L0,13.8461538 L0,4.61538462 L11.076,4.615 L11.0769231,0 L15.3392308,0 L24,9.23076923 L15.3392308,18.461 L11.0769231,18.4615385 Z"
-                            fill="#373741"
-                            id="形状结合"
-                          ></path>
-                          <path
-                            d="M14.7692308,0.461538462 L22.9962768,9.23076923 L14.7692308,18 L14.7687692,12.9225385 L3.23076923,12.9230769 L3.23076923,5.53846154 L14.7687692,5.53753846 L14.7692308,0.461538462 Z"
-                            fill="#FFFFFF"
-                            id="形状结合"
-                          ></path>
+                          <rect
+                            height="24"
+                            id="矩形"
+                            width="24"
+                            x="0"
+                            y="0"
+                          ></rect>
+                          <g
+                            id="编组-3"
+                            transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) translate(0.000000, 2.769231)"
+                          >
+                            <path
+                              d="M11.0769231,18.4615385 L11.076,13.846 L0,13.8461538 L0,4.61538462 L11.076,4.615 L11.0769231,0 L15.3392308,0 L24,9.23076923 L15.3392308,18.461 L11.0769231,18.4615385 Z"
+                              fill="#373741"
+                              id="形状结合"
+                            ></path>
+                            <path
+                              d="M14.7692308,0.461538462 L22.9962768,9.23076923 L14.7692308,18 L14.7687692,12.9225385 L3.23076923,12.9230769 L3.23076923,5.53846154 L14.7687692,5.53753846 L14.7692308,0.461538462 Z"
+                              fill="#FFFFFF"
+                              id="形状结合"
+                            ></path>
+                          </g>
                         </g>
                       </g>
                     </g>
-                  </g>
-                </svg>
-              </span>
-              <span className="MuiTouchRipple-root css-w0pj6f"></span>
-            </button>}
+                  </svg>
+                </span>
+                <span className="MuiTouchRipple-root css-w0pj6f"></span>
+              </button>
+            )}
           </div>
           <div className={styles.btnCon}>
-          {loading["left"]? (
-          <img  key={key}  src={image} className={styles.commonCls1} />
-        ) :
-          <button
-              className={styles.btn}
-              tabIndex={0}
-              type="button"
-              onClick={() => handleButtonClick("left")}
-              id="btn2"
-            >
-          
-              <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
-                <svg
-                   className={styles.MuiSvgIcon}
-                  focusable="false"
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  height="24px"
-                  width="24px"
-                >
-                  <g
-                    fill="none"
-                    fillRule="evenodd"
-                    id="页面-1"
-                    stroke="none"
-                    strokeWidth="1"
+            {loading["left"] ? (
+              <img key={key} src={image} className={styles.commonCls1} />
+            ) : (
+              <button
+                className={styles.btn}
+                tabIndex={0}
+                type="button"
+                onClick={() => handleButtonClick("left")}
+                id="btn2"
+              >
+                <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
+                  <svg
+                    className={styles.MuiSvgIcon}
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    height="24px"
+                    width="24px"
                   >
                     <g
-                      id="Game"
-                      transform="translate(-925.000000, -381.000000)"
+                      fill="none"
+                      fillRule="evenodd"
+                      id="页面-1"
+                      stroke="none"
+                      strokeWidth="1"
                     >
                       <g
-                        id="编组-16备份-2"
-                        transform="translate(925.000000, 381.000000)"
+                        id="Game"
+                        transform="translate(-925.000000, -381.000000)"
                       >
-                        <rect
-                          height="24"
-                          id="矩形"
-                          width="24"
-                          x="0"
-                          y="0"
-                        ></rect>
                         <g
-                          id="编组-3"
-                          transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000) translate(0.000000, 2.769231)"
+                          id="编组-16备份-2"
+                          transform="translate(925.000000, 381.000000)"
                         >
-                          <path
-                            d="M11.0769231,18.4615385 L11.076,13.846 L0,13.8461538 L0,4.61538462 L11.076,4.615 L11.0769231,0 L15.3392308,0 L24,9.23076923 L15.3392308,18.461 L11.0769231,18.4615385 Z"
-                            fill="#373741"
-                            id="形状结合"
-                          ></path>
-                          <path
-                            d="M14.7692308,0.461538462 L22.9962768,9.23076923 L14.7692308,18 L14.7687692,12.9225385 L3.23076923,12.9230769 L3.23076923,5.53846154 L14.7687692,5.53753846 L14.7692308,0.461538462 Z"
-                            fill="#FFFFFF"
-                            id="形状结合"
-                          ></path>
+                          <rect
+                            height="24"
+                            id="矩形"
+                            width="24"
+                            x="0"
+                            y="0"
+                          ></rect>
+                          <g
+                            id="编组-3"
+                            transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000) translate(0.000000, 2.769231)"
+                          >
+                            <path
+                              d="M11.0769231,18.4615385 L11.076,13.846 L0,13.8461538 L0,4.61538462 L11.076,4.615 L11.0769231,0 L15.3392308,0 L24,9.23076923 L15.3392308,18.461 L11.0769231,18.4615385 Z"
+                              fill="#373741"
+                              id="形状结合"
+                            ></path>
+                            <path
+                              d="M14.7692308,0.461538462 L22.9962768,9.23076923 L14.7692308,18 L14.7687692,12.9225385 L3.23076923,12.9230769 L3.23076923,5.53846154 L14.7687692,5.53753846 L14.7692308,0.461538462 Z"
+                              fill="#FFFFFF"
+                              id="形状结合"
+                            ></path>
+                          </g>
                         </g>
                       </g>
                     </g>
-                  </g>
-                </svg>
-              </span>
-              <span className="MuiTouchRipple-root css-w0pj6f"></span>
-              
-            </button>}
+                  </svg>
+                </span>
+                <span className="MuiTouchRipple-root css-w0pj6f"></span>
+              </button>
+            )}
             {loading["down"] ? (
-          <img  key={key}  src={image} className={styles.commonCls1} />
-        ) : <button
-               className={styles.btn}
-              tabIndex={0}
-              type="button"
-              onClick={() => handleButtonClick("down")}
-              id="btn3"
-            >
-              <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
-                <svg
-                 className={styles.MuiSvgIcon}
-                  focusable="false"
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  height="24px"
-                  width="24px"
-                >
-                  <g
-                    fill="none"
-                    fillRule="evenodd"
-                    id="页面-1"
-                    stroke="none"
-                    strokeWidth="1"
+              <img key={key} src={image} className={styles.commonCls1} />
+            ) : (
+              <button
+                className={styles.btn}
+                tabIndex={0}
+                type="button"
+                onClick={() => handleButtonClick("down")}
+                id="btn3"
+              >
+                <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
+                  <svg
+                    className={styles.MuiSvgIcon}
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    height="24px"
+                    width="24px"
                   >
                     <g
-                      id="Game"
-                      transform="translate(-925.000000, -408.000000)"
+                      fill="none"
+                      fillRule="evenodd"
+                      id="页面-1"
+                      stroke="none"
+                      strokeWidth="1"
                     >
                       <g
-                        id="编组-17"
-                        transform="translate(925.000000, 408.000000)"
+                        id="Game"
+                        transform="translate(-925.000000, -408.000000)"
                       >
-                        <rect
-                          height="24"
-                          id="矩形备份-14"
-                          width="24"
-                          x="0"
-                          y="0"
-                        ></rect>
                         <g
-                          id="编组-3备份"
-                          transform="translate(12.000000, 12.000000) rotate(90.000000) translate(-12.000000, -12.000000) translate(0.000000, 2.769231)"
+                          id="编组-17"
+                          transform="translate(925.000000, 408.000000)"
                         >
-                          <path
-                            d="M11.0769231,18.4615385 L11.076,13.846 L0,13.8461538 L0,4.61538462 L11.076,4.615 L11.0769231,2.18253431e-13 L15.3392308,2.18253431e-13 L24,9.23076923 L15.3392308,18.461 L11.0769231,18.4615385 Z"
-                            fill="#373741"
-                            id="形状结合"
-                          ></path>
-                          <path
-                            d="M12,0.461538462 L20.227046,9.23076923 L12,18 L11.9990769,12.9225385 L0.923076923,12.9230769 L0.923076923,5.53846154 L11.9990769,5.53753846 L12,0.461538462 Z"
-                            fill="#FFFFFF"
-                            id="形状结合"
-                          ></path>
+                          <rect
+                            height="24"
+                            id="矩形备份-14"
+                            width="24"
+                            x="0"
+                            y="0"
+                          ></rect>
+                          <g
+                            id="编组-3备份"
+                            transform="translate(12.000000, 12.000000) rotate(90.000000) translate(-12.000000, -12.000000) translate(0.000000, 2.769231)"
+                          >
+                            <path
+                              d="M11.0769231,18.4615385 L11.076,13.846 L0,13.8461538 L0,4.61538462 L11.076,4.615 L11.0769231,2.18253431e-13 L15.3392308,2.18253431e-13 L24,9.23076923 L15.3392308,18.461 L11.0769231,18.4615385 Z"
+                              fill="#373741"
+                              id="形状结合"
+                            ></path>
+                            <path
+                              d="M12,0.461538462 L20.227046,9.23076923 L12,18 L11.9990769,12.9225385 L0.923076923,12.9230769 L0.923076923,5.53846154 L11.9990769,5.53753846 L12,0.461538462 Z"
+                              fill="#FFFFFF"
+                              id="形状结合"
+                            ></path>
+                          </g>
                         </g>
                       </g>
                     </g>
-                  </g>
-                </svg>
-              </span>
-              <span className="MuiTouchRipple-root css-w0pj6f"></span>
-            </button>}
+                  </svg>
+                </span>
+                <span className="MuiTouchRipple-root css-w0pj6f"></span>
+              </button>
+            )}
             {loading["right"] ? (
-          <img  key={key}  src={image} className={styles.commonCls1} />
-        ) : <button
-               className={styles.btn}
-              tabIndex={0}
-              type="button"
-              onClick={() => handleButtonClick("right")}
-              id="btn4"
-            >
-              <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
-                <svg
-                 className={styles.MuiSvgIcon}
-                  focusable="false"
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  height="24px"
-                  width="24px"
-                >
-                  <g
-                    fill="none"
-                    fillRule="evenodd"
-                    id="页面-1"
-                    stroke="none"
-                    strokeWidth="1"
+              <img key={key} src={image} className={styles.commonCls1} />
+            ) : (
+              <button
+                className={styles.btn}
+                tabIndex={0}
+                type="button"
+                onClick={() => handleButtonClick("right")}
+                id="btn4"
+              >
+                <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
+                  <svg
+                    className={styles.MuiSvgIcon}
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    height="24px"
+                    width="24px"
                   >
                     <g
-                      id="Game"
-                      transform="translate(-925.000000, -353.000000)"
+                      fill="none"
+                      fillRule="evenodd"
+                      id="页面-1"
+                      stroke="none"
+                      strokeWidth="1"
                     >
                       <g
-                        id="编组-16备份"
-                        transform="translate(925.000000, 353.000000)"
+                        id="Game"
+                        transform="translate(-925.000000, -353.000000)"
                       >
-                        <rect
-                          height="24"
-                          id="矩形"
-                          width="24"
-                          x="0"
-                          y="0"
-                        ></rect>
                         <g
-                          id="编组-3"
-                          transform="translate(0.000000, 2.769231)"
+                          id="编组-16备份"
+                          transform="translate(925.000000, 353.000000)"
                         >
-                          <path
-                            d="M11.0769231,18.4615385 L11.076,13.846 L0,13.8461538 L0,4.61538462 L11.076,4.615 L11.0769231,0 L15.3392308,0 L24,9.23076923 L15.3392308,18.461 L11.0769231,18.4615385 Z"
-                            fill="#373741"
-                            id="形状结合"
-                          ></path>
-                          <path
-                            d="M14.7692308,0.461538462 L22.9962768,9.23076923 L14.7692308,18 L14.7687692,12.9225385 L3.23076923,12.9230769 L3.23076923,5.53846154 L14.7687692,5.53753846 L14.7692308,0.461538462 Z"
-                            fill="#FFFFFF"
-                            id="形状结合"
-                          ></path>
+                          <rect
+                            height="24"
+                            id="矩形"
+                            width="24"
+                            x="0"
+                            y="0"
+                          ></rect>
+                          <g
+                            id="编组-3"
+                            transform="translate(0.000000, 2.769231)"
+                          >
+                            <path
+                              d="M11.0769231,18.4615385 L11.076,13.846 L0,13.8461538 L0,4.61538462 L11.076,4.615 L11.0769231,0 L15.3392308,0 L24,9.23076923 L15.3392308,18.461 L11.0769231,18.4615385 Z"
+                              fill="#373741"
+                              id="形状结合"
+                            ></path>
+                            <path
+                              d="M14.7692308,0.461538462 L22.9962768,9.23076923 L14.7692308,18 L14.7687692,12.9225385 L3.23076923,12.9230769 L3.23076923,5.53846154 L14.7687692,5.53753846 L14.7692308,0.461538462 Z"
+                              fill="#FFFFFF"
+                              id="形状结合"
+                            ></path>
+                          </g>
                         </g>
                       </g>
                     </g>
-                  </g>
-                </svg>
-              </span>
-              <span className="MuiTouchRipple-root css-w0pj6f"></span>
-            </button>}
+                  </svg>
+                </span>
+                <span className="MuiTouchRipple-root css-w0pj6f"></span>
+              </button>
+            )}
           </div>
           <div>{!gamestate && <div>OVER</div>}</div>
         </div>
