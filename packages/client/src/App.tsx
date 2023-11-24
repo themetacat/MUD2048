@@ -9,6 +9,7 @@ import {SyncStep} from "@latticexyz/store-sync"
 
 
 import image from '../../../images/20230809103925.png'
+import { useEffect } from "react";
 
 export const App = () => {
   // const {
@@ -19,19 +20,30 @@ export const App = () => {
     components: { SyncProgress },
   } = useMUD();
 
+// console.log(SyncProgress)
+  // useEffect(()=>{
+    const syncProgress = useComponentValue(SyncProgress, singletonEntity);
+
+
+    // console.log(syncProgress,65555)
+  //   // const counter = useComponentValue(Counter, singletonEntity);
+  // },[syncProgress])
+
   
-  const syncProgress = useComponentValue(SyncProgress, singletonEntity);
-  // const counter = useComponentValue(Counter, singletonEntity);
+//  console.log('jici')
   const goBack = () => {
     console.log("goback");
   };
+  
   return (
     <div className="w-screen h-screen flex items-center justify-center">
-    {syncProgress && syncProgress.step !== SyncStep.LIVE ? (
+    {syncProgress && syncProgress.step !== SyncStep.LIVE? (
+
       <div>
         {syncProgress.message} ({Math.floor(syncProgress.percentage)}%)
       </div>
     ) : (
+   
     <div className={style.page}>
       <div className={style.homeContent}>
         <div className={style.homeC}>
@@ -177,7 +189,7 @@ export const App = () => {
       </div>
       <div className={style.GameBoard}>
         
-      <GameBoard />
+      {syncProgress&&<GameBoard />}
         </div>
         <div style={{ position: "fixed", bottom: "0px", width: "100%" }}>
           <Footer />
