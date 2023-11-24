@@ -36,11 +36,7 @@ export const App = () => {
   };
   
   return (
-    // <div className="w-screen h-screen flex items-center justify-center">
 <>
-{/* {syncProgress && syncProgress?.step !== SyncStep.LIVE && (
-  <div>{syncProgress.message} ({Math.floor(syncProgress.percentage)}%)</div>
-)} */}
     {syncProgress && syncProgress.step !== SyncStep.LIVE? (
 
       <div>
@@ -192,7 +188,8 @@ export const App = () => {
         </div>
       </div>
       <div className={style.GameBoard}>
-      {syncProgress  && ( <GameBoard />)}
+      {/* {syncProgress  && ( <GameBoard />)} */}
+      11111
       {/* {syncProgress&&<GameBoard />} */}
         </div>
         <div style={{ position: "fixed", bottom: "0px", width: "100%" }}>
