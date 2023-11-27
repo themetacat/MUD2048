@@ -149,7 +149,7 @@ export const GameMap = ({
   //   };
   // }, []);
 
-//   const gameData = game_con && game_con[0] && game_con[0].ma;
+  const gameData = game_con && game_con[0] && game_con[0].ma;
 
  
   return (
