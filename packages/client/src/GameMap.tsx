@@ -12,7 +12,7 @@ type Props = {
   width: number;
   height: number;
   onTileClick?: () => void;
-  onTileClick3?: () => Promise<boolean>;
+  // onTileClick3?: () => Promise<boolean>;
   onTileClick2?: () => void;
   best: any;
   gamestate: any;
@@ -29,7 +29,7 @@ export const GameMap = ({
   height,
   best,
   onTileClick,
-  onTileClick3,
+  // onTileClick3,
   onTileClick2,
   game_con,
   gamestate,
@@ -54,15 +54,15 @@ export const GameMap = ({
   const [showEncounter, setShowEncounter] = useState(false);
 
   // 使用await关键字等待Promise对象的解析，并处理true值
-  const handleClickAndGetTrue = useCallback(async () => {
-    try {
-      const result = await onTileClick3?.() as any;
-      console.log(result, 66666); // 在这里处理true值'
-      setResultVal(result)
-    } catch (error) {
-      console.error(error);
-    }
-  },[onTileClick3]);
+  // const handleClickAndGetTrue = useCallback(async () => {
+  //   try {
+  //     const result = await onTileClick3?.() as any;
+  //     console.log(result, 66666); // 在这里处理true值'
+  //     setResultVal(result)
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // },[onTileClick3]);
 
   // console.log( onTileClick3?.())
 
@@ -149,9 +149,9 @@ export const GameMap = ({
   //   };
   // }, []);
 
-  const gameData = game_con && game_con[0] && game_con[0].ma;
-  console.log(game_con&&game_con[0].ma)
- console.log(resultVal,'resultVal')
+//   const gameData = game_con && game_con[0] && game_con[0].ma;
+//   console.log(game_con&&game_con[0].ma)
+//  console.log(resultVal,'resultVal')
  
   return (
     <div className={styles.conta}>
