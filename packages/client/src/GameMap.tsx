@@ -192,8 +192,8 @@ export const GameMap = ({
       </table>
       {/* </div> */}
       <div style={{ display: "flex", flexGrow: "1" }}>
-        <div className={`${styles.container}`}>
-          {/* {rows.map((y) =>
+        {/* <div className={`${styles.container}`}>
+          {rows.map((y) =>
             columns.map((x) => {
           
               return (
@@ -265,8 +265,8 @@ export const GameMap = ({
                 </div>
               );
             })
-          )} */}
-        </div>
+          )}
+        </div> */}
         {/* <div className={`${styles.container}`}>
           <div className="grid-container">{grid.flat()}</div>
         </div> */}
