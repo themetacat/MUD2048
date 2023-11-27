@@ -194,8 +194,8 @@ export const GameMap = ({
         <div className={`${styles.container}`}>
           {rows.map((y) =>
             columns.map((x) => {
-              console.log(game_con&&game_con[0].ma[y * width + x])
-              console.log(Number(game_con&&game_con[0].ma[y * width + x]),5555555)
+              // console.log(game_con&&game_con[0].ma)
+              // console.log(Number(game_con&&game_con[0].ma),5555555)
               return (
                 <div
                   key={`${x},${y}`}
