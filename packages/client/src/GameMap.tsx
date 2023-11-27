@@ -156,7 +156,7 @@ export const GameMap = ({
   return (
     <div className={styles.conta}>
       {/* <div style={{ flexGrow:"1",width:"400px"}}> */}
-      <table className={styles.table}>
+      {/* <table className={styles.table}>
         <thead>
           <tr>
             <th colSpan={2}>Rankings</th>
@@ -189,7 +189,7 @@ export const GameMap = ({
           </tr>
         </thead>
         <div></div>
-      </table>
+      </table> */}
       {/* </div> */}
       <div style={{ display: "flex", flexGrow: "1" }}>
         {/* <div className={`${styles.container}`}>
