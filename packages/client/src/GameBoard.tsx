@@ -26,9 +26,7 @@ export const GameBoard = () => {
           entity: playerEntity,
         }
       : null;
-  // return <GameMap width={4} height={4} onTileClick3={init_game} onTileClick={init_game} onTileClick2={get_metrix} best={Number(score?.record) || 0} gamestate={gamestate} game_con={game_con ? [game_con] : []} />;
+  return <GameMap width={4} height={4} onTileClick={init_game} onTileClick2={get_metrix} best={Number(score?.record) || 0} gamestate={gamestate} game_con={game_con ? [game_con] : []} />;
 
-  return (
-    <>13422222</>
-  )
+  
 };
