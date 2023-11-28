@@ -51,6 +51,7 @@ export function createSystemCalls(
     }
     const tx = await worldContract.write.initMatrix();
     await waitForTransaction(tx);
+    return true;
     // await awaitStreamValue(txReduced$, (txHash) => txHash === tx.hash);
   };
 

@@ -22,6 +22,10 @@
   },
   "engines": {
     "node": "18.x",
-    "pnpm": "8.x"
+    "pnpm": "8.10.5"
+  },
+  "dependencies": {
+    "@latticexyz/network": "^1.43.0",
+    "qs": "^6.11.2"
   }
 }
