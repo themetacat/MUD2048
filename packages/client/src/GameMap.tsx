@@ -8,11 +8,13 @@ import { getGradeList } from "../../../service";
 import { useComponentValue } from "@latticexyz/react";
 import image from "../../../images/loading.png";
 
+// import {setupNetwork} from './mud/setupNetwork';
+
 type Props = {
   width: number;
   height: number;
   onTileClick?: () => void;
-  // onTileClick3?: () => Promise<boolean>;
+  onTileClick3?: () => Promise<boolean>;
   onTileClick2?: () => void;
   best: any;
   gamestate: any;
@@ -23,13 +25,13 @@ type Props = {
   }[];
   encounter?: ReactNode;
 };
-
+// console.log(setupNetwork,696969)
 export const GameMap = ({
   width,
   height,
   best,
   onTileClick,
-  // onTileClick3,
+  onTileClick3,
   onTileClick2,
   game_con,
   gamestate,
@@ -64,9 +66,21 @@ export const GameMap = ({
   //   }
   // },[onTileClick3]);
 
-  // console.log( onTileClick3?.())
 
 
+  // async function getAddress() {
+  //   // 调用 setupNetwork() 方法获取 network 对象
+  //   const network = await setupNetwork();
+  // console.log(network,'-----------')
+  //   // 从 playerEntity 对象中获取 address 值
+  //   // const { address } = network.playerEntity;
+  
+  //   // return address;
+  // }
+  
+  // getAddress().then(address => {
+  //   console.log(address); // 打印地址值
+  // });
   // Reset show encounter when we leave encounter
   useEffect(() => {
     if (!encounter) {
@@ -107,50 +121,90 @@ export const GameMap = ({
     });
     window.dispatchEvent(event);
 
+
+
     // 2秒后将加载状态设置为 false
     setTimeout(() => {
         setLoading((prevLoading) => ({ ...prevLoading, [direction]: false }));
     
     }, 3000);
   };
+  // const result =  onTileClick3();
+  // console.log(result, 66666); // 在这里处理true值'
 
-
-  // useEffect(() => {
-  //   const handleKeyDown = (event: any) => {
-  //     console.log('几次');
+  useEffect(() => {
+    
+    const handleKeyDown = (event: any) => {
       
-  //     // 判断当前按下的键是否为方向键
-  //     if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)) {
-  //       switch (event.key) {
-  //         case "ArrowUp":
-  //           handleButtonClick("up");
-  //           break;
-  //         case "ArrowLeft":
-  //           handleButtonClick("left");
-  //           break;
-  //         case "ArrowDown":
-  //           handleButtonClick("down");
-  //           break;
-  //         case "ArrowRight":
-  //           handleButtonClick("right");
-  //           break;
-  //         default:
-  //           break;
-  //       }
-  //     }
-  //   }
+      // 判断当前按下的键是否为方向键
+      if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)) {
+        switch (event.key) {
+          case "ArrowUp":
+            // handleButtonClick("up");
+            // setLoading((prevLoading) => ({ ...prevLoading, [event.key]: true }));
+            setLoading({
+              up: true,
+              left: false,
+              down: false,
+              right: false
+            });
+         
+            break;
+          case "ArrowLeft":
+            // handleButtonClick("left");
+            setLoading({
+              up: false,
+              left: true,
+              down: false,
+              right: false
+            });
+            break;
+          case "ArrowDown":
+            // handleButtonClick("down");
+            setLoading({
+              up: false,
+              left: false,
+              down: true,
+              right: false
+            });
+            break;
+          case "ArrowRight":
+            // handleButtonClick("right");
+            setLoading({
+              up: false,
+              left: false,
+              down: false,
+              right: true
+            });
+            break;
+          default:
+            break;
+        }
+      }
+
+      setTimeout(()=>{
+        setLoading({
+          up: false,
+          left: false,
+          down: false,
+          right: false
+        });
+      },3000)
+    }
   
-  //   // 添加事件监听器
-  //   document.addEventListener("keydown", handleKeyDown);
+    // 添加事件监听器
+    document.addEventListener("keydown", handleKeyDown);
   
-  //   // 在组件卸载时移除事件监听器
-  //   return () => {
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
+    // 在组件卸载时移除事件监听器
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onTileClick3]);
 
   const gameData = game_con && game_con[0] && game_con[0].ma;
-
+const itemJump =(address:any)=>{
+  window.open(`https://explorer.testnet-chain.linfra.xyz/address/${address}`)
+}
  
   return (
     <div className={styles.conta}>
@@ -158,14 +212,15 @@ export const GameMap = ({
       <table className={styles.table}>
         <thead>
           <tr>
-            <th colSpan={2}>Rankings</th>
+            <th colSpan={3}>Rankings</th>
           </tr>
         </thead>
         <tbody>
           {dataListSum &&
-            dataListSum.map((item: any) => (
+            dataListSum.map((item: any,index: number) => (
               <tr key={item.id} className={styles.trData}>
-                <td>
+                   <td>{index + 1}</td> {/* 添加序号并左对齐 */}
+                <td style={{ textAlign: "left",cursor:"pointer" }} onClick={()=>{itemJump(item.address)}}>
                   {item.address.substring(0, 6) +
                     "..." +
                     item.address.substring(item.address.length - 4)}
@@ -194,8 +249,7 @@ export const GameMap = ({
         <div className={`${styles.container}`}>
           {rows.map((y) =>
             columns.map((x) => {
-              // console.log(game_con&&game_con[0].ma)
-              // console.log(Number(game_con&&game_con[0].ma),5555555)
+           
               return (
                 <div
                   key={`${x},${y}`}
@@ -218,39 +272,39 @@ export const GameMap = ({
                       <div
                         className={`
                         ${styles.cell}
-                        ${game_con[0].ma[y * width + x] === 2 && styles.two2}
-                        ${game_con[0].ma[y * width + x] === 4 && styles.four4}
-                        ${game_con[0].ma[y * width + x] === 8 && styles.eight8}
+                        ${Number(game_con[0].ma[y * width + x]) === 2 && styles.two2}
+                        ${Number(game_con[0].ma[y * width + x]) === 4 && styles.four4}
+                        ${Number(game_con[0].ma[y * width + x]) && styles.eight8}
                         ${
-                          game_con[0].ma[y * width + x] === 64 &&
+                          Number(game_con[0].ma[y * width + x]) === 64 &&
                           styles.sixtyFour64
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 16 &&
+                          Number(game_con[0].ma[y * width + x]) === 16 &&
                           styles.sixteen16
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 128 &&
+                          Number(game_con[0].ma[y * width + x]) === 128 &&
                           styles.twentyEight128
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 32 &&
+                          Number(game_con[0].ma[y * width + x]) === 32 &&
                           styles.thrityTwo32
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 256 &&
+                          Number(game_con[0].ma[y * width + x]) === 256 &&
                           styles.twoHundred256
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 512 &&
+                          Number(game_con[0].ma[y * width + x]) === 512 &&
                           styles.fiveHundred512
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 1024 &&
+                          Number(game_con[0].ma[y * width + x]) === 1024 &&
                           styles.oneThousand1024
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 2048 &&
+                          Number(game_con[0].ma[y * width + x]) === 2048 &&
                           styles.twoThousand2048
                         }
                       `}
@@ -281,7 +335,7 @@ export const GameMap = ({
               <img key={key} src={image} className={styles.commonCls1} />
             ) : (
               <button
-                className={styles.btn}
+              className={`${styles.btn} ${loading["up"] ? styles.loading : ''}`}
                 tabIndex={0}
                 type="button"
                 onClick={() => handleButtonClick("up")}

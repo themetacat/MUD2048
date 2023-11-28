@@ -1,6 +1,12 @@
 import React from 'react'
 import style from "./index.module.css";
 export default function index() {
+  const discord = ()=>{
+    window.open("https://discord.com/invite/yRt6be237P")
+  }
+  const twitter = ()=>{
+    window.open("https://twitter.com/Metacat007")
+  }
   return (
    <>
         <div className={style.cssfs1tlz}>
@@ -35,8 +41,7 @@ export default function index() {
         </span>
       </a>
       <a
-        // href="https://discord.com/invite/yRt6be237P"
-        target="_blank" rel="noopener noreferrer"
+      onClick={discord}
         className="PageFooter__btn"
       >
         <svg
@@ -118,8 +123,7 @@ export default function index() {
         </svg>
       </a>
       <a
-        // href="https://twitter.com/Metacat007"
-        target="_blank" rel="noopener noreferrer"
+         onClick={twitter}
         className="PageFooter__btn"
       >
         <svg

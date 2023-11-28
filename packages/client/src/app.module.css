@@ -218,6 +218,7 @@
   cursor: pointer;
   display: flex;
   margin-right: 32px;
+  z-index: 999999999999999999999;
  }
  .iconSvg a{
   margin-left: 32px;
