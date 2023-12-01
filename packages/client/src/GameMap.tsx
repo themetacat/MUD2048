@@ -97,7 +97,7 @@ export const GameMap = ({
     });
     // window.dispatchEvent(event);
 
-    // move(event.key)
+    move(event.key)
 
 
     // 2秒后将加载状态设置为 false
@@ -157,26 +157,34 @@ export const GameMap = ({
           default:
             break;
         }
-      // const moveData=  move(event.key)
-      // moveData.then((moveDataVal)=>{
-      //   console.log(moveDataVal)
-      // })
-      // moveData.catch((error) => {
-      //   move(event.key)
-      //   console.log(error,22222222222)
-      // });
-      }
-
-      setTimeout(()=>{
+     
+    }
+    const moveData=  move(event.key)
+    moveData.then((moveDataVal)=>{
+      // console.log(moveDataVal)
+      if(moveDataVal){
         setLoading({
           up: false,
           left: false,
           down: false,
           right: false
         });
-      },3000)
+      }
+    })
+    moveData.catch((error) => {
+      move(event.key)
+      // console.log(error,22222222222)
+    });
     }
 
+    // setTimeout(()=>{
+    //   setLoading({
+    //     up: false,
+    //     left: false,
+    //     down: false,
+    //     right: false
+    //   });
+    // },3000)
     // 添加事件监听器
     document.addEventListener("keydown", handleKeyDown);
   
@@ -187,19 +195,19 @@ export const GameMap = ({
   }, []);
 
   const newGame = ()=>{
-    console.log(3333)
+    // console.log(3333)
    const resultGame = init_game()
     setResultVal(true)
-console.log(resultGame,654)
+// console.log(resultGame,654)
     resultGame.then((resultGameVal)=>{
-      console.log(resultGameVal,24555)
-      console.log(resultGame)
+      // console.log(resultGameVal,24555)
+      // console.log(resultGame)
       if(resultGameVal[1]===true){
         setResultVal(false)
       }
     })
     resultGame.catch((error) => {
-      console.log(error)
+      // console.log(error)
       setResultVal(false)
     });
   
@@ -231,8 +239,8 @@ const syncProgress = useComponentValue(SyncProgress, singletonEntity) as any;
           {dataListSum &&
             dataListSum.map((item: any,index: number) => (
               <tr key={item.id} className={styles.trData}>
-                   <td>{index + 1}</td> {/* 添加序号并左对齐 */}
-                <td  className={styles.tr2Data} style={{ textAlign: "left",cursor:"pointer" }} onClick={()=>{itemJump(item.address)}}>
+                   <td >{index + 1}</td> {/* 添加序号并左对齐 */}
+                <td  className={styles.tr2Data} style={{ textAlign: "left",cursor:"pointer" ,}} onClick={()=>{itemJump(item.address)}}>
                   {item.address.substring(0, 6) +
                     "..." +
                     item.address.substring(item.address.length - 4)}

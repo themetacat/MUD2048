@@ -5,7 +5,7 @@ import { useKeyboardMovement } from "./useKeyboardMovement";
 import { useEffect } from "react";
 
 export const GameBoard = (onChildValueChange :any) => {
-  useKeyboardMovement();
+  // useKeyboardMovement();
 
   const {
     components: { Matrix, Score, GameState },

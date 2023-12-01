@@ -102,21 +102,20 @@
   .trData td:first-child{
    
     width: 60px;
-    display: inline-block;
     text-align: center;
     margin-top: 7px;
   }
   .trData td:last-child{
     margin-top: 12px;
-    display: inline-block;
   }
   .tr2Data{
     padding-left: 12px;
+    /* height: 20px; */
   }
   .tr2Data:hover{
 border-bottom: 1px solid #191934;
 padding-left: 12px;
-/* width: 100px; */
+
   }
   .table {
     /* border-collapse: collapse; */
