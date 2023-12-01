@@ -22,4 +22,4 @@ arbitrumSepolia.rpcUrls.default.webSocket = [ 'wss://cosmological-alpha-sponge.a
  * See https://mud.dev/tutorials/minimal/deploy#run-the-user-interface
  * for instructions on how to add networks.
  */
-export const supportedChains: MUDChain[] = [mudFoundry, latticeTestnet, arbitrumSepolia];
+export const supportedChains: MUDChain[]|any = [mudFoundry, latticeTestnet, arbitrumSepolia];

@@ -7,12 +7,16 @@ import { createSystemCalls } from "./mud/createSystemCalls";
 import { getGradeList } from "../../../service";
 import { useComponentValue } from "@latticexyz/react";
 import image from "../../../images/loading.png";
+import {SyncStep} from "@latticexyz/store-sync"
+import { singletonEntity } from "@latticexyz/store-sync/recs";
+
+// import {setupNetwork} from './mud/setupNetwork';
 
 type Props = {
   width: number;
   height: number;
   onTileClick?: () => void;
-  // onTileClick3?: () => Promise<boolean>;
+  onTileClick3?: () => Promise<boolean>;
   onTileClick2?: () => void;
   best: any;
   gamestate: any;
@@ -23,13 +27,12 @@ type Props = {
   }[];
   encounter?: ReactNode;
 };
-
 export const GameMap = ({
   width,
   height,
   best,
   onTileClick,
-  // onTileClick3,
+  onTileClick3,
   onTileClick2,
   game_con,
   gamestate,
@@ -37,6 +40,8 @@ export const GameMap = ({
 }: Props) => {
   const {
     network: { playerEntity },
+    components: { Matrix, Score, GameState ,SyncProgress},
+    systemCalls: { init_game, get_metrix,move},
   } = useMUD();
 
   const [dataListSum, setDataList] = useState([]);
@@ -53,21 +58,7 @@ export const GameMap = ({
   const [resultVal, setResultVal] = useState(false);
   const [showEncounter, setShowEncounter] = useState(false);
 
-  // 使用await关键字等待Promise对象的解析，并处理true值
-  // const handleClickAndGetTrue = useCallback(async () => {
-  //   try {
-  //     const result = await onTileClick3?.() as any;
-  //     console.log(result, 66666); // 在这里处理true值'
-  //     setResultVal(result)
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // },[onTileClick3]);
 
-  // console.log( onTileClick3?.())
-
-
-  // Reset show encounter when we leave encounter
   useEffect(() => {
     if (!encounter) {
       setShowEncounter(false);
@@ -94,7 +85,6 @@ export const GameMap = ({
     // 在这里处理按钮点击逻辑
     // handleClickAndGetTrue();
     setLoading((prevLoading) => ({ ...prevLoading, [direction]: true }));
-
     // 模拟按下对应的方向键
     const keyMap = {
       up: "ArrowUp",
@@ -105,7 +95,10 @@ export const GameMap = ({
     const event = new KeyboardEvent("keydown", {
       key: keyMap[direction as "up" | "left" | "down" | "right"],
     });
-    window.dispatchEvent(event);
+    // window.dispatchEvent(event);
+
+    // move(event.key)
+
 
     // 2秒后将加载状态设置为 false
     setTimeout(() => {
@@ -113,70 +106,144 @@ export const GameMap = ({
     
     }, 3000);
   };
+  // const result =  onTileClick3();
+  // console.log(result, 66666); // 在这里处理true值'
 
-
-  // useEffect(() => {
-  //   const handleKeyDown = (event: any) => {
-  //     console.log('几次');
+  useEffect(() => {
+    
+    const handleKeyDown = (event: any) => {
       
-  //     // 判断当前按下的键是否为方向键
-  //     if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)) {
-  //       switch (event.key) {
-  //         case "ArrowUp":
-  //           handleButtonClick("up");
-  //           break;
-  //         case "ArrowLeft":
-  //           handleButtonClick("left");
-  //           break;
-  //         case "ArrowDown":
-  //           handleButtonClick("down");
-  //           break;
-  //         case "ArrowRight":
-  //           handleButtonClick("right");
-  //           break;
-  //         default:
-  //           break;
-  //       }
-  //     }
-  //   }
-  
-  //   // 添加事件监听器
-  //   document.addEventListener("keydown", handleKeyDown);
-  
-  //   // 在组件卸载时移除事件监听器
-  //   return () => {
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
+      // 判断当前按下的键是否为方向键
+      if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)) {
+        switch (event.key) {
+          case "ArrowUp":
+            // handleButtonClick("up");
+            // setLoading((prevLoading) => ({ ...prevLoading, [event.key]: true }));
+            setLoading({
+              up: true,
+              left: false,
+              down: false,
+              right: false
+            });
+         
+            break;
+          case "ArrowLeft":
+            // handleButtonClick("left");
+            setLoading({
+              up: false,
+              left: true,
+              down: false,
+              right: false
+            });
+            break;
+          case "ArrowDown":
+            // handleButtonClick("down");
+            setLoading({
+              up: false,
+              left: false,
+              down: true,
+              right: false
+            });
+            break;
+          case "ArrowRight":
+            // handleButtonClick("right");
+            setLoading({
+              up: false,
+              left: false,
+              down: false,
+              right: true
+            });
+            break;
+          default:
+            break;
+        }
+      // const moveData=  move(event.key)
+      // moveData.then((moveDataVal)=>{
+      //   console.log(moveDataVal)
+      // })
+      // moveData.catch((error) => {
+      //   move(event.key)
+      //   console.log(error,22222222222)
+      // });
+      }
 
-//   const gameData = game_con && game_con[0] && game_con[0].ma;
+      setTimeout(()=>{
+        setLoading({
+          up: false,
+          left: false,
+          down: false,
+          right: false
+        });
+      },3000)
+    }
 
- 
+    // 添加事件监听器
+    document.addEventListener("keydown", handleKeyDown);
+  
+    // 在组件卸载时移除事件监听器
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const newGame = ()=>{
+    console.log(3333)
+   const resultGame = init_game()
+    setResultVal(true)
+console.log(resultGame,654)
+    resultGame.then((resultGameVal)=>{
+      console.log(resultGameVal,24555)
+      console.log(resultGame)
+      if(resultGameVal[1]===true){
+        setResultVal(false)
+      }
+    })
+    resultGame.catch((error) => {
+      console.log(error)
+      setResultVal(false)
+    });
+  
+   
+  }
+
+  const gameData = game_con && game_con[0] && game_con[0].ma;
+const itemJump =(address:any)=>{
+  window.open(`https://explorer.testnet-chain.linfra.xyz/address/${address}`)
+}
+const syncProgress = useComponentValue(SyncProgress, singletonEntity) as any;
   return (
-    <div className={styles.conta}>
+    <>
+     {syncProgress && syncProgress.step !== SyncStep.LIVE? (
+
+      <div style={{color:"#fff"}}>
+        {syncProgress.message} ({Math.floor(syncProgress.percentage)}%)
+      </div>
+    ) : (
+      <div className={styles.conta}>
       {/* <div style={{ flexGrow:"1",width:"400px"}}> */}
       <table className={styles.table}>
         <thead>
           <tr>
-            <th colSpan={2}>Rankings</th>
+            <th colSpan={3}>Rankings</th>
           </tr>
         </thead>
         <tbody>
           {dataListSum &&
-            dataListSum.map((item: any) => (
+            dataListSum.map((item: any,index: number) => (
               <tr key={item.id} className={styles.trData}>
-                <td>
+                   <td>{index + 1}</td> {/* 添加序号并左对齐 */}
+                <td  className={styles.tr2Data} style={{ textAlign: "left",cursor:"pointer" }} onClick={()=>{itemJump(item.address)}}>
                   {item.address.substring(0, 6) +
                     "..." +
                     item.address.substring(item.address.length - 4)}
                 </td>
-                <td style={{ paddingRight: "20px" }}>{item.score}</td>
+                <td style={{ paddingRight: "20px" ,width:'100px'}}>{item.score}</td>
               </tr>
             ))}
         </tbody>
         <thead>
           <tr>
-            <th colSpan={2}>
+            <th colSpan={3}>
               <div className={styles.tableFooter}>
                 SCORE:
                 {game_con && game_con[0] && (
@@ -194,8 +261,7 @@ export const GameMap = ({
         <div className={`${styles.container}`}>
           {rows.map((y) =>
             columns.map((x) => {
-              // console.log(game_con&&game_con[0].ma)
-              // console.log(Number(game_con&&game_con[0].ma),5555555)
+           
               return (
                 <div
                   key={`${x},${y}`}
@@ -218,39 +284,39 @@ export const GameMap = ({
                       <div
                         className={`
                         ${styles.cell}
-                        ${game_con[0].ma[y * width + x] === 2 && styles.two2}
-                        ${game_con[0].ma[y * width + x] === 4 && styles.four4}
-                        ${game_con[0].ma[y * width + x] === 8 && styles.eight8}
+                        ${Number(game_con[0].ma[y * width + x]) === 2 && styles.two2}
+                        ${Number(game_con[0].ma[y * width + x]) === 4 && styles.four4}
+                        ${Number(game_con[0].ma[y * width + x]) && styles.eight8}
                         ${
-                          game_con[0].ma[y * width + x] === 64 &&
+                          Number(game_con[0].ma[y * width + x]) === 64 &&
                           styles.sixtyFour64
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 16 &&
+                          Number(game_con[0].ma[y * width + x]) === 16 &&
                           styles.sixteen16
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 128 &&
+                          Number(game_con[0].ma[y * width + x]) === 128 &&
                           styles.twentyEight128
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 32 &&
+                          Number(game_con[0].ma[y * width + x]) === 32 &&
                           styles.thrityTwo32
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 256 &&
+                          Number(game_con[0].ma[y * width + x]) === 256 &&
                           styles.twoHundred256
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 512 &&
+                          Number(game_con[0].ma[y * width + x]) === 512 &&
                           styles.fiveHundred512
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 1024 &&
+                          Number(game_con[0].ma[y * width + x]) === 1024 &&
                           styles.oneThousand1024
                         }
                         ${
-                          game_con[0].ma[y * width + x] === 2048 &&
+                          Number(game_con[0].ma[y * width + x]) === 2048 &&
                           styles.twoThousand2048
                         }
                       `}
@@ -271,22 +337,22 @@ export const GameMap = ({
           <div className="grid-container">{grid.flat()}</div>
         </div> */}
         <div>
-          <span onClick={onTileClick} className={styles.PLAY}>
+         {resultVal?  <span className={styles.PLAY}><img key={key} src={image} className={styles.commonCls1} /></span>:<span onClick={newGame} className={styles.PLAY}>
             New Game
-          </span>
+          </span>}
           {/* <span onClick={onTileClick2}> check</span> */}
-          <span className={styles.transac}>Transactions history</span>
+          <span className={styles.transac} id='history'>Transactions history</span>
           <div className={styles.btnmea}>
             {loading["up"] ? (
               <img key={key} src={image} className={styles.commonCls1} />
             ) : (
               <button
-                className={styles.btn}
+                className={`${styles.btn} ${loading["up"] ? styles.loading : ''}`}
                 tabIndex={0}
                 type="button"
                 onClick={() => handleButtonClick("up")}
-                id="btn1"
                 key={key}
+                disabled={loading["up"]}
               >
                 <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
                   <svg
@@ -541,5 +607,7 @@ export const GameMap = ({
         </div>
       </div>
     </div>
+    )}
+    </>
   );
 };

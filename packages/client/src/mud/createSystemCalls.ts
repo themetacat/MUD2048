@@ -38,8 +38,7 @@ export function createSystemCalls(
   //    * Because IncrementSystem
   //    * (https://mud.dev/templates/typescript/contracts#incrementsystemsol)
   //    * is in the root namespace, `.increment` can be called directly
-  //    * on the World contract.
-  //    */
+  //    * on the World contract.waitForTransaction
   //   const tx = await worldContract.write.increment();
   //   await waitForTransaction(tx);
   //   return getComponentValue(Counter, singletonEntity);
@@ -50,8 +49,16 @@ export function createSystemCalls(
       throw new Error("no player");
     }
     const tx = await worldContract.write.initMatrix();
+    console.log(tx,6666)
+
     await waitForTransaction(tx);
-    return true;
+     return [tx, true];
+  //  const resultVal =  await waitForTransaction(tx);
+  //   if(resultVal){
+  //     return true;
+  //   }
+ 
+   
     // await awaitStreamValue(txReduced$, (txHash) => txHash === tx.hash);
   };
 
@@ -73,7 +80,8 @@ export function createSystemCalls(
       throw new Error("no player");
     }
     const tx = await worldContract.write.move([dir]);
-
+    console.log(tx,656565665)
+return tx
     // await awaitStreamValue(txReduced$, (txHash) => txHash === tx.hash);
   };
 

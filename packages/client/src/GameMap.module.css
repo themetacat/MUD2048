@@ -27,7 +27,7 @@
   font-size: 20px;
   font-weight: bold;
   border-radius: 5px;
-  /* background-color: #ccc; 可选项，用于设置格子的背景颜色 */
+  background-color: rgb(87, 87, 81); 
 }
 
 .two2 {
@@ -71,6 +71,8 @@
     transform: rotate(3600deg);
     -webkit-transition: -webkit-transform 5s linear;
     transition: transform 5s linear;
+    width: 78px;
+    height: 78px;
   }
   @keyframes spinAnimation {
     100% {
@@ -99,14 +101,22 @@
   }
   .trData td:first-child{
    
-    width: 200px;
+    width: 60px;
     display: inline-block;
     text-align: center;
-    margin-top: 12px;
+    margin-top: 7px;
   }
   .trData td:last-child{
     margin-top: 12px;
     display: inline-block;
+  }
+  .tr2Data{
+    padding-left: 12px;
+  }
+  .tr2Data:hover{
+border-bottom: 1px solid #191934;
+padding-left: 12px;
+/* width: 100px; */
   }
   .table {
     /* border-collapse: collapse; */
@@ -114,9 +124,9 @@
     border-radius: 10px;
     padding-top: 12px;
     background: linear-gradient(#565776, #a6a6b0);
-flex-grow: 1;
-width: 380px;
-margin-right: 20px;
+    flex-grow: 1;
+    width: 380px;
+    margin-right: 20px;
 
   }
   .MuiSvgIcon{
@@ -240,3 +250,4 @@ margin-right: 20px;
     margin-bottom: 36px;
     width: 100%;
   }
+  

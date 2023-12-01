@@ -75,6 +75,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+      react-hot-toast:
+        specifier: 2.2.0
+        version: registry.npmmirror.com/react-hot-toast@2.2.0(csstype@3.1.2)(react-dom@18.2.0)(react@18.2.0)
       rxjs:
         specifier: 7.5.5
         version: registry.npmmirror.com/rxjs@7.5.5
@@ -3686,6 +3689,17 @@ packages:
       slash: registry.npmmirror.com/slash@3.0.0
     dev: true
 
+  registry.npmmirror.com/goober@2.1.13(csstype@3.1.2):
+    resolution: {integrity: sha512-jFj3BQeleOoy7t93E9rZ2de+ScC4lQICLwiAQmKMg9F6roKGaLSHoCDYKkWlSafg138jejvq/mTdvmnwDQgqoQ==, tarball: https://registry.npmmirror.com/goober/-/goober-2.1.13.tgz}
+    id: registry.npmmirror.com/goober/2.1.13
+    name: goober
+    version: 2.1.13
+    peerDependencies:
+      csstype: ^3.0.10
+    dependencies:
+      csstype: registry.npmmirror.com/csstype@3.1.2
+    dev: false
+
   registry.npmmirror.com/google-protobuf@3.21.2:
     resolution: {integrity: sha512-3MSOYFO5U9mPGikIYCzK0SaThypfGgS6bHqrUGXG3DPHCrb+txNqeEcns1W0lkGfk0rCyNXm7xB9rMxnCiZOoA==, tarball: https://registry.npmmirror.com/google-protobuf/-/google-protobuf-3.21.2.tgz}
     name: google-protobuf
@@ -4870,6 +4884,23 @@ packages:
       loose-envify: registry.npmmirror.com/loose-envify@1.4.0
       react: registry.npmmirror.com/react@18.2.0
       scheduler: registry.npmmirror.com/scheduler@0.23.0
+    dev: false
+
+  registry.npmmirror.com/react-hot-toast@2.2.0(csstype@3.1.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-248rXw13uhf/6TNDVzagX+y7R8J183rp7MwUMNkcrBRyHj/jWOggfXTGlM8zAOuh701WyVW+eUaWG2LeSufX9g==, tarball: https://registry.npmmirror.com/react-hot-toast/-/react-hot-toast-2.2.0.tgz}
+    id: registry.npmmirror.com/react-hot-toast/2.2.0
+    name: react-hot-toast
+    version: 2.2.0
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      goober: registry.npmmirror.com/goober@2.1.13(csstype@3.1.2)
+      react: registry.npmmirror.com/react@18.2.0
+      react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - csstype
     dev: false
 
   registry.npmmirror.com/react-is@16.13.1:

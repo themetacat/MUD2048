@@ -33,13 +33,14 @@ export async function setupNetwork() {
    * Create a viem public (read only) client
    * (https://viem.sh/docs/clients/public.html)
    */
+  
   const clientOptions = {
     chain: networkConfig.chain,
-    transport: transportObserver(fallback([webSocket(), http()])),
+    transport: transportObserver(fallback([webSocket(), http()]) as any),
     pollingInterval: 5000,
   } as const satisfies ClientConfig;
 
-  const publicClient = createPublicClient(clientOptions);
+  const publicClient = createPublicClient(clientOptions) as any ;
 
   /*
    * Create a temporary wallet and a viem client for it
@@ -48,9 +49,9 @@ export async function setupNetwork() {
   const burnerAccount = createBurnerAccount(networkConfig.privateKey as Hex);
   console.log(burnerAccount);
   
-  const burnerWalletClient = createWalletClient({
+  const burnerWalletClient  = createWalletClient({
     ...clientOptions,
-    account: burnerAccount,
+    account: burnerAccount as any,
   });
 
   /*
@@ -66,7 +67,7 @@ export async function setupNetwork() {
     address: networkConfig.worldAddress as Hex,
     abi: IWorldAbi,
     publicClient,
-    walletClient: burnerWalletClient,
+    walletClient: burnerWalletClient as any,
     onWrite: (write) => write$.next(write),
   });
 

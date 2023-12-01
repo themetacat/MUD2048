@@ -1,4 +1,5 @@
 import { useComponentValue } from "@latticexyz/react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import { useMUD } from "./MUDContext";
 import { singletonEntity } from "@latticexyz/store-sync/recs";
 import { GameBoard } from "./GameBoard";
@@ -7,51 +8,75 @@ import { SyncState } from "@latticexyz/network";
 import Footer from '../src/footer'
 import {SyncStep} from "@latticexyz/store-sync"
 
+import toast, { Toaster } from 'react-hot-toast';
 
-import image from '../../../images/20230809103925.png'
-import { useEffect } from "react";
+
+import image from '../../../images/20231127170205.png'
 
 export const App = () => {
   // const {
   //   components: { Counter },
   //   systemCalls: { increment },
   // } = useMUD();
+  // const {
+  //   components: { SyncProgress },
+  // } = useMUD();
   const {
-    components: { SyncProgress },
+    components: { Matrix, Score, GameState ,SyncProgress},
+    network: { playerEntity },
+    systemCalls: { init_game, get_metrix},
   } = useMUD();
-
 // console.log(SyncProgress)
   // useEffect(()=>{
     const syncProgress = useComponentValue(SyncProgress, singletonEntity) as any;
-
-
+const playerEntityNum = BigInt(playerEntity);
+const hexString = '0x'+playerEntityNum.toString(16);
     // console.log(syncProgress,65555)
   //   // const counter = useComponentValue(Counter, singletonEntity);
   // },[syncProgress])
 
-  
+  const addressData = hexString.substring(0, 6) +
+    "..." +
+    hexString.substring(hexString.length - 4)
 //  console.log('jici')
   const goBack = () => {
     console.log("goback");
   };
+
   
+  const addressDataCopy = (text:any) => {
+    navigator.clipboard.writeText(text).then(function() {
+      toast.success('Text copied to clipboard')
+    }, function(err) {
+      toast.error('Error in copying text');
+    });
+  };
+
+  const discord = ()=>{
+    window.open("https://discord.com/invite/yRt6be237P")
+  }
+  const twitter = ()=>{
+    window.open("https://twitter.com/Metacat007")
+  }
+
   return (
 <>
-    {syncProgress && syncProgress.step !== SyncStep.LIVE? (
+    {/* {syncProgress && syncProgress.step !== SyncStep.LIVE? (
 
       <div>
         {syncProgress.message} ({Math.floor(syncProgress.percentage)}%)
       </div>
-    ) : (
+    ) : ( */}
    
     <div className={style.page}>
       <div className={style.homeContent}>
         <div className={style.homeC}>
           <div className={style.titCon} onClick={goBack}>
             <img src={image} alt="" />
-           2048
+          MUD 2048
           </div>
           <div className={style.iconSvg}>
+           
             <a
               // href="https://opensea.io/collection/wearablepack"
               target="_blank"
@@ -80,8 +105,9 @@ export const App = () => {
             </a>
             <a
               // href="https://discord.com/invite/yRt6be237P"
-              target="_blank"
-              rel="noopener noreferrer"
+              // target="_blank"
+              // rel="noopener noreferrer"
+              onClick={discord}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -163,8 +189,9 @@ export const App = () => {
             </a>
             <a
               // href="https://twitter.com/Metacat007"
-              target="_blank"
-              rel="noopener noreferrer"
+              // target="_blank"
+              // rel="noopener noreferrer"
+              onClick={twitter}
             >
               <svg
                 // xmlns="http://www.w3.org/2000/svg"
@@ -184,19 +211,30 @@ export const App = () => {
                 ></path>
               </svg>
             </a>
+            <div className={style.pointer} style={{zIndex:'999999999999999999999',cursor:'pointer',marginLeft:"32px"}} onClick={()=>{addressDataCopy(hexString)}}>{addressData}</div>
           </div>
         </div>
       </div>
       <div className={style.GameBoard}>
-      {syncProgress  && ( <GameBoard />)}
+      {/* {syncProgress  && ( <GameBoard  />)} */}
      
-     {/* <GameBoard /> */}
+     <GameBoard />
         </div>
         <div style={{ position: "fixed", bottom: "0px", width: "100%" }}>
           <Footer />
         </div>
+        <Toaster
+          toastOptions={{
+            duration: 2000,
+            style: {
+              background: 'linear-gradient(90deg, #dedfff,#8083cb)',
+              color: 'black',
+              borderRadius: '8px',
+            },
+          }}
+        />
     </div>
-        )} 
+        {/* )}  */}
         </>
       );
     };

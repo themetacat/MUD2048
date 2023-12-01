@@ -213,14 +213,26 @@
  .iconSvg{
   color: #fff;
   position: absolute;
-  right: 180px;
+  right: 0px;
   top: 25px;
   cursor: pointer;
   display: flex;
   margin-right: 32px;
+  z-index: 999999999999999999999;
  }
  .iconSvg a{
   margin-left: 32px;
+  padding-top: 10px;
+ }
+ .pointer{
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  line-height: 40px;
+  text-align: center;
  }
  .btnBox{
    /* width: 1000px;
