@@ -212,19 +212,19 @@ export const GameMap = ({
   const newGame = ()=>{
     // console.log(3333)
    const resultGame = init_game()
-    // setResultVal(true)
+    setResultVal(true)
 // console.log(resultGame,654)
     resultGame.then((resultGameVal)=>{
       // console.log(resultGameVal,24555)
       // console.log(resultGame)
       if(resultGameVal[1]===true){
-        // setResultVal(false)
+        setResultVal(false)
       }
     })
     resultGame.catch((error) => {
       console.log(error)
-      toast.error(error)
-      // setResultVal(false)
+      // toast.error(error)
+      setResultVal(false)
     });
   
    
