@@ -27,7 +27,6 @@ type Props = {
   }[];
   encounter?: ReactNode;
 };
-// console.log(setupNetwork,696969)
 export const GameMap = ({
   width,
   height,
