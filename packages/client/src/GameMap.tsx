@@ -184,7 +184,7 @@ export const GameMap = ({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onTileClick3]);
+  }, []);
 
   const newGame = ()=>{
     console.log(3333)
