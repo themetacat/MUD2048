@@ -7,6 +7,8 @@ import { createSystemCalls } from "./mud/createSystemCalls";
 import { getGradeList } from "../../../service";
 import { useComponentValue } from "@latticexyz/react";
 import image from "../../../images/loading.png";
+import {SyncStep} from "@latticexyz/store-sync"
+import { singletonEntity } from "@latticexyz/store-sync/recs";
 
 // import {setupNetwork} from './mud/setupNetwork';
 
@@ -39,6 +41,8 @@ export const GameMap = ({
 }: Props) => {
   const {
     network: { playerEntity },
+    components: { Matrix, Score, GameState ,SyncProgress},
+    systemCalls: { init_game, get_metrix,move},
   } = useMUD();
 
   const [dataListSum, setDataList] = useState([]);
@@ -55,33 +59,7 @@ export const GameMap = ({
   const [resultVal, setResultVal] = useState(false);
   const [showEncounter, setShowEncounter] = useState(false);
 
-  // 使用await关键字等待Promise对象的解析，并处理true值
-  // const handleClickAndGetTrue = useCallback(async () => {
-  //   try {
-  //     const result = await onTileClick3?.() as any;
-  //     console.log(result, 66666); // 在这里处理true值'
-  //     setResultVal(result)
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // },[onTileClick3]);
 
-
-
-  // async function getAddress() {
-  //   // 调用 setupNetwork() 方法获取 network 对象
-  //   const network = await setupNetwork();
-  // console.log(network,'-----------')
-  //   // 从 playerEntity 对象中获取 address 值
-  //   // const { address } = network.playerEntity;
-  
-  //   // return address;
-  // }
-  
-  // getAddress().then(address => {
-  //   console.log(address); // 打印地址值
-  // });
-  // Reset show encounter when we leave encounter
   useEffect(() => {
     if (!encounter) {
       setShowEncounter(false);
@@ -108,7 +86,6 @@ export const GameMap = ({
     // 在这里处理按钮点击逻辑
     // handleClickAndGetTrue();
     setLoading((prevLoading) => ({ ...prevLoading, [direction]: true }));
-
     // 模拟按下对应的方向键
     const keyMap = {
       up: "ArrowUp",
@@ -119,8 +96,9 @@ export const GameMap = ({
     const event = new KeyboardEvent("keydown", {
       key: keyMap[direction as "up" | "left" | "down" | "right"],
     });
-    window.dispatchEvent(event);
+    // window.dispatchEvent(event);
 
+    // move(event.key)
 
 
     // 2秒后将加载状态设置为 false
@@ -180,6 +158,14 @@ export const GameMap = ({
           default:
             break;
         }
+      // const moveData=  move(event.key)
+      // moveData.then((moveDataVal)=>{
+      //   console.log(moveDataVal)
+      // })
+      // moveData.catch((error) => {
+      //   move(event.key)
+      //   console.log(error,22222222222)
+      // });
       }
 
       setTimeout(()=>{
@@ -191,7 +177,7 @@ export const GameMap = ({
         });
       },3000)
     }
-  
+
     // 添加事件监听器
     document.addEventListener("keydown", handleKeyDown);
   
@@ -201,13 +187,40 @@ export const GameMap = ({
     };
   }, [onTileClick3]);
 
+  const newGame = ()=>{
+    console.log(3333)
+   const resultGame = init_game()
+    setResultVal(true)
+console.log(resultGame,654)
+    resultGame.then((resultGameVal)=>{
+      console.log(resultGameVal,24555)
+      console.log(resultGame)
+      if(resultGameVal[1]===true){
+        setResultVal(false)
+      }
+    })
+    resultGame.catch((error) => {
+      console.log(error)
+      setResultVal(false)
+    });
+  
+   
+  }
+
   const gameData = game_con && game_con[0] && game_con[0].ma;
 const itemJump =(address:any)=>{
   window.open(`https://explorer.testnet-chain.linfra.xyz/address/${address}`)
 }
- 
+const syncProgress = useComponentValue(SyncProgress, singletonEntity) as any;
   return (
-    <div className={styles.conta}>
+    <>
+     {syncProgress && syncProgress.step !== SyncStep.LIVE? (
+
+      <div style={{color:"#fff"}}>
+        {syncProgress.message} ({Math.floor(syncProgress.percentage)}%)
+      </div>
+    ) : (
+      <div className={styles.conta}>
       {/* <div style={{ flexGrow:"1",width:"400px"}}> */}
       <table className={styles.table}>
         <thead>
@@ -220,18 +233,18 @@ const itemJump =(address:any)=>{
             dataListSum.map((item: any,index: number) => (
               <tr key={item.id} className={styles.trData}>
                    <td>{index + 1}</td> {/* 添加序号并左对齐 */}
-                <td style={{ textAlign: "left",cursor:"pointer" }} onClick={()=>{itemJump(item.address)}}>
+                <td  className={styles.tr2Data} style={{ textAlign: "left",cursor:"pointer" }} onClick={()=>{itemJump(item.address)}}>
                   {item.address.substring(0, 6) +
                     "..." +
                     item.address.substring(item.address.length - 4)}
                 </td>
-                <td style={{ paddingRight: "20px" }}>{item.score}</td>
+                <td style={{ paddingRight: "20px" ,width:'100px'}}>{item.score}</td>
               </tr>
             ))}
         </tbody>
         <thead>
           <tr>
-            <th colSpan={2}>
+            <th colSpan={3}>
               <div className={styles.tableFooter}>
                 SCORE:
                 {game_con && game_con[0] && (
@@ -325,22 +338,22 @@ const itemJump =(address:any)=>{
           <div className="grid-container">{grid.flat()}</div>
         </div> */}
         <div>
-          <span onClick={onTileClick} className={styles.PLAY}>
+         {resultVal?  <span className={styles.PLAY}><img key={key} src={image} className={styles.commonCls1} /></span>:<span onClick={newGame} className={styles.PLAY}>
             New Game
-          </span>
+          </span>}
           {/* <span onClick={onTileClick2}> check</span> */}
-          <span className={styles.transac}>Transactions history</span>
+          <span className={styles.transac} id='history'>Transactions history</span>
           <div className={styles.btnmea}>
             {loading["up"] ? (
               <img key={key} src={image} className={styles.commonCls1} />
             ) : (
               <button
-              className={`${styles.btn} ${loading["up"] ? styles.loading : ''}`}
+                className={`${styles.btn} ${loading["up"] ? styles.loading : ''}`}
                 tabIndex={0}
                 type="button"
                 onClick={() => handleButtonClick("up")}
-                id="btn1"
                 key={key}
+                disabled={loading["up"]}
               >
                 <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
                   <svg
@@ -595,5 +608,7 @@ const itemJump =(address:any)=>{
         </div>
       </div>
     </div>
+    )}
+    </>
   );
 };

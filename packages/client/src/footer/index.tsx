@@ -1,5 +1,7 @@
 import React from 'react'
 import style from "./index.module.css";
+import image from '../../../../images//20231127170205.png'
+
 export default function index() {
   const discord = ()=>{
     window.open("https://discord.com/invite/yRt6be237P")
@@ -146,9 +148,9 @@ export default function index() {
       </a>
     </div>
     <div className={style.btn_gap}></div>
-    <span className={style.btn_logo}>
+    <span>
     {/* <img src="/images/20230815165115.jpg" alt="" /> */}
-    <img src="/images/20231024184802.png" alt="" />
+    <img src={image}  className={style.btn_logo} alt="" />
     </span>
   </div></>
   )

@@ -71,6 +71,8 @@
     transform: rotate(3600deg);
     -webkit-transition: -webkit-transform 5s linear;
     transition: transform 5s linear;
+    width: 78px;
+    height: 78px;
   }
   @keyframes spinAnimation {
     100% {
@@ -107,6 +109,14 @@
   .trData td:last-child{
     margin-top: 12px;
     display: inline-block;
+  }
+  .tr2Data{
+    padding-left: 12px;
+  }
+  .tr2Data:hover{
+border-bottom: 1px solid #191934;
+padding-left: 12px;
+/* width: 100px; */
   }
   .table {
     /* border-collapse: collapse; */

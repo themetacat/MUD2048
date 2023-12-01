@@ -58,15 +58,15 @@ const hexString = '0x'+playerEntityNum.toString(16);
   const twitter = ()=>{
     window.open("https://twitter.com/Metacat007")
   }
- 
+
   return (
 <>
-    {syncProgress && syncProgress.step !== SyncStep.LIVE? (
+    {/* {syncProgress && syncProgress.step !== SyncStep.LIVE? (
 
       <div>
         {syncProgress.message} ({Math.floor(syncProgress.percentage)}%)
       </div>
-    ) : (
+    ) : ( */}
    
     <div className={style.page}>
       <div className={style.homeContent}>
@@ -76,7 +76,7 @@ const hexString = '0x'+playerEntityNum.toString(16);
           MUD 2048
           </div>
           <div className={style.iconSvg}>
-            <div style={{zIndex:'999999999999999999999',cursor:'pointer'}} onClick={()=>{addressDataCopy(hexString)}}>{addressData}</div>
+           
             <a
               // href="https://opensea.io/collection/wearablepack"
               target="_blank"
@@ -211,13 +211,14 @@ const hexString = '0x'+playerEntityNum.toString(16);
                 ></path>
               </svg>
             </a>
+            <div className={style.pointer} style={{zIndex:'999999999999999999999',cursor:'pointer',marginLeft:"32px"}} onClick={()=>{addressDataCopy(hexString)}}>{addressData}</div>
           </div>
         </div>
       </div>
       <div className={style.GameBoard}>
-      {syncProgress  && ( <GameBoard  />)}
+      {/* {syncProgress  && ( <GameBoard  />)} */}
      
-     {/* <GameBoard /> */}
+     <GameBoard />
         </div>
         <div style={{ position: "fixed", bottom: "0px", width: "100%" }}>
           <Footer />
@@ -233,7 +234,7 @@ const hexString = '0x'+playerEntityNum.toString(16);
           }}
         />
     </div>
-        )} 
+        {/* )}  */}
         </>
       );
     };
