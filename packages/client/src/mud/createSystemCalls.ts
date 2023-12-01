@@ -80,7 +80,7 @@ export function createSystemCalls(
       throw new Error("no player");
     }
     const tx = await worldContract.write.move([dir]);
-    // console.log(tx,656565665)
+    console.log(tx,656565665)
 return tx
     // await awaitStreamValue(txReduced$, (txHash) => txHash === tx.hash);
   };

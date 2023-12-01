@@ -27,16 +27,11 @@ export const GameBoard = (onChildValueChange :any) => {
         }
       : null;
       // useEffect(() => {
-      //   const game_con =
-      //     playerEntity && Matrix_arry
-      //       ? {
-      //           ma: Matrix_arry.matrixArry,
-      //           currentScore: Number(score?.current) || 0,
-      //           entity: playerEntity,
-      //         }
-      //       : null;
-      //       onChildValueChange (game_con);
-      //       console.log(onChildValueChange,'==========')
+      //   console.log(Matrix_arry,'----------')
+      //   if(!(Matrix_arry&&Matrix_arry.matrixArry)){
+      //     init_game()
+      //   }
+   
       // }, []);
      
 

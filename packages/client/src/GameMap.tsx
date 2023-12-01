@@ -7,6 +7,7 @@ import { createSystemCalls } from "./mud/createSystemCalls";
 import { getGradeList } from "../../../service";
 import { useComponentValue } from "@latticexyz/react";
 import image from "../../../images/loading.png";
+import toast, { Toaster } from 'react-hot-toast';
 import {SyncStep} from "@latticexyz/store-sync"
 import { singletonEntity } from "@latticexyz/store-sync/recs";
 
@@ -80,7 +81,7 @@ export const GameMap = ({
     //   setDataList(dataListCon.data);
     // });
   }, [best, dataHandle]);
-
+ 
   const handleButtonClick = (direction: any) => {
     // 在这里处理按钮点击逻辑
     // handleClickAndGetTrue();
@@ -97,8 +98,22 @@ export const GameMap = ({
     });
     // window.dispatchEvent(event);
 
-    move(event.key)
-
+    const moveData=  move(event.key)
+    moveData.then((moveDataVal)=>{
+      console.log(moveDataVal)
+      if(moveDataVal){
+        setLoading({
+          up: false,
+          left: false,
+          down: false,
+          right: false
+        });
+      }
+    })
+    moveData.catch((error) => {
+      move(event.key)
+      console.log(error,22222222222)
+    });
 
     // 2秒后将加载状态设置为 false
     setTimeout(() => {
@@ -161,7 +176,7 @@ export const GameMap = ({
     }
     const moveData=  move(event.key)
     moveData.then((moveDataVal)=>{
-      // console.log(moveDataVal)
+      console.log(moveDataVal)
       if(moveDataVal){
         setLoading({
           up: false,
@@ -173,7 +188,7 @@ export const GameMap = ({
     })
     moveData.catch((error) => {
       move(event.key)
-      // console.log(error,22222222222)
+      console.log(error,22222222222)
     });
     }
 
@@ -197,28 +212,60 @@ export const GameMap = ({
   const newGame = ()=>{
     // console.log(3333)
    const resultGame = init_game()
-    setResultVal(true)
+    // setResultVal(true)
 // console.log(resultGame,654)
     resultGame.then((resultGameVal)=>{
       // console.log(resultGameVal,24555)
       // console.log(resultGame)
       if(resultGameVal[1]===true){
-        setResultVal(false)
+        // setResultVal(false)
       }
     })
     resultGame.catch((error) => {
-      // console.log(error)
-      setResultVal(false)
+      console.log(error)
+      toast.error(error)
+      // setResultVal(false)
     });
   
    
   }
+
+
+
 
   const gameData = game_con && game_con[0] && game_con[0].ma;
 const itemJump =(address:any)=>{
   window.open(`https://explorer.testnet-chain.linfra.xyz/address/${address}`)
 }
 const syncProgress = useComponentValue(SyncProgress, singletonEntity) as any;
+
+
+// let hasExecuted=false;
+const Matrix_arry = useComponentValue(Matrix, playerEntity);
+useEffect(() => {
+// if(!(Matrix_arry&&Matrix_arry.matrixArry)&&(syncProgress && syncProgress.step !== SyncStep.LIVE)){
+//   console.log('============')
+//   init_game()
+// }
+// console.log(game_con, !game_con&&!(syncProgress&& syncProgress?.step !== SyncStep?.LIVE))
+// console.log(Matrix_arry&&Matrix_arry.matrixArry,!(Matrix_arry&&Matrix_arry.matrixArry))
+// if(!syncProgress&& syncProgress?.step !== SyncStep?.LIVE){
+  if(!(syncProgress&& syncProgress?.step !== SyncStep?.LIVE)&&syncProgress!==undefined){
+ 
+// console.log(88888888)
+    // if(!(Matrix_arry&&Matrix_arry.matrixArry)){
+    if((Matrix_arry&&Matrix_arry.matrixArry)===undefined){
+      // console.log('=====234==')
+      init_game()
+    }
+    // hasExecuted=true // 设置状态为已执行过
+  }
+
+  
+// }
+
+}, [Matrix_arry,init_game,game_con,syncProgress]);
+
   return (
     <>
      {syncProgress && syncProgress.step !== SyncStep.LIVE? (
@@ -616,6 +663,16 @@ const syncProgress = useComponentValue(SyncProgress, singletonEntity) as any;
       </div>
     </div>
     )}
+        <Toaster
+          toastOptions={{
+            duration: 2000,
+            style: {
+              background: 'linear-gradient(90deg, #dedfff,#8083cb)',
+              color: 'black',
+              borderRadius: '8px',
+            },
+          }}
+        />
     </>
   );
 };
