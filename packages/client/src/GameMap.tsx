@@ -318,7 +318,7 @@ if(transactionLi){
 // //console.log(resultGame,654)
     resultGame.then((resultGameVal)=>{
       // //console.log(resultGameVal,24555)
-      // //console.log(resultGame)
+      console.log(resultGame)
       if(resultGameVal[1]===true){
         setResultVal(false)
       }
@@ -329,7 +329,9 @@ if(transactionLi){
       setResultVal(false)
     });
   
-   
+   setTimeout(() => {
+    setResultVal(false)
+   }, 3000);
   }
 
 
