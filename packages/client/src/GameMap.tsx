@@ -1,8 +1,9 @@
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { ReactNode, createContext,useCallback,useContext , useEffect, useState } from "react";
 import { Entity } from "@latticexyz/recs";
 import { twMerge } from "tailwind-merge";
 import { useMUD } from "./MUDContext";
 import styles from "./GameMap.module.css";
+import { MUDProvider } from "./MUDContext";
 import { createSystemCalls } from "./mud/createSystemCalls";
 import { getGradeList } from "../../../service";
 import { useComponentValue } from "@latticexyz/react";
@@ -10,9 +11,17 @@ import image from "../../../images/loading.png";
 import toast, { Toaster } from 'react-hot-toast';
 import {SyncStep} from "@latticexyz/store-sync"
 import { singletonEntity } from "@latticexyz/store-sync/recs";
-
-// import {setupNetwork} from './mud/setupNetwork';
-
+// const { mount: mountDevTools } =  import("@latticexyz/dev-tools");
+import {mount} from '@latticexyz/dev-tools';
+import { setup } from "./mud/setup";
+// //console.log(mount)
+import {getTransactionReceipt} from '@latticexyz/dev-tools/src/actions/getTransactionReceipt'
+// //console.log(ActionsSummary,696969)
+import { ContractWrite } from "@latticexyz/common";
+import { usePromise } from "@latticexyz/react";
+import { useDevToolsContext } from "@latticexyz/dev-tools/src/DevToolsContext";
+import { SetupResult } from "./mud/setup";
+import { StringForUnion } from "@latticexyz/common/type-utils";
 type Props = {
   width: number;
   height: number;
@@ -28,6 +37,7 @@ type Props = {
   }[];
   encounter?: ReactNode;
 };
+
 export const GameMap = ({
   width,
   height,
@@ -40,11 +50,22 @@ export const GameMap = ({
   encounter,
 }: Props) => {
   const {
-    network: { playerEntity },
+    network: { playerEntity ,publicClient,write$},
     components: { Matrix, Score, GameState ,SyncProgress},
     systemCalls: { init_game, get_metrix,move},
   } = useMUD();
+  const [writes, setWrites] = useState<ContractWrite[]>([]);
+  // useEffect(()=>{
+  //   const sub = write$.subscribe((write:any) => {
+  //     setWrites((val:any) => [...val, write]);
+  //   });
+  
+  //   //console.log(sub,6987)
+  //   //console.log(writes,'writeswriteswriteswriteswrites')
+  //     return () => sub.unsubscribe();
+  // })
 
+// //console.log(getTransactionReceipt(publicClient,write$),3333)
   const [dataListSum, setDataList] = useState([]);
   const rows = new Array(width).fill(0).map((_, i) => i);
   const columns = new Array(height).fill(0).map((_, i) => i);
@@ -54,6 +75,13 @@ export const GameMap = ({
     down: false,
     right: false,
   });
+
+  // const MUDContext = createContext<SetupResult | null>(null);
+  //   const contextValue = useContext(MUDContext);
+  // useEffect(()=>{
+  
+  //   //console.log(contextValue,'-=-=-=-=-'); // 这里就可以打印出 value 的值了
+  //   },[])
 
   const [key, setKey] = useState(0);
   const [resultVal, setResultVal] = useState(false);
@@ -69,7 +97,7 @@ export const GameMap = ({
   const dataHandle = useCallback(() => {
     const dataList = getGradeList();
     dataList.then((dataListCon) => setDataList(dataListCon.data));
-    // console.log(dataListCon.data[0])
+    // //console.log(dataListCon.data[0])
   }, [best]);
   // if(best){
   //   dataHandle()
@@ -82,6 +110,26 @@ export const GameMap = ({
     // });
   }, [best, dataHandle]);
  
+  // useEffect(()=>{
+  //   const moveData=  move("left")
+  //   moveData.then((moveDataVal)=>{
+  //     //console.log(moveDataVal)
+    
+  //   //console.log(hash)
+  // })
+
+  // },[])
+//   const moveData=  move("left")
+//   moveData.then((moveDataVal)=>{
+//     //console.log(moveDataVal)
+  
+//   //console.log(hash)
+// })
+const [moveData, setMoveData] = useState(null);
+const [maveDal, seTmaveDal] = useState(false);
+
+  const hash = usePromise(moveData as any);
+  // //console.log(hash,66666666)
   const handleButtonClick = (direction: any) => {
     // 在这里处理按钮点击逻辑
     // handleClickAndGetTrue();
@@ -97,37 +145,62 @@ export const GameMap = ({
       key: keyMap[direction as "up" | "left" | "down" | "right"],
     });
     // window.dispatchEvent(event);
-
     const moveData=  move(event.key)
     moveData.then((moveDataVal)=>{
-      console.log(moveDataVal)
-      if(moveDataVal){
-        setLoading({
-          up: false,
-          left: false,
-          down: false,
-          right: false
-        });
-      }
+      //console.log(moveDataVal)
+   
+        if(moveDataVal[1].status ==="success"){
+          setMoveData(moveDataVal[0])
+          const historyElement = document.getElementById('history');
+          const transactionLi = document.createElement('li');
+         const maveDal=  moveDataVal[0].substring(0, 6) +
+            "..." +
+            moveDataVal[0].substring(moveDataVal[0].length - 4)
+          transactionLi.textContent = maveDal;
+          transactionLi.style.listStyleType = "none";
+          transactionLi.style.textAlign = "left";
+          transactionLi.style.paddingLeft = "12px";
+if(transactionLi){
+  seTmaveDal(true)
+}
+          const firstChild = historyElement?.firstChild as any;
+          historyElement?.insertBefore(transactionLi, firstChild);
+          if(moveDataVal){
+            setLoading({
+              up: false,
+              left: false,
+              down: false,
+              right: false
+            });
+            setLoading((prevLoading) => ({ ...prevLoading, [direction]: false }));
+          }
+        }else{
+          alert('报错啦！！')
+          handleButtonClick(event.key)
+        }
+     
+     
     })
     moveData.catch((error) => {
-      move(event.key)
-      console.log(error,22222222222)
+      toast.error('Failed to obtain data. Please try again')
+      handleButtonClick(event.key)
+      //console.log(error,22222222222)
+      
     });
 
-    // 2秒后将加载状态设置为 false
-    setTimeout(() => {
-        setLoading((prevLoading) => ({ ...prevLoading, [direction]: false }));
+    // // 2秒后将加载状态设置为 false
+    // setTimeout(() => {
+    //     setLoading((prevLoading) => ({ ...prevLoading, [direction]: false }));
     
-    }, 3000);
+    // }, 3000);
   };
   // const result =  onTileClick3();
-  // console.log(result, 66666); // 在这里处理true值'
-
+  // //console.log(result, 66666); // 在这里处理true值'
+  // const { publicClient, worldAbi } = useDevToolsContext();
   useEffect(() => {
     
     const handleKeyDown = (event: any) => {
-      
+      //console.log(event.key,'------')
       // 判断当前按下的键是否为方向键
       if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)) {
         switch (event.key) {
@@ -174,24 +247,53 @@ export const GameMap = ({
         }
      
     }
+    if(["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)){
     const moveData=  move(event.key)
     moveData.then((moveDataVal)=>{
-      console.log(moveDataVal)
-      if(moveDataVal){
-        setLoading({
-          up: false,
-          left: false,
-          down: false,
-          right: false
-        });
-      }
+      //console.log(moveDataVal)
+   
+        if(moveDataVal[1].status ==="success"){
+          setMoveData(moveDataVal[0])
+          const historyElement = document.getElementById('history');
+          const transactionLi = document.createElement('li');
+         const maveDal=  moveDataVal[0].substring(0, 6) +
+            "..." +
+            moveDataVal[0].substring(moveDataVal[0].length - 4)
+          transactionLi.textContent = maveDal;
+          transactionLi.style.listStyleType = "none";
+          transactionLi.style.textAlign = "left";
+                    transactionLi.style.paddingLeft = "12px";
+if(transactionLi){
+  seTmaveDal(true)
+}
+
+          const firstChild = historyElement?.firstChild as any;
+          historyElement?.insertBefore(transactionLi, firstChild);
+          if(moveDataVal){
+            setLoading({
+              up: false,
+              left: false,
+              down: false,
+              right: false
+            });
+          }
+        }else{
+          toast.error('Failed to obtain data. Please try again')
+          //console.log(event.key,'------')
+          alert('报错啦！！')
+          handleKeyDown(event.key)
+        }
+     
+     
     })
     moveData.catch((error) => {
-      move(event.key)
-      console.log(error,22222222222)
+      toast.error('Failed to obtain data. Please try again')
+      //console.log(event.key,'=======')
+      handleButtonClick(event.key)
+      //console.log(error,22222222222)
     });
     }
-
+  }
     // setTimeout(()=>{
     //   setLoading({
     //     up: false,
@@ -210,19 +312,19 @@ export const GameMap = ({
   }, []);
 
   const newGame = ()=>{
-    // console.log(3333)
+    // //console.log(3333)
    const resultGame = init_game()
     setResultVal(true)
-// console.log(resultGame,654)
+// //console.log(resultGame,654)
     resultGame.then((resultGameVal)=>{
-      // console.log(resultGameVal,24555)
-      // console.log(resultGame)
+      // //console.log(resultGameVal,24555)
+      // //console.log(resultGame)
       if(resultGameVal[1]===true){
         setResultVal(false)
       }
     })
     resultGame.catch((error) => {
-      console.log(error)
+      //console.log(error)
       // toast.error(error)
       setResultVal(false)
     });
@@ -242,20 +344,21 @@ const syncProgress = useComponentValue(SyncProgress, singletonEntity) as any;
 
 // let hasExecuted=false;
 const Matrix_arry = useComponentValue(Matrix, playerEntity);
+
 useEffect(() => {
 // if(!(Matrix_arry&&Matrix_arry.matrixArry)&&(syncProgress && syncProgress.step !== SyncStep.LIVE)){
-//   console.log('============')
+//   //console.log('============')
 //   init_game()
 // }
-// console.log(game_con, !game_con&&!(syncProgress&& syncProgress?.step !== SyncStep?.LIVE))
-// console.log(Matrix_arry&&Matrix_arry.matrixArry,!(Matrix_arry&&Matrix_arry.matrixArry))
+// //console.log(game_con, !game_con&&!(syncProgress&& syncProgress?.step !== SyncStep?.LIVE))
+// //console.log(Matrix_arry&&Matrix_arry.matrixArry,!(Matrix_arry&&Matrix_arry.matrixArry))
 // if(!syncProgress&& syncProgress?.step !== SyncStep?.LIVE){
   if(!(syncProgress&& syncProgress?.step !== SyncStep?.LIVE)&&syncProgress!==undefined){
  
-// console.log(88888888)
+// //console.log(88888888)
     // if(!(Matrix_arry&&Matrix_arry.matrixArry)){
     if((Matrix_arry&&Matrix_arry.matrixArry)===undefined){
-      // console.log('=====234==')
+      // //console.log('=====234==')
       init_game()
     }
     // hasExecuted=true // 设置状态为已执行过
@@ -396,7 +499,9 @@ useEffect(() => {
             New Game
           </span>}
           {/* <span onClick={onTileClick2}> check</span> */}
-          <span className={styles.transac} id='history'>Transactions history</span>
+          <span className={styles.transac} id='history'>{maveDal===false?<span className={styles.transacq}>Transactions history</span>:null}
+</span>
+          
           <div className={styles.btnmea}>
             {loading["up"] ? (
               <img key={key} src={image} className={styles.commonCls1} />

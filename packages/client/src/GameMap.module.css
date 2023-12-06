@@ -248,5 +248,9 @@ padding-left: 12px;
     height: 140px;
     margin-bottom: 36px;
     width: 100%;
+ 
   }
-  
+  .list-item {
+    list-style-type: none;  /* 去掉圆点 */
+    text-align: left;  /* 左对齐文本 */
+  }
