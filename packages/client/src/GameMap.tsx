@@ -86,6 +86,7 @@ export const GameMap = ({
   const [key, setKey] = useState(0);
   const [resultVal, setResultVal] = useState(false);
   const [showEncounter, setShowEncounter] = useState(false);
+  const [disableBtn, setDisableBtn] = useState(false);
 
 
   useEffect(() => {
@@ -146,11 +147,13 @@ const [maveDal, seTmaveDal] = useState(false);
     });
     // window.dispatchEvent(event);
     const moveData=  move(event.key)
+    setDisableBtn(true)
     moveData.then((moveDataVal)=>{
       //console.log(moveDataVal)
-   
+  
         if(moveDataVal[1].status ==="success"){
           setMoveData(moveDataVal[0])
+          
           const historyElement = document.getElementById('history');
           const transactionLi = document.createElement('li');
          const maveDal=  moveDataVal[0].substring(0, 6) +
@@ -175,15 +178,16 @@ if(transactionLi){
             setLoading((prevLoading) => ({ ...prevLoading, [direction]: false }));
           }
         }else{
-          alert('报错啦！！')
-          handleButtonClick(event.key)
+          toast.error('Failed to obtain data. Please try again')
+          // alert('报错啦！！')
+          // handleButtonClick(event.key)
         }
      
      
     })
     moveData.catch((error) => {
       toast.error('Failed to obtain data. Please try again')
-      handleButtonClick(event.key)
+      // handleButtonClick(event.key)
       //console.log(error,22222222222)
       
     });
@@ -197,61 +201,122 @@ if(transactionLi){
   // const result =  onTileClick3();
   // //console.log(result, 66666); // 在这里处理true值'
   // const { publicClient, worldAbi } = useDevToolsContext();
+  let disableBtnD =false;
   useEffect(() => {
     
     const handleKeyDown = (event: any) => {
-      //console.log(event.key,'------')
+      console.log(event.key,'------')
       // 判断当前按下的键是否为方向键
-      if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)) {
-        switch (event.key) {
-          case "ArrowUp":
-            // handleButtonClick("up");
-            // setLoading((prevLoading) => ({ ...prevLoading, [event.key]: true }));
-            setLoading({
-              up: true,
-              left: false,
-              down: false,
-              right: false
-            });
-         
-            break;
-          case "ArrowLeft":
-            // handleButtonClick("left");
-            setLoading({
-              up: false,
-              left: true,
-              down: false,
-              right: false
-            });
-            break;
-          case "ArrowDown":
-            // handleButtonClick("down");
-            setLoading({
-              up: false,
-              left: false,
-              down: true,
-              right: false
-            });
-            break;
-          case "ArrowRight":
-            // handleButtonClick("right");
-            setLoading({
-              up: false,
-              left: false,
-              down: false,
-              right: true
-            });
-            break;
-          default:
-            break;
-        }
      
-    }
-    if(["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)){
+    //   if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)) {
+    //     switch (event.key) {
+    //       case "ArrowUp":
+    //         // handleButtonClick("up");
+    //         // setLoading((prevLoading) => ({ ...prevLoading, [event.key]: true }));
+    //         setLoading({
+    //           up: true,
+    //           left: false,
+    //           down: false,
+    //           right: false
+    //         });
+         
+    //         break;
+    //       case "ArrowLeft":
+    //         // handleButtonClick("left");
+    //         setLoading({
+    //           up: false,
+    //           left: true,
+    //           down: false,
+    //           right: false
+    //         });
+    //         break;
+    //       case "ArrowDown":
+    //         // handleButtonClick("down");
+    //         setLoading({
+    //           up: false,
+    //           left: false,
+    //           down: true,
+    //           right: false
+    //         });
+    //         break;
+    //       case "ArrowRight":
+    //         // handleButtonClick("right");
+    //         setLoading({
+    //           up: false,
+    //           left: false,
+    //           down: false,
+    //           right: true
+    //         });
+    //         break;
+    //       default:
+    //         break;
+    //     }
+     
+    // }
+    if(["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key) ){
+      //  if (loading["up"] &&isAnyButtonLoading() || loading["left"]&&isAnyButtonLoading() || loading["down"]&&isAnyButtonLoading() || loading["right"]&&isAnyButtonLoading()) {
+      //   console.log('有true值!!!');
+      // } else {
+      //   console.log('没有true值');
+      // }
+      switch (event.key) {
+        case "ArrowUp":
+          // handleButtonClick("up");
+          // setLoading((prevLoading) => ({ ...prevLoading, [event.key]: true }));
+          setLoading({
+            up: true,
+            left: false,
+            down: false,
+            right: false
+          });
+          
+          break;
+        case "ArrowLeft":
+          // handleButtonClick("left");
+          setLoading({
+            up: false,
+            left: true,
+            down: false,
+            right: false
+          });
+          break;
+        case "ArrowDown":
+          // handleButtonClick("down");
+          setLoading({
+            up: false,
+            left: false,
+            down: true,
+            right: false
+          });
+          break;
+        case "ArrowRight":
+          // handleButtonClick("right");
+          setLoading({
+            up: false,
+            left: false,
+            down: false,
+            right: true
+            
+          });
+          break;
+        default:
+          break;
+      }
+      // console.log(loading,6666,loading["up"],loading["up"]|| loading["left"] || loading["down"] || loading["right"])
+      // if (Object.values(loading).some(value => value === true)) {
+      // if (loading["up"] &&isAnyButtonLoading() || loading["left"]&&isAnyButtonLoading() || loading["down"]&&isAnyButtonLoading() || loading["right"]&&isAnyButtonLoading()) {
+      //   console.log('有true值!!!');
+      // } else {
+      //   console.log('没有true值');
+      // }
+      
+    
     const moveData=  move(event.key)
+    disableBtnD=true
+    setDisableBtn(true)
+    // setLoading((prevLoading) => ({ ...prevLoading, [event]: true }));
     moveData.then((moveDataVal)=>{
       //console.log(moveDataVal)
-   
         if(moveDataVal[1].status ==="success"){
           setMoveData(moveDataVal[0])
           const historyElement = document.getElementById('history');
@@ -266,7 +331,6 @@ if(transactionLi){
 if(transactionLi){
   seTmaveDal(true)
 }
-
           const firstChild = historyElement?.firstChild as any;
           historyElement?.insertBefore(transactionLi, firstChild);
           if(moveDataVal){
@@ -279,21 +343,36 @@ if(transactionLi){
           }
         }else{
           toast.error('Failed to obtain data. Please try again')
+          setLoading({
+            up: false,
+            left: false,
+            down: false,
+            right: false
+          });
           //console.log(event.key,'------')
-          alert('报错啦！！')
-          handleKeyDown(event.key)
+          // alert('报错啦！！')
+          // handleKeyDown(event.key)
         }
      
      
     })
     moveData.catch((error) => {
       toast.error('Failed to obtain data. Please try again')
+         setLoading({
+        up: false,
+        left: false,
+        down: false,
+        right: false
+      });
       //console.log(event.key,'=======')
-      handleButtonClick(event.key)
+      // handleButtonClick(event.key)
       //console.log(error,22222222222)
     });
     }
+    disableBtnD=false
+    setDisableBtn(false)
   }
+
     // setTimeout(()=>{
     //   setLoading({
     //     up: false,
@@ -303,13 +382,16 @@ if(transactionLi){
     //   });
     // },3000)
     // 添加事件监听器
-    document.addEventListener("keydown", handleKeyDown);
+   
+      document.addEventListener("keydown", handleKeyDown);
+    
+
   
     // 在组件卸载时移除事件监听器
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [disableBtn]);
 
   const newGame = ()=>{
     // //console.log(3333)
@@ -318,7 +400,7 @@ if(transactionLi){
 // //console.log(resultGame,654)
     resultGame.then((resultGameVal)=>{
       // //console.log(resultGameVal,24555)
-      console.log(resultGame)
+      // console.log(resultGame)
       if(resultGameVal[1]===true){
         setResultVal(false)
       }
@@ -329,9 +411,9 @@ if(transactionLi){
       setResultVal(false)
     });
   
-   setTimeout(() => {
-    setResultVal(false)
-   }, 3000);
+  //  setTimeout(() => {
+  //   setResultVal(false)
+  //  }, 3000);
   }
 
 
@@ -370,6 +452,12 @@ useEffect(() => {
 // }
 
 }, [Matrix_arry,init_game,game_con,syncProgress]);
+
+
+// 检查是否有按钮处于loading状态
+const isAnyButtonLoading = () => {
+  return disableBtn || loading["up"] || loading["left"] || loading["down"] || loading["right"];
+};
 
   return (
     <>
@@ -505,7 +593,7 @@ useEffect(() => {
 </span>
           
           <div className={styles.btnmea}>
-            {loading["up"] ? (
+            {loading["up"] &&isAnyButtonLoading()? (
               <img key={key} src={image} className={styles.commonCls1} />
             ) : (
               <button
@@ -514,7 +602,7 @@ useEffect(() => {
                 type="button"
                 onClick={() => handleButtonClick("up")}
                 key={key}
-                disabled={loading["up"]}
+                disabled={isAnyButtonLoading()}
               >
                 <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
                   <svg
@@ -572,7 +660,7 @@ useEffect(() => {
             )}
           </div>
           <div className={styles.btnCon}>
-            {loading["left"] ? (
+            {loading["left"] &&isAnyButtonLoading()? (
               <img key={key} src={image} className={styles.commonCls1} />
             ) : (
               <button
@@ -581,6 +669,7 @@ useEffect(() => {
                 type="button"
                 onClick={() => handleButtonClick("left")}
                 id="btn2"
+                disabled={isAnyButtonLoading()}
               >
                 <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
                   <svg
@@ -636,7 +725,7 @@ useEffect(() => {
                 <span className="MuiTouchRipple-root css-w0pj6f"></span>
               </button>
             )}
-            {loading["down"] ? (
+            {loading["down"] &&isAnyButtonLoading()? (
               <img key={key} src={image} className={styles.commonCls1} />
             ) : (
               <button
@@ -645,6 +734,7 @@ useEffect(() => {
                 type="button"
                 onClick={() => handleButtonClick("down")}
                 id="btn3"
+                disabled={isAnyButtonLoading()}
               >
                 <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
                   <svg
@@ -700,7 +790,7 @@ useEffect(() => {
                 <span className="MuiTouchRipple-root css-w0pj6f"></span>
               </button>
             )}
-            {loading["right"] ? (
+            {loading["right"]&&isAnyButtonLoading()? (
               <img key={key} src={image} className={styles.commonCls1} />
             ) : (
               <button
@@ -709,6 +799,7 @@ useEffect(() => {
                 type="button"
                 onClick={() => handleButtonClick("right")}
                 id="btn4"
+                disabled={isAnyButtonLoading()}
               >
                 <span className="MuiButton-startIcon MuiButton-iconSizeLarge css-coclz">
                   <svg
@@ -770,16 +861,7 @@ useEffect(() => {
       </div>
     </div>
     )}
-        <Toaster
-          toastOptions={{
-            duration: 2000,
-            style: {
-              background: 'linear-gradient(90deg, #dedfff,#8083cb)',
-              color: 'black',
-              borderRadius: '8px',
-            },
-          }}
-        />
+       
     </>
   );
 };
