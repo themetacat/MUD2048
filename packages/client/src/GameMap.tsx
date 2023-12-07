@@ -205,7 +205,7 @@ if(transactionLi){
   useEffect(() => {
     
     const handleKeyDown = (event: any) => {
-      console.log(event.key,'------')
+      // console.log(event.key,'------')
       // 判断当前按下的键是否为方向键
      
     //   if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)) {
@@ -254,11 +254,7 @@ if(transactionLi){
      
     // }
     if(["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key) ){
-      //  if (loading["up"] &&isAnyButtonLoading() || loading["left"]&&isAnyButtonLoading() || loading["down"]&&isAnyButtonLoading() || loading["right"]&&isAnyButtonLoading()) {
-      //   console.log('有true值!!!');
-      // } else {
-      //   console.log('没有true值');
-      // }
+    
       switch (event.key) {
         case "ArrowUp":
           // handleButtonClick("up");
@@ -302,14 +298,7 @@ if(transactionLi){
         default:
           break;
       }
-      // console.log(loading,6666,loading["up"],loading["up"]|| loading["left"] || loading["down"] || loading["right"])
-      // if (Object.values(loading).some(value => value === true)) {
-      // if (loading["up"] &&isAnyButtonLoading() || loading["left"]&&isAnyButtonLoading() || loading["down"]&&isAnyButtonLoading() || loading["right"]&&isAnyButtonLoading()) {
-      //   console.log('有true值!!!');
-      // } else {
-      //   console.log('没有true值');
-      // }
-      
+     
     
     const moveData=  move(event.key)
     disableBtnD=true
@@ -372,26 +361,19 @@ if(transactionLi){
     disableBtnD=false
     setDisableBtn(false)
   }
-
-    // setTimeout(()=>{
-    //   setLoading({
-    //     up: false,
-    //     left: false,
-    //     down: false,
-    //     right: false
-    //   });
-    // },3000)
-    // 添加事件监听器
-   
+  const loadingValues = Object.values(loading);
+  // console.log(loadingValues)
+  if (loadingValues.includes(true)) {
+    // console.log('wwwwwww')
+    // 如果存在true值，不执行handleKeyDown函数
+    return;
+  }
       document.addEventListener("keydown", handleKeyDown);
-    
-
-  
     // 在组件卸载时移除事件监听器
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [disableBtn]);
+  }, [disableBtn,loading]);
 
   const newGame = ()=>{
     // //console.log(3333)
