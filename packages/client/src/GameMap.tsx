@@ -155,7 +155,7 @@ export const GameMap = ({
     const moveData = move(event.key);
     setDisableBtn(true);
     moveData.then((moveDataVal) => {
-      //console.log(moveDataVal)
+      console.log(moveDataVal)
 
       if (moveDataVal[1].status === "success") {
         setMoveData(moveDataVal[0]);
@@ -186,12 +186,24 @@ export const GameMap = ({
         }
       } else {
         toast.error("Failed to obtain data. Please try again");
+        setLoading({
+          up: false,
+          left: false,
+          down: false,
+          right: false,
+        });
         // alert('报错啦！！')
         // handleButtonClick(event.key)
       }
     });
     moveData.catch((error) => {
       toast.error("Failed to obtain data. Please try again");
+      setLoading({
+        up: false,
+        left: false,
+        down: false,
+        right: false,
+      });
       // handleButtonClick(event.key)
       //console.log(error,22222222222)
     });
@@ -307,7 +319,7 @@ export const GameMap = ({
         setDisableBtn(true);
         // setLoading((prevLoading) => ({ ...prevLoading, [event]: true }));
         moveData.then((moveDataVal) => {
-          //console.log(moveDataVal)
+          console.log(moveDataVal)
           if (moveDataVal[1].status === "success") {
             setMoveData(moveDataVal[0]);
             const historyElement = document.getElementById("history");
