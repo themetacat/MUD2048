@@ -151,7 +151,6 @@ export const GameMap = ({
     const event = new KeyboardEvent("keydown", {
       key: keyMap[direction as "up" | "left" | "down" | "right"],
     });
-    // window.dispatchEvent(event);
     const moveData = move(event.key);
     setDisableBtn(true);
     moveData.then((moveDataVal:any) => {
