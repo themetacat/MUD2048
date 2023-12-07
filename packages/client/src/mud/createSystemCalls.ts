@@ -82,11 +82,13 @@ export function createSystemCalls(
       throw new Error("no player");
     }
     const tx = await worldContract.write.move([dir]);
-    const hashVal=  await publicClient.getTransactionReceipt({hash:tx})
+    // const hashVal=   publicClient.getTransactionReceipt({hash:tx})
+    const hashValpublic=   publicClient.waitForTransactionReceipt({hash:tx})
     // const WaithashVal=  await waitForTransaction({hash:tx})
-    //console.log(hashVal,656565665)
+    // console.log(publicClient)
+    // console.log(656565665,hashValpublic)
     // //console.log(WaithashVal,'WaithashValWaithashVal')
-return [tx,hashVal]
+return [tx,hashValpublic]
 
     // await awaitStreamValue(txReduced$, (txHash) => txHash === tx.hash);
   };

@@ -154,47 +154,49 @@ export const GameMap = ({
     // window.dispatchEvent(event);
     const moveData = move(event.key);
     setDisableBtn(true);
-    moveData.then((moveDataVal) => {
-      console.log(moveDataVal)
-
-      if (moveDataVal[1].status === "success") {
-        setMoveData(moveDataVal[0]);
-
-        const historyElement = document.getElementById("history");
-        const transactionLi = document.createElement("li");
-        const maveDal =
-          moveDataVal[0].substring(0, 6) +
-          "..." +
-          moveDataVal[0].substring(moveDataVal[0].length - 4);
-        transactionLi.textContent = maveDal;
-        transactionLi.style.listStyleType = "none";
-        transactionLi.style.textAlign = "left";
-        transactionLi.style.paddingLeft = "12px";
-        if (transactionLi) {
-          seTmaveDal(true);
-        }
-        const firstChild = historyElement?.firstChild as any;
-        historyElement?.insertBefore(transactionLi, firstChild);
-        if (moveDataVal) {
+    moveData.then((moveDataVal:any) => {
+   
+      moveDataVal[1].then((a:any)=>{
+        if (a.status === "success") {
+          setMoveData(moveDataVal[0]);
+  
+          const historyElement = document.getElementById("history");
+          const transactionLi = document.createElement("li");
+          const maveDal =
+            moveDataVal[0].substring(0, 6) +
+            "..." +
+            moveDataVal[0].substring(moveDataVal[0].length - 4);
+          transactionLi.textContent = maveDal;
+          transactionLi.style.listStyleType = "none";
+          transactionLi.style.textAlign = "left";
+          transactionLi.style.paddingLeft = "12px";
+          if (transactionLi) {
+            seTmaveDal(true);
+          }
+          const firstChild = historyElement?.firstChild as any;
+          historyElement?.insertBefore(transactionLi, firstChild);
+          if (moveDataVal) {
+            setLoading({
+              up: false,
+              left: false,
+              down: false,
+              right: false,
+            });
+            setLoading((prevLoading) => ({ ...prevLoading, [direction]: false }));
+          }
+        } else {
+          toast.error("Failed to obtain data. Please try again");
           setLoading({
             up: false,
             left: false,
             down: false,
             right: false,
           });
-          setLoading((prevLoading) => ({ ...prevLoading, [direction]: false }));
+          // alert('报错啦！！')
+          // handleButtonClick(event.key)
         }
-      } else {
-        toast.error("Failed to obtain data. Please try again");
-        setLoading({
-          up: false,
-          left: false,
-          down: false,
-          right: false,
-        });
-        // alert('报错啦！！')
-        // handleButtonClick(event.key)
-      }
+      })
+      
     });
     moveData.catch((error) => {
       toast.error("Failed to obtain data. Please try again");
@@ -318,45 +320,48 @@ export const GameMap = ({
         disableBtnD = true;
         setDisableBtn(true);
         // setLoading((prevLoading) => ({ ...prevLoading, [event]: true }));
-        moveData.then((moveDataVal) => {
-          console.log(moveDataVal)
-          if (moveDataVal[1].status === "success") {
-            setMoveData(moveDataVal[0]);
-            const historyElement = document.getElementById("history");
-            const transactionLi = document.createElement("li");
-            const maveDal =
-              moveDataVal[0].substring(0, 6) +
-              "..." +
-              moveDataVal[0].substring(moveDataVal[0].length - 4);
-            transactionLi.textContent = maveDal;
-            transactionLi.style.listStyleType = "none";
-            transactionLi.style.textAlign = "left";
-            transactionLi.style.paddingLeft = "12px";
-            if (transactionLi) {
-              seTmaveDal(true);
-            }
-            const firstChild = historyElement?.firstChild as any;
-            historyElement?.insertBefore(transactionLi, firstChild);
-            if (moveDataVal) {
+        moveData.then((moveDataVal:any) => {
+         moveDataVal[1].then((a:any)=>{
+            if (a.status === "success") {
+              setMoveData(moveDataVal[0]);
+              const historyElement = document.getElementById("history");
+              const transactionLi = document.createElement("li");
+              const maveDal =
+                moveDataVal[0].substring(0, 6) +
+                "..." +
+                moveDataVal[0].substring(moveDataVal[0].length - 4);
+              transactionLi.textContent = maveDal;
+              transactionLi.style.listStyleType = "none";
+              transactionLi.style.textAlign = "left";
+              transactionLi.style.paddingLeft = "12px";
+              if (transactionLi) {
+                seTmaveDal(true);
+              }
+              const firstChild = historyElement?.firstChild as any;
+              historyElement?.insertBefore(transactionLi, firstChild);
+              if (moveDataVal) {
+                setLoading({
+                  up: false,
+                  left: false,
+                  down: false,
+                  right: false,
+                });
+              }
+            } else {
+              toast.error("Failed to obtain data. Please try again");
               setLoading({
                 up: false,
                 left: false,
                 down: false,
                 right: false,
               });
+              //console.log(event.key,'------')
+              // alert('报错啦！！')
+              // handleKeyDown(event.key)
             }
-          } else {
-            toast.error("Failed to obtain data. Please try again");
-            setLoading({
-              up: false,
-              left: false,
-              down: false,
-              right: false,
-            });
-            //console.log(event.key,'------')
-            // alert('报错啦！！')
-            // handleKeyDown(event.key)
-          }
+          })
+          
+          
         });
         moveData.catch((error) => {
           toast.error("Failed to obtain data. Please try again");
