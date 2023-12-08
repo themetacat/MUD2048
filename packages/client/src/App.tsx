@@ -72,7 +72,10 @@ export const App = () => {
 
   useEffect(() => {
     if( syncProgress&&syncProgress.step === SyncStep.LIVE){
-      if (balance === null) {
+      // console.log(syncProgress,1)
+      // console.log(balance)
+      if (balance === 0n) {
+
         toast.error("not sufficient funds");
       }
     }
