@@ -250,7 +250,7 @@ export const App = () => {
                 {publicClient && balance != null ? (
                   <>
                     {formatUnits(balance, natIve).replace(
-                      /(\.\d{28})\d+$/,
+                      /(\.\d{4})\d+$/,
                       "$1"
                     )}{" "}
                     {publicClient.chain.nativeCurrency.symbol}

@@ -7,28 +7,17 @@ import {
   useState,
 } from "react";
 import { Entity } from "@latticexyz/recs";
-import { twMerge } from "tailwind-merge";
 import { useMUD } from "./MUDContext";
 import styles from "./GameMap.module.css";
-import { MUDProvider } from "./MUDContext";
-import { createSystemCalls } from "./mud/createSystemCalls";
 import { getGradeList } from "../../../service";
 import { useComponentValue } from "@latticexyz/react";
 import image from "../../../images/loading.png";
 import toast, { Toaster } from "react-hot-toast";
 import { SyncStep } from "@latticexyz/store-sync";
 import { singletonEntity } from "@latticexyz/store-sync/recs";
-// const { mount: mountDevTools } =  import("@latticexyz/dev-tools");
-import { mount } from "@latticexyz/dev-tools";
-import { setup } from "./mud/setup";
-// //console.log(mount)
-import { getTransactionReceipt } from "@latticexyz/dev-tools/src/actions/getTransactionReceipt";
-// //console.log(ActionsSummary,696969)
 import { ContractWrite } from "@latticexyz/common";
 import { usePromise } from "@latticexyz/react";
-import { useDevToolsContext } from "@latticexyz/dev-tools/src/DevToolsContext";
-import { SetupResult } from "./mud/setup";
-import { StringForUnion } from "@latticexyz/common/type-utils";
+
 type Props = {
   width: number;
   height: number;
@@ -205,77 +194,21 @@ export const GameMap = ({
         down: false,
         right: false,
       });
-      // handleButtonClick(event.key)
-      //console.log(error,22222222222)
+   
     });
 
-    // // 2秒后将加载状态设置为 false
-    // setTimeout(() => {
-    //     setLoading((prevLoading) => ({ ...prevLoading, [direction]: false }));
-
-    // }, 3000);
+   
   };
-  // const result =  onTileClick3();
-  // //console.log(result, 66666); // 在这里处理true值'
-  // const { publicClient, worldAbi } = useDevToolsContext();
-  let disableBtnD = false;
+
+  
   useEffect(() => {
     const handleKeyDown = (event: any) => {
-      // console.log(event.key,'------')
-      // 判断当前按下的键是否为方向键
-
-      //   if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)) {
-      //     switch (event.key) {
-      //       case "ArrowUp":
-      //         // handleButtonClick("up");
-      //         // setLoading((prevLoading) => ({ ...prevLoading, [event.key]: true }));
-      //         setLoading({
-      //           up: true,
-      //           left: false,
-      //           down: false,
-      //           right: false
-      //         });
-
-      //         break;
-      //       case "ArrowLeft":
-      //         // handleButtonClick("left");
-      //         setLoading({
-      //           up: false,
-      //           left: true,
-      //           down: false,
-      //           right: false
-      //         });
-      //         break;
-      //       case "ArrowDown":
-      //         // handleButtonClick("down");
-      //         setLoading({
-      //           up: false,
-      //           left: false,
-      //           down: true,
-      //           right: false
-      //         });
-      //         break;
-      //       case "ArrowRight":
-      //         // handleButtonClick("right");
-      //         setLoading({
-      //           up: false,
-      //           left: false,
-      //           down: false,
-      //           right: true
-      //         });
-      //         break;
-      //       default:
-      //         break;
-      //     }
-
-      // }
+  
       if (
         ["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)
       ) {
         switch (event.key) {
           case "ArrowUp":
-            // handleButtonClick("up");
-            // setLoading((prevLoading) => ({ ...prevLoading, [event.key]: true }));
             setLoading({
               up: true,
               left: false,
@@ -285,7 +218,6 @@ export const GameMap = ({
 
             break;
           case "ArrowLeft":
-            // handleButtonClick("left");
             setLoading({
               up: false,
               left: true,
@@ -294,7 +226,6 @@ export const GameMap = ({
             });
             break;
           case "ArrowDown":
-            // handleButtonClick("down");
             setLoading({
               up: false,
               left: false,
@@ -303,7 +234,6 @@ export const GameMap = ({
             });
             break;
           case "ArrowRight":
-            // handleButtonClick("right");
             setLoading({
               up: false,
               left: false,
@@ -316,9 +246,9 @@ export const GameMap = ({
         }
 
         const moveData = move(event.key);
-        disableBtnD = true;
+  
         setDisableBtn(true);
-        // setLoading((prevLoading) => ({ ...prevLoading, [event]: true }));
+      
         moveData.then((moveDataVal:any) => {
          moveDataVal[1].then((a:any)=>{
             if (a.status === "success") {
@@ -375,14 +305,13 @@ export const GameMap = ({
           //console.log(error,22222222222)
         });
       }
-      disableBtnD = false;
+   
       setDisableBtn(false);
     };
     const loadingValues = Object.values(loading);
     // console.log(loadingValues)
     if (loadingValues.includes(true)) {
-      // console.log('wwwwwww')
-      // 如果存在true值，不执行handleKeyDown函数
+ 
       return;
     }
     document.addEventListener("keydown", handleKeyDown);
@@ -405,14 +334,9 @@ export const GameMap = ({
       }
     });
     resultGame.catch((error) => {
-      //console.log(error)
-      // toast.error(error)
       setResultVal(false);
     });
 
-    //  setTimeout(() => {
-    //   setResultVal(false)
-    //  }, 3000);
   };
 
   const gameData = game_con && game_con[0] && game_con[0].ma;
@@ -425,24 +349,16 @@ export const GameMap = ({
   const Matrix_arry = useComponentValue(Matrix, playerEntity);
 
   useEffect(() => {
-    // if(!(Matrix_arry&&Matrix_arry.matrixArry)&&(syncProgress && syncProgress.step !== SyncStep.LIVE)){
-    //   //console.log('============')
-    //   init_game()
-    // }
-    // //console.log(game_con, !game_con&&!(syncProgress&& syncProgress?.step !== SyncStep?.LIVE))
-    // //console.log(Matrix_arry&&Matrix_arry.matrixArry,!(Matrix_arry&&Matrix_arry.matrixArry))
-    // if(!syncProgress&& syncProgress?.step !== SyncStep?.LIVE){
+   
     if (
       !(syncProgress && syncProgress?.step !== SyncStep?.LIVE) &&
       syncProgress !== undefined
     ) {
-      // //console.log(88888888)
-      // if(!(Matrix_arry&&Matrix_arry.matrixArry)){
       if ((Matrix_arry && Matrix_arry.matrixArry) === undefined) {
-        // //console.log('=====234==')
+      
         init_game();
       }
-      // hasExecuted=true // 设置状态为已执行过
+    
     }
 
     // }
