@@ -71,10 +71,13 @@ export const App = () => {
   };
 
   useEffect(() => {
-    if (balance === null) {
-      toast.error("not sufficient funds");
+    if( syncProgress&&syncProgress.step === SyncStep.LIVE){
+      if (balance === null) {
+        toast.error("not sufficient funds");
+      }
     }
-  }, [balance]);
+    
+  }, [balance,syncProgress]);
   return (
     <>
       {/* {syncProgress && syncProgress.step !== SyncStep.LIVE? (
@@ -244,7 +247,7 @@ export const App = () => {
                 {publicClient && balance != null ? (
                   <>
                     {formatUnits(balance, natIve).replace(
-                      /(\.\d{4})\d+$/,
+                      /(\.\d{28})\d+$/,
                       "$1"
                     )}{" "}
                     {publicClient.chain.nativeCurrency.symbol}
