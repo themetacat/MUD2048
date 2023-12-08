@@ -5,13 +5,13 @@ import { singletonEntity } from "@latticexyz/store-sync/recs";
 import { GameBoard } from "./GameBoard";
 import style from "./app.module.css";
 import { SyncState } from "@latticexyz/network";
-import Footer from '../src/footer'
-import {SyncStep} from "@latticexyz/store-sync"
+import Footer from "../src/footer";
+import { SyncStep } from "@latticexyz/store-sync";
 
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
+import { formatUnits } from "viem";
 
-
-import image from '../../../images/20231127170205.png'
+import image from "../../../images/20231127170205.png";
 
 export const App = () => {
   // const {
@@ -22,62 +22,78 @@ export const App = () => {
   //   components: { SyncProgress },
   // } = useMUD();
   const {
-    components: { Matrix, Score, GameState ,SyncProgress},
-    network: { playerEntity },
-    systemCalls: { init_game, get_metrix},
+    components: { Matrix, Score, GameState, SyncProgress },
+    network: { playerEntity, publicClient },
+    systemCalls: { init_game, get_metrix },
   } = useMUD();
-// console.log(SyncProgress)
+  // console.log(publicClient)
   // useEffect(()=>{
-    const syncProgress = useComponentValue(SyncProgress, singletonEntity) as any;
-const playerEntityNum = BigInt(playerEntity);
-const hexString = '0x'+playerEntityNum.toString(16);
-    // console.log(syncProgress,65555)
+  const syncProgress = useComponentValue(SyncProgress, singletonEntity) as any;
+  const playerEntityNum = BigInt(playerEntity);
+  const hexString = "0x" + playerEntityNum.toString(16);
+  const [balance, setBalance] = useState<bigint | null>(null);
+  // console.log(syncProgress,65555)
   //   // const counter = useComponentValue(Counter, singletonEntity);
   // },[syncProgress])
+  const chainName = publicClient.chain.name;
+  const balanceFN = publicClient.getBalance({ address: hexString });
+  // console.log(balanceFN,'balance')
+  balanceFN.then((a: any) => {
+    setBalance(a);
+  });
+  const natIve = publicClient.chain.nativeCurrency.decimals;
 
-  const addressData = hexString.substring(0, 6) +
+  const addressData =
+    hexString.substring(0, 6) +
     "..." +
-    hexString.substring(hexString.length - 4)
-//  console.log('jici')
+    hexString.substring(hexString.length - 4);
+  //  console.log('jici')
   const goBack = () => {
     console.log("goback");
   };
 
-  
-  const addressDataCopy = (text:any) => {
-    navigator.clipboard.writeText(text).then(function() {
-      toast.success('Text copied to clipboard')
-    }, function(err) {
-      toast.error('Error in copying text');
-    });
+  const addressDataCopy = (text: any) => {
+    navigator.clipboard.writeText(text).then(
+      function () {
+        toast.success("Text copied to clipboard");
+      },
+      function (err) {
+        toast.error("Error in copying text");
+      }
+    );
   };
 
-  const discord = ()=>{
-    window.open("https://discord.com/invite/yRt6be237P")
-  }
-  const twitter = ()=>{
-    window.open("https://twitter.com/Metacat007")
-  }
+  const discord = () => {
+    window.open("https://discord.com/invite/yRt6be237P");
+  };
+  const twitter = () => {
+    window.open("https://twitter.com/Metacat007");
+  };
 
+  useEffect(() => {
+    if (balance === null) {
+      toast.error("not sufficient funds");
+    }
+  }, [balance]);
   return (
-<>
-    {/* {syncProgress && syncProgress.step !== SyncStep.LIVE? (
+    <>
+      {/* {syncProgress && syncProgress.step !== SyncStep.LIVE? (
 
       <div>
         {syncProgress.message} ({Math.floor(syncProgress.percentage)}%)
       </div>
     ) : ( */}
-   
-    <div className={style.page}>
-      <div className={style.homeContent}>
-        <div className={style.homeC}>
-          <div className={style.titCon} onClick={goBack}>
-            <img src={image} alt="" />
-          MUD 2048
-          </div>
-          <div className={style.iconSvg}>
-           
-            <a
+
+      <div className={style.page}>
+        <div className={style.homeContent}>
+          <div className={style.homeC}>
+            <div className={style.titCon} onClick={goBack}>
+              <img src={image} alt="" />
+              MUD 2048
+            </div>
+            <div className={style.iconSvg}>
+              <div>{chainName}</div>
+              {/* <a
               // href="https://opensea.io/collection/wearablepack"
               target="_blank"
               rel="noopener noreferrer"
@@ -210,15 +226,38 @@ const hexString = '0x'+playerEntityNum.toString(16);
                   strokeWidth="16"
                 ></path>
               </svg>
-            </a>
-            <div className={style.pointer} style={{zIndex:'999999999999999999999',cursor:'pointer',marginLeft:"32px"}} onClick={()=>{addressDataCopy(hexString)}}>{addressData}</div>
+            </a> */}
+              <div
+                className={style.pointer}
+                style={{
+                  zIndex: "999999999999999999999",
+                  cursor: "pointer",
+                  marginLeft: "32px",
+                }}
+                onClick={() => {
+                  addressDataCopy(hexString);
+                }}
+              >
+                {addressData}
+              </div>
+              <div>
+                {publicClient && balance != null ? (
+                  <>
+                    {formatUnits(balance, natIve).replace(
+                      /(\.\d{4})\d+$/,
+                      "$1"
+                    )}{" "}
+                    {publicClient.chain.nativeCurrency.symbol}
+                  </>
+                ) : null}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className={style.GameBoard}>
-      {/* {syncProgress  && ( <GameBoard  />)} */}
-     
-     <GameBoard />
+        <div className={style.GameBoard}>
+          {/* {syncProgress  && ( <GameBoard  />)} */}
+
+          <GameBoard />
         </div>
         <div style={{ position: "fixed", bottom: "0px", width: "100%" }}>
           <Footer />
@@ -227,15 +266,14 @@ const hexString = '0x'+playerEntityNum.toString(16);
           toastOptions={{
             duration: 2000,
             style: {
-              background: 'linear-gradient(90deg, #dedfff,#8083cb)',
-              color: 'black',
-              borderRadius: '8px',
+              background: "linear-gradient(90deg, #dedfff,#8083cb)",
+              color: "black",
+              borderRadius: "8px",
             },
           }}
         />
-    </div>
-        {/* )}  */}
-        </>
-      );
-    };
-
+      </div>
+      {/* )}  */}
+    </>
+  );
+};

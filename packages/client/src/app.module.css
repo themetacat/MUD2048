@@ -219,6 +219,7 @@
   display: flex;
   margin-right: 32px;
   z-index: 999999999999999999999;
+  line-height: 42px;
  }
  .iconSvg a{
   margin-left: 32px;
@@ -233,6 +234,7 @@
   cursor: pointer;
   line-height: 40px;
   text-align: center;
+  margin-right: 12px;
  }
  .btnBox{
    /* width: 1000px;

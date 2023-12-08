@@ -23,18 +23,7 @@ setup().then(async (result) => {
   // https://vitejs.dev/guide/env-and-mode.html
   if (import.meta.env.DEV) {
     const { mount: mountDevTools } = await import("@latticexyz/dev-tools");
-    // console.log(  mountDevTools({
-    //   config: mudConfig,
-    //   publicClient: result.network.publicClient as any,
-    //   walletClient: result.network.walletClient as any,
-    //   latestBlock$: result.network.latestBlock$,
-    //   storedBlockLogs$: result.network.storedBlockLogs$,
-    //   worldAddress: result.network.worldContract.address,
-    //   worldAbi: result.network.worldContract.abi,
-    //   write$: result.network.write$,
-    //   recsWorld: result.network.world,
-    // }).then((res)=>{console.log(res,'============')}),
-    // 999999)
+   
     mountDevTools({
       config: mudConfig,
       publicClient: result.network.publicClient as any,
