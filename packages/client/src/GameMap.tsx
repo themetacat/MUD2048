@@ -34,6 +34,18 @@ type Props = {
   encounter?: ReactNode;
 };
 
+import topImage from "../../../images/top.png";
+import downImage from "../../../images/down.png";
+import leftImage from "../../../images/left.png";
+import rightImage from "../../../images/right.png";
+
+const iconImage = {
+  arrowup: topImage,
+  arrowdown: downImage,
+  arrowleft: leftImage,
+  arrowright: rightImage,
+};
+
 export const GameMap = ({
   width,
   height,
@@ -51,17 +63,6 @@ export const GameMap = ({
     systemCalls: { init_game, get_metrix, move },
   } = useMUD();
   const [writes, setWrites] = useState<ContractWrite[]>([]);
-  // useEffect(()=>{
-  //   const sub = write$.subscribe((write:any) => {
-  //     setWrites((val:any) => [...val, write]);
-  //   });
-
-  //   //console.log(sub,6987)
-  //   //console.log(writes,'writeswriteswriteswriteswrites')
-  //     return () => sub.unsubscribe();
-  // })
-
-  // //console.log(getTransactionReceipt(publicClient,write$),3333)
   const [dataListSum, setDataList] = useState([]);
   const rows = new Array(width).fill(0).map((_, i) => i);
   const columns = new Array(height).fill(0).map((_, i) => i);
@@ -71,13 +72,6 @@ export const GameMap = ({
     down: false,
     right: false,
   });
-
-  // const MUDContext = createContext<SetupResult | null>(null);
-  //   const contextValue = useContext(MUDContext);
-  // useEffect(()=>{
-
-  //   //console.log(contextValue,'-=-=-=-=-'); // 这里就可以打印出 value 的值了
-  //   },[])
 
   const [key, setKey] = useState(0);
   const [resultVal, setResultVal] = useState(false);
@@ -95,32 +89,9 @@ export const GameMap = ({
     dataList.then((dataListCon) => setDataList(dataListCon.data));
     // //console.log(dataListCon.data[0])
   }, [best]);
-  // if(best){
-  //   dataHandle()
-  // }
   useEffect(() => {
     dataHandle();
-    // const dataList = getGradeList();
-    // dataList.then((dataListCon) => {
-    //   setDataList(dataListCon.data);
-    // });
   }, [best, dataHandle]);
-
-  // useEffect(()=>{
-  //   const moveData=  move("left")
-  //   moveData.then((moveDataVal)=>{
-  //     //console.log(moveDataVal)
-
-  //   //console.log(hash)
-  // })
-
-  // },[])
-  //   const moveData=  move("left")
-  //   moveData.then((moveDataVal)=>{
-  //     //console.log(moveDataVal)
-
-  //   //console.log(hash)
-  // })
   const [moveData, setMoveData] = useState(null);
   const [maveDal, seTmaveDal] = useState(false);
 
@@ -142,27 +113,63 @@ export const GameMap = ({
     });
     const moveData = move(event.key);
     setDisableBtn(true);
-    moveData.then((moveDataVal:any) => {
-   
-      moveDataVal[1].then((a:any)=>{
+    moveData.then((moveDataVal: any) => {
+      moveDataVal[1].then((a: any) => {
         if (a.status === "success") {
           setMoveData(moveDataVal[0]);
-  
+
           const historyElement = document.getElementById("history");
           const transactionLi = document.createElement("li");
           const maveDal =
             moveDataVal[0].substring(0, 6) +
             "..." +
             moveDataVal[0].substring(moveDataVal[0].length - 4);
-          transactionLi.textContent = maveDal;
-          transactionLi.style.listStyleType = "none";
-          transactionLi.style.textAlign = "left";
-          transactionLi.style.paddingLeft = "12px";
-          if (transactionLi) {
-            seTmaveDal(true);
-          }
+            const img = document.createElement("img");
+            const key = event.key.toLowerCase() as keyof typeof iconImage;
+            // console.log(event.key.toLowerCase(),544444,key)
+            const icon = iconImage[key];
+            if (icon) {
+              img.src = icon;
+            }
+            // console.log(iconImage[key],6666)
+            img.style.width = "20px";
+            img.style.height = "20px";
+            img.style.marginRight = "20px";
+            // img.src = iconImage[key];
+            img.alt = event.key; // 设置图片的文本描述
+            // 设置 img 元素的样式
+            img.style.flexShrink = "0";
+            transactionLi.appendChild(img);
+            // 创建文本节点
+            const textNode = document.createTextNode(maveDal);
+
+            // 添加文本节点到 transactionLi 中
+            // transactionLi.appendChild(textNode);
+            // 添加 transactionLi 到 historyElement 中
+            const span = document.createElement("span");
+            // 将文本节点添加到 span 元素中
+            span.appendChild(textNode);
+            // 将 span 元素添加到 transactionLi 中
+            span.className=styles.spanText
+            transactionLi.appendChild(span);
+            transactionLi.style.listStyleType = "none";
+            transactionLi.style.width = "100%";
+            transactionLi.className = styles.transactionLi;
+            transactionLi.style.textAlign = "left";
+            transactionLi.style.paddingLeft = "12px";
+            transactionLi.style.display = "flex";
+            transactionLi.style.alignItems = "center"; // Ensure vertical alignment
+            transactionLi.style.flexDirection = "row"; // Ensure elements flow horizontally
+
+          // transactionLi.textContent = maveDal;
+
+          historyElement?.appendChild(transactionLi);
           const firstChild = historyElement?.firstChild as any;
           historyElement?.insertBefore(transactionLi, firstChild);
+          if (transactionLi) {
+            seTmaveDal(true);
+            1;
+          }
           if (moveDataVal) {
             setLoading({
               up: false,
@@ -170,7 +177,10 @@ export const GameMap = ({
               down: false,
               right: false,
             });
-            setLoading((prevLoading) => ({ ...prevLoading, [direction]: false }));
+            setLoading((prevLoading) => ({
+              ...prevLoading,
+              [direction]: false,
+            }));
           }
         } else {
           toast.error("Failed to obtain data. Please try again");
@@ -183,8 +193,7 @@ export const GameMap = ({
           // alert('报错啦！！')
           // handleButtonClick(event.key)
         }
-      })
-      
+      });
     });
     moveData.catch((error) => {
       toast.error("Failed to obtain data. Please try again");
@@ -194,16 +203,12 @@ export const GameMap = ({
         down: false,
         right: false,
       });
-   
     });
-
-   
+    setDisableBtn(false);
   };
 
-  
   useEffect(() => {
     const handleKeyDown = (event: any) => {
-  
       if (
         ["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)
       ) {
@@ -246,11 +251,11 @@ export const GameMap = ({
         }
 
         const moveData = move(event.key);
-  
+
         setDisableBtn(true);
-      
-        moveData.then((moveDataVal:any) => {
-         moveDataVal[1].then((a:any)=>{
+
+        moveData.then((moveDataVal: any) => {
+          moveDataVal[1].then((a: any) => {
             if (a.status === "success") {
               setMoveData(moveDataVal[0]);
               const historyElement = document.getElementById("history");
@@ -259,12 +264,68 @@ export const GameMap = ({
                 moveDataVal[0].substring(0, 6) +
                 "..." +
                 moveDataVal[0].substring(moveDataVal[0].length - 4);
-              transactionLi.textContent = maveDal;
+
+              // 创建 img 元素
+              const img = document.createElement("img");
+              const key = event.key.toLowerCase() as keyof typeof iconImage;
+              // console.log(event.key.toLowerCase(),544444,key)
+              const icon = iconImage[key];
+              if (icon) {
+                img.src = icon;
+              }
+              // console.log(iconImage[key],6666)
+              img.style.width = "20px";
+              img.style.height = "20px";
+              img.style.marginRight = "20px";
+              // img.src = iconImage[key];
+              img.alt = event.key; // 设置图片的文本描述
+              // 设置 img 元素的样式
+              img.style.flexShrink = "0";
+              transactionLi.appendChild(img);
+              // 创建文本节点
+              const textNode = document.createTextNode(maveDal);
+
+              // 添加文本节点到 transactionLi 中
+              // transactionLi.appendChild(textNode);
+              // 添加 transactionLi 到 historyElement 中
+              const span = document.createElement("span");
+              // 将文本节点添加到 span 元素中
+              span.appendChild(textNode);
+              // 将 span 元素添加到 transactionLi 中
+              span.className=styles.spanText
+              transactionLi.appendChild(span);
               transactionLi.style.listStyleType = "none";
+              // transactionLi.style.width = "100%";
+              transactionLi.className = styles.transactionLi;
               transactionLi.style.textAlign = "left";
               transactionLi.style.paddingLeft = "12px";
+              transactionLi.style.display = "flex";
+              transactionLi.style.alignItems = "center"; // Ensure vertical alignment
+              transactionLi.style.flexDirection = "row"; // Ensure elements flow horizontally
+              // 添加点击事件监听器
+transactionLi.addEventListener("click", function() {
+  // 在这里编写跳转逻辑，比如跳转到指定的 URL
+  window.open(  `https://explorer.holesky.redstone.xyz/tx/${ moveDataVal[0]}` )// 替换成你想要跳转的 URL
+});
+// // 添加鼠标悬停时的样式
+// transactionLi.addEventListener("mouseover", function(event) {
+//   if (event.currentTarget === transactionLi) {
+//     transactionLi.style.backgroundColor = "#fff";
+//   }
+// });
+
+// // 移除鼠标悬停时的样式
+// transactionLi.addEventListener("mouseout", function(event) {
+//   if (event.currentTarget === transactionLi) {
+//     transactionLi.style.backgroundColor = ""; // 恢复默认背景色
+//   }
+// });
+              // transactionLi.textContent = maveDal;
+
+              historyElement?.appendChild(transactionLi);
               if (transactionLi) {
                 seTmaveDal(true);
+                1;
               }
               const firstChild = historyElement?.firstChild as any;
               historyElement?.insertBefore(transactionLi, firstChild);
@@ -288,9 +349,7 @@ export const GameMap = ({
               // alert('报错啦！！')
               // handleKeyDown(event.key)
             }
-          })
-          
-          
+          });
         });
         moveData.catch((error) => {
           toast.error("Failed to obtain data. Please try again");
@@ -305,13 +364,12 @@ export const GameMap = ({
           //console.log(error,22222222222)
         });
       }
-   
+
       setDisableBtn(false);
     };
     const loadingValues = Object.values(loading);
     // console.log(loadingValues)
     if (loadingValues.includes(true)) {
- 
       return;
     }
     document.addEventListener("keydown", handleKeyDown);
@@ -336,12 +394,11 @@ export const GameMap = ({
     resultGame.catch((error) => {
       setResultVal(false);
     });
-
   };
 
   const gameData = game_con && game_con[0] && game_con[0].ma;
   const itemJump = (address: any) => {
-    window.open(`https://explorer.testnet-chain.linfra.xyz/address/${address}`);
+    window.open(`https://explorer.holesky.redstone.xyz/address/${address}`);
   };
   const syncProgress = useComponentValue(SyncProgress, singletonEntity) as any;
 
@@ -349,16 +406,13 @@ export const GameMap = ({
   const Matrix_arry = useComponentValue(Matrix, playerEntity);
 
   useEffect(() => {
-   
     if (
       !(syncProgress && syncProgress?.step !== SyncStep?.LIVE) &&
       syncProgress !== undefined
     ) {
       if ((Matrix_arry && Matrix_arry.matrixArry) === undefined) {
-      
         init_game();
       }
-    
     }
 
     // }
@@ -799,7 +853,9 @@ export const GameMap = ({
             </div>
           </div>
         )
-      ) :    <div style={{ color: "#fff" }}>Hydrating from RPC(0) </div>}
+      ) : (
+        <div style={{ color: "#fff" }}>Hydrating from RPC(0) </div>
+      )}
     </>
   );
 };

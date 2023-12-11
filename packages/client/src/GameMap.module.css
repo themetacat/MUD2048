@@ -128,6 +128,22 @@ padding-left: 12px;
     margin-right: 20px;
 
   }
+  .transactionLi{
+   height: 28px;
+   line-height: 28px;
+  }
+  .transactionLi:hover{
+    background-color: #fff;
+
+  }
+  .spanText{
+    cursor: pointer;
+
+  }
+  .transactionLi:hover .spanText {
+    text-decoration: underline;
+    text-decoration-color: #000;
+  }
   .MuiSvgIcon{
     user-select: none;
     display: inline-block;
