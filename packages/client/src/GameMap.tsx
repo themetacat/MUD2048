@@ -380,14 +380,16 @@ transactionLi.addEventListener("click", function() {
   }, [disableBtn, loading]);
 
   const newGame = () => {
-    // //console.log(3333)
+    // console.log(3333)
     const resultGame = init_game();
     setResultVal(true);
     // //console.log(resultGame,654)
-    resultGame.then((resultGameVal:any) => {
+      resultGame.then((moveDataVal: any) => {
+        moveDataVal[1].then((a: any) => {
+          if (a.status === "success") {
       // //console.log(resultGameVal,24555)
-      // console.log(resultGame)
-      if (resultGameVal[1] === true) {
+      // console.log(moveDataVal)
+      // if (moveDataVal[1] === true) {
         setResultVal(false);
         const historyElement = document.getElementById("history");
         if (historyElement) {
@@ -395,12 +397,20 @@ transactionLi.addEventListener("click", function() {
           seTmaveDal(false); // 更新组件状态，假设 seTmaveDal 是用来更新状态的函数
         }
 
-      }
-    });
-    resultGame.catch((error:any) => {
+      // }else{
+      //   alert('sssss')
+      // }
+    }else{
       toast.error('Data read failed Please try again')
       setResultVal(false);
+    }
     });
+  });
+
+    // resultGame.catch((error:any) => {
+    //   toast.error('Data read failed Please try again')
+    //   setResultVal(false);
+    // });
   };
 
   const gameData = game_con && game_con[0] && game_con[0].ma;
@@ -571,7 +581,7 @@ transactionLi.addEventListener("click", function() {
           <div className="grid-container">{grid.flat()}</div>
         </div> */}
               <div>
-                {resultVal ? (
+                {resultVal===true ? (
                   <span className={styles.PLAY}>
                     <img key={key} src={image} className={styles.commonCls1} />
                   </span>

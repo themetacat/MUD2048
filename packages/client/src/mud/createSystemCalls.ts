@@ -52,9 +52,10 @@ export function createSystemCalls(
     }
     const tx = await worldContract.write.initMatrix();
     // //console.log(tx,6666)
-
-    await waitForTransaction(tx);
-     return [tx, true];
+    const hashValpublic=   publicClient.waitForTransactionReceipt({hash:tx})
+ 
+return [tx,hashValpublic]
+  
   
   //   if(resultVal){
   //     return true;
