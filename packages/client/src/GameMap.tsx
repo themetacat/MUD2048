@@ -384,14 +384,21 @@ transactionLi.addEventListener("click", function() {
     const resultGame = init_game();
     setResultVal(true);
     // //console.log(resultGame,654)
-    resultGame.then((resultGameVal) => {
+    resultGame.then((resultGameVal:any) => {
       // //console.log(resultGameVal,24555)
       // console.log(resultGame)
       if (resultGameVal[1] === true) {
         setResultVal(false);
+        const historyElement = document.getElementById("history");
+        if (historyElement) {
+          historyElement.innerHTML = '';
+          seTmaveDal(false); // 更新组件状态，假设 seTmaveDal 是用来更新状态的函数
+        }
+
       }
     });
-    resultGame.catch((error) => {
+    resultGame.catch((error:any) => {
+      toast.error('Data read failed Please try again')
       setResultVal(false);
     });
   };
