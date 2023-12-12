@@ -15,30 +15,20 @@ import { formatUnits } from "viem";
 import image from "../../../images/20231127170205.png";
 
 export const App = () => {
-  // const {
-  //   components: { Counter },
-  //   systemCalls: { increment },
-  // } = useMUD();
-  // const {
-  //   components: { SyncProgress },
-  // } = useMUD();
+
   const {
     components: { Matrix, Score, GameState, SyncProgress },
     network: { playerEntity, publicClient },
     systemCalls: { init_game, get_metrix },
   } = useMUD();
-  // console.log(publicClient)
-  // useEffect(()=>{
+
   const syncProgress = useComponentValue(SyncProgress, singletonEntity) as any;
   const playerEntityNum = BigInt(playerEntity);
   const hexString = "0x" + playerEntityNum.toString(16);
   const [balance, setBalance] = useState<bigint | null>(null);
-  // console.log(syncProgress,65555)
-  //   // const counter = useComponentValue(Counter, singletonEntity);
-  // },[syncProgress])
+
   const chainName = publicClient.chain.name;
   const balanceFN = publicClient.getBalance({ address: hexString });
-  // console.log(balanceFN,'balance')
   balanceFN.then((a: any) => {
     setBalance(a);
   });
@@ -48,7 +38,6 @@ export const App = () => {
     hexString.substring(0, 6) +
     "..." +
     hexString.substring(hexString.length - 4);
-  //  console.log('jici')
   const goBack = () => {
     console.log("goback");
   };
@@ -73,8 +62,7 @@ export const App = () => {
 
   useEffect(() => {
     if( syncProgress&&syncProgress.step === SyncStep.LIVE){
-      // console.log(syncProgress,1)
-      // console.log(balance)
+   
       if (balance === 0n) {
 
         toast.error("not sufficient funds");
@@ -84,13 +72,6 @@ export const App = () => {
   }, [balance,syncProgress]);
   return (
     <>
-      {/* {syncProgress && syncProgress.step !== SyncStep.LIVE? (
-
-      <div>
-        {syncProgress.message} ({Math.floor(syncProgress.percentage)}%)
-      </div>
-    ) : ( */}
-
       <div className={style.page}>
         <div className={style.homeContent}>
           <div className={style.homeC}>
@@ -262,7 +243,6 @@ export const App = () => {
           </div>
         </div>
         <div className={style.GameBoard}>
-          {/* {syncProgress  && ( <GameBoard  />)} */}
 
           <GameBoard />
         </div>
@@ -280,7 +260,6 @@ export const App = () => {
           }}
         />
       </div>
-      {/* )}  */}
     </>
   );
 };

@@ -50,9 +50,6 @@ export const GameMap = ({
   width,
   height,
   best,
-  onTileClick,
-  onTileClick3,
-  onTileClick2,
   game_con,
   gamestate,
   encounter,
@@ -87,7 +84,6 @@ export const GameMap = ({
   const dataHandle = useCallback(() => {
     const dataList = getGradeList();
     dataList.then((dataListCon) => setDataList(dataListCon.data));
-    // //console.log(dataListCon.data[0])
   }, [best]);
   useEffect(() => {
     dataHandle();
@@ -95,11 +91,8 @@ export const GameMap = ({
   const [moveData, setMoveData] = useState(null);
   const [maveDalType, seTmaveDalType] = useState(false);
 
-  const hash = usePromise(moveData as any);
-  // //console.log(hash,66666666)
   const handleButtonClick = (direction: any) => {
     // 在这里处理按钮点击逻辑
-    // handleClickAndGetTrue();
     setLoading((prevLoading) => ({ ...prevLoading, [direction]: true }));
     // 模拟按下对应的方向键
     const keyMap = {
@@ -115,60 +108,52 @@ export const GameMap = ({
     setDisableBtn(true);
 
     moveData.then((moveDataVal: any) => {
-      console.log(moveDataVal,'moveDataValmoveDataVal')
       moveDataVal[1].then((a: any) => {
         if (a.status === "success") {
           setMoveData(moveDataVal[0]);
-
           const historyElement = document.getElementById("history");
           const transactionLi = document.createElement("li");
           const maveDal =
             moveDataVal[0].substring(0, 6) +
             "..." +
             moveDataVal[0].substring(moveDataVal[0].length - 4);
-            const img = document.createElement("img");
-            const key = event.key.toLowerCase() as keyof typeof iconImage;
-            // console.log(event.key.toLowerCase(),544444,key)
-            const icon = iconImage[key];
-            if (icon) {
-              img.src = icon;
-            }
-            // console.log(iconImage[key],6666)
-            img.style.width = "20px";
-            img.style.height = "20px";
-            img.style.marginRight = "20px";
-            // img.src = iconImage[key];
-            img.alt = event.key; // 设置图片的文本描述
-            // 设置 img 元素的样式
-            img.style.flexShrink = "0";
-            transactionLi.appendChild(img);
-            // 创建文本节点
-            const textNode = document.createTextNode(maveDal);
-
-            // 添加文本节点到 transactionLi 中
-            // transactionLi.appendChild(textNode);
-            // 添加 transactionLi 到 historyElement 中
-            const span = document.createElement("span");
-            // 将文本节点添加到 span 元素中
-            span?.appendChild(textNode);
-            // 将 span 元素添加到 transactionLi 中
-            span.className=styles.spanText
-            transactionLi.appendChild(span);
-            transactionLi.style.listStyleType = "none";
-            transactionLi.style.width = "100%";
-            transactionLi.className = styles.transactionLi;
-            transactionLi.style.textAlign = "left";
-            transactionLi.style.paddingLeft = "12px";
-            transactionLi.style.display = "flex";
-            transactionLi.style.alignItems = "center"; // Ensure vertical alignment
-            transactionLi.style.flexDirection = "row"; // Ensure elements flow horizontally
-              // 添加点击事件监听器
-              transactionLi.addEventListener("click", function() {
-                // 在这里编写跳转逻辑，比如跳转到指定的 URL
-                window.open(  `https://explorer.holesky.redstone.xyz/tx/${ moveDataVal[0]}` )// 替换成你想要跳转的 URL
-              });
-          // transactionLi.textContent = maveDal;
-
+          const img = document.createElement("img");
+          const key = event.key.toLowerCase() as keyof typeof iconImage;
+          const icon = iconImage[key];
+          if (icon) {
+            img.src = icon;
+          }
+          img.style.width = "20px";
+          img.style.height = "20px";
+          img.style.marginRight = "20px";
+          img.alt = event.key; // 设置图片的文本描述
+          // 设置 img 元素的样式
+          img.style.flexShrink = "0";
+          transactionLi.appendChild(img);
+          // 创建文本节点
+          const textNode = document.createTextNode(maveDal);
+          // 添加文本节点到 transactionLi 中
+          const span = document.createElement("span");
+          // 将文本节点添加到 span 元素中
+          span?.appendChild(textNode);
+          // 将 span 元素添加到 transactionLi 中
+          span.className = styles.spanText;
+          transactionLi.appendChild(span);
+          transactionLi.style.listStyleType = "none";
+          transactionLi.style.width = "100%";
+          transactionLi.className = styles.transactionLi;
+          transactionLi.style.textAlign = "left";
+          transactionLi.style.paddingLeft = "12px";
+          transactionLi.style.display = "flex";
+          transactionLi.style.alignItems = "center"; // Ensure vertical alignment
+          transactionLi.style.flexDirection = "row"; // Ensure elements flow horizontally
+          // 添加点击事件监听器
+          transactionLi.addEventListener("click", function () {
+            // 在这里编写跳转逻辑，比如跳转到指定的 URL
+            window.open(
+              `https://explorer.holesky.redstone.xyz/tx/${moveDataVal[0]}`
+            );
+          });
           historyElement?.appendChild(transactionLi);
           const firstChild = historyElement?.firstChild as any;
           historyElement?.insertBefore(transactionLi, firstChild);
@@ -176,29 +161,16 @@ export const GameMap = ({
             seTmaveDalType(true);
             1;
           }
-          if (moveDataVal) {
-            setLoading({
-              up: false,
-              left: false,
-              down: false,
-              right: false,
-            });
-            setLoading((prevLoading) => ({
-              ...prevLoading,
-              [direction]: false,
-            }));
-          }
         } else {
           toast.error("Failed to obtain data. Please try again");
-          setLoading({
-            up: false,
-            left: false,
-            down: false,
-            right: false,
-          });
-          // alert('报错啦！！')
-          // handleButtonClick(event.key)
+    
         }
+        setLoading({
+          up: false,
+          left: false,
+          down: false,
+          right: false,
+        });
       });
     });
     moveData.catch((error) => {
@@ -274,31 +246,25 @@ export const GameMap = ({
               // 创建 img 元素
               const img = document.createElement("img");
               const key = event.key.toLowerCase() as keyof typeof iconImage;
-              // console.log(event.key.toLowerCase(),544444,key)
               const icon = iconImage[key];
               if (icon) {
                 img.src = icon;
               }
-              // console.log(iconImage[key],6666)
               img.style.width = "20px";
               img.style.height = "20px";
               img.style.marginRight = "20px";
-              // img.src = iconImage[key];
               img.alt = event.key; // 设置图片的文本描述
               // 设置 img 元素的样式
               img.style.flexShrink = "0";
               transactionLi.appendChild(img);
               // 创建文本节点
               const textNode = document.createTextNode(maveDal);
-
               // 添加文本节点到 transactionLi 中
-              // transactionLi.appendChild(textNode);
-              // 添加 transactionLi 到 historyElement 中
               const span = document.createElement("span");
               // 将文本节点添加到 span 元素中
               span?.appendChild(textNode);
               // 将 span 元素添加到 transactionLi 中
-              span.className=styles.spanText
+              span.className = styles.spanText;
               transactionLi.appendChild(span);
               transactionLi.style.listStyleType = "none";
               // transactionLi.style.width = "100%";
@@ -309,24 +275,12 @@ export const GameMap = ({
               transactionLi.style.alignItems = "center"; // Ensure vertical alignment
               transactionLi.style.flexDirection = "row"; // Ensure elements flow horizontally
               // 添加点击事件监听器
-transactionLi.addEventListener("click", function() {
-  // 在这里编写跳转逻辑，比如跳转到指定的 URL
-  window.open(  `https://explorer.holesky.redstone.xyz/tx/${ moveDataVal[0]}` )// 替换成你想要跳转的 URL
-});
-// // 添加鼠标悬停时的样式
-// transactionLi.addEventListener("mouseover", function(event) {
-//   if (event.currentTarget === transactionLi) {
-//     transactionLi.style.backgroundColor = "#fff";
-//   }
-// });
-
-// // 移除鼠标悬停时的样式
-// transactionLi.addEventListener("mouseout", function(event) {
-//   if (event.currentTarget === transactionLi) {
-//     transactionLi.style.backgroundColor = ""; // 恢复默认背景色
-//   }
-// });
-              // transactionLi.textContent = maveDal;
+              transactionLi.addEventListener("click", function () {
+                // 在这里编写跳转逻辑，比如跳转到指定的 URL
+                window.open(
+                  `https://explorer.holesky.redstone.xyz/tx/${moveDataVal[0]}`
+                );
+              });
 
               historyElement?.appendChild(transactionLi);
               if (transactionLi) {
@@ -335,26 +289,17 @@ transactionLi.addEventListener("click", function() {
               }
               const firstChild = historyElement?.firstChild as any;
               historyElement?.insertBefore(transactionLi, firstChild);
-              if (moveDataVal) {
-                setLoading({
-                  up: false,
-                  left: false,
-                  down: false,
-                  right: false,
-                });
-              }
+     
             } else {
               toast.error("Failed to obtain data. Please try again");
-              setLoading({
-                up: false,
-                left: false,
-                down: false,
-                right: false,
-              });
-              //console.log(event.key,'------')
-              // alert('报错啦！！')
-              // handleKeyDown(event.key)
+            
             }
+            setLoading({
+              up: false,
+              left: false,
+              down: false,
+              right: false,
+            });
           });
         });
         moveData.catch((error) => {
@@ -365,16 +310,13 @@ transactionLi.addEventListener("click", function() {
             down: false,
             right: false,
           });
-          //console.log(event.key,'=======')
-          // handleButtonClick(event.key)
-          //console.log(error,22222222222)
+         
         });
       }
 
       setDisableBtn(false);
     };
     const loadingValues = Object.values(loading);
-    // console.log(loadingValues)
     if (loadingValues.includes(true)) {
       return;
     }
@@ -386,43 +328,24 @@ transactionLi.addEventListener("click", function() {
   }, [disableBtn, loading]);
 
   const newGame = () => {
-    // console.log(3333)
-
     const resultGame = init_game();
     setResultVal(true);
-    // //console.log(resultGame,654)
-      resultGame.then((moveDataVal: any) => {
-        moveDataVal[1].then((a: any) => {
-          if (a.status === "success") {
-      // //console.log(resultGameVal,24555)
-      // console.log(moveDataVal)
-      // if (moveDataVal[1] === true) {
-        setResultVal(false);
-        const historyElement = document.getElementById("history");
-        // console.log(historyElement)
-        // if (historyElement) {
+    resultGame.then((moveDataVal: any) => {
+      moveDataVal[1].then((a: any) => {
+        if (a.status === "success") {
+          setResultVal(false);
+          const historyElement = document.getElementById("history");
           if (historyElement) {
-            const lis = Array.from(historyElement.getElementsByTagName('li'));
-            lis.forEach(li => historyElement.removeChild(li));
+            const lis = Array.from(historyElement.getElementsByTagName("li"));
+            lis.forEach((li) => historyElement.removeChild(li));
           }
-          // historyElement.innerHTML = '';
           seTmaveDalType(false); // 更新组件状态，假设 seTmaveDal 是用来更新状态的函数
-        // }
-
-      // }else{
-      //   alert('sssss')
-      // }
-    }else{
-      toast.error('Data read failed Please try again')
-      setResultVal(false);
-    }
+        } else {
+          toast.error("Data read failed Please try again");
+          setResultVal(false);
+        }
+      });
     });
-  });
-
-    // resultGame.catch((error:any) => {
-    //   toast.error('Data read failed Please try again')
-    //   setResultVal(false);
-    // });
   };
 
   const gameData = game_con && game_con[0] && game_con[0].ma;
@@ -460,16 +383,13 @@ transactionLi.addEventListener("click", function() {
 
   return (
     <>
-    
       {syncProgress ? (
         syncProgress.step !== SyncStep.LIVE ? (
           <div style={{ color: "#fff" }}>
             {syncProgress.message} ({Math.floor(syncProgress.percentage)}%)
           </div>
         ) : (
-        
           <div className={styles.conta}>
-            {/* <div style={{ flexGrow:"1",width:"400px"}}> */}
             <table className={styles.table}>
               <thead>
                 <tr>
@@ -513,7 +433,6 @@ transactionLi.addEventListener("click", function() {
               </thead>
               <div></div>
             </table>
-            {/* </div> */}
             <div style={{ display: "flex", flexGrow: "1" }}>
               <div className={`${styles.container}`}>
                 {rows.map((y) =>
@@ -591,11 +510,9 @@ transactionLi.addEventListener("click", function() {
                   })
                 )}
               </div>
-              {/* <div className={`${styles.container}`}>
-          <div className="grid-container">{grid.flat()}</div>
-        </div> */}
+         
               <div>
-                {resultVal===true ? (
+                {resultVal === true ? (
                   <div className={styles.PLAY}>
                     <img key={key} src={image} className={styles.commonCls1} />
                   </div>
@@ -604,7 +521,6 @@ transactionLi.addEventListener("click", function() {
                     New Game
                   </div>
                 )}
-                {/* <span onClick={onTileClick2}> check</span> */}
                 <div className={styles.transac} id="history">
                   {maveDalType === false ? (
                     <span className={styles.transacq}>
@@ -885,8 +801,7 @@ transactionLi.addEventListener("click", function() {
           </div>
         )
       ) : (
-          <div style={{ color: "#fff" }}>Hydrating from RPC(0) </div>
-      
+        <div style={{ color: "#fff" }}>Hydrating from RPC(0) </div>
       )}
     </>
   );
