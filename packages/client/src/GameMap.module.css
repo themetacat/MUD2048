@@ -116,6 +116,14 @@
 border-bottom: 1px solid #191934;
 padding-left: 12px;
   }
+  .tr2Data{
+    padding-left: 12px;
+  }
+  .tr2Data:hover{
+border-bottom: 1px solid #191934;
+padding-left: 12px;
+/* width: 100px; */
+  }
   .table {
     /* border-collapse: collapse; */
     border: 1px solid #000;

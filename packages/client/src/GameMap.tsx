@@ -184,6 +184,8 @@ export const GameMap = ({
     });
     setDisableBtn(false);
   };
+  // const result =  onTileClick3();
+  // console.log(result, 66666); // 在这里处理true值'
 
   useEffect(() => {
     const handleKeyDown = (event: any) => {
