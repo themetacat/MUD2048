@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, useEffect } from "react";
 import { SetupResult } from "./mud/setup";
 
 const MUDContext = createContext<SetupResult | null>(null);
@@ -9,10 +9,15 @@ type Props = {
 };
 
 export const MUDProvider = ({ children, value }: Props) => {
+useEffect(()=>{
+// console.log(value)
+},[value])
   const currentValue = useContext(MUDContext);
   if (currentValue) throw new Error("MUDProvider can only be used once");
   return <MUDContext.Provider value={value}>{children}</MUDContext.Provider>;
 };
+
+
 
 export const useMUD = () => {
   const value = useContext(MUDContext);

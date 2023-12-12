@@ -102,13 +102,19 @@
   .trData td:first-child{
    
     width: 60px;
-    display: inline-block;
     text-align: center;
     margin-top: 7px;
   }
   .trData td:last-child{
     margin-top: 12px;
-    display: inline-block;
+  }
+  .tr2Data{
+    padding-left: 12px;
+    /* height: 20px; */
+  }
+  .tr2Data:hover{
+border-bottom: 1px solid #191934;
+padding-left: 12px;
   }
   .tr2Data{
     padding-left: 12px;
@@ -128,6 +134,22 @@ padding-left: 12px;
     width: 380px;
     margin-right: 20px;
 
+  }
+  .transactionLi{
+   height: 28px;
+   line-height: 28px;
+  }
+  .transactionLi:hover{
+    background-color: #fff;
+
+  }
+  .spanText{
+    cursor: pointer;
+
+  }
+  .transactionLi:hover .spanText {
+    text-decoration: underline;
+    text-decoration-color: #000;
   }
   .MuiSvgIcon{
     user-select: none;
@@ -249,5 +271,9 @@ padding-left: 12px;
     height: 140px;
     margin-bottom: 36px;
     width: 100%;
+ 
   }
-  
+  .list-item {
+    list-style-type: none;  /* 去掉圆点 */
+    text-align: left;  /* 左对齐文本 */
+  }

@@ -8,6 +8,8 @@ import { ClientComponents } from "./createClientComponents";
 import { SetupNetworkResult } from "./setupNetwork";
 import { singletonEntity } from "@latticexyz/store-sync/recs";
 
+import { useEffect } from "react";
+import { useMUD } from "../MUDContext";
 export type SystemCalls = ReturnType<typeof createSystemCalls>;
 
 export function createSystemCalls(
@@ -30,7 +32,7 @@ export function createSystemCalls(
    *   syncToRecs
    *   (https://github.com/latticexyz/mud/blob/main/templates/react/packages/client/src/mud/setupNetwork.ts#L77-L83).
    */
-  { worldContract, waitForTransaction, playerEntity }: SetupNetworkResult,
+  { worldContract,  playerEntity,waitForTransaction,publicClient }: SetupNetworkResult,
   { Matrix }: ClientComponents
 ) {
   // const increment = async () => {
@@ -49,11 +51,12 @@ export function createSystemCalls(
       throw new Error("no player");
     }
     const tx = await worldContract.write.initMatrix();
-    console.log(tx,6666)
-
-    await waitForTransaction(tx);
-     return [tx, true];
-  //  const resultVal =  await waitForTransaction(tx);
+    // //console.log(tx,6666)
+    const hashValpublic=   publicClient.waitForTransactionReceipt({hash:tx})
+ 
+return [tx,hashValpublic]
+  
+  
   //   if(resultVal){
   //     return true;
   //   }
@@ -66,10 +69,10 @@ export function createSystemCalls(
     if (!playerEntity) {
       throw new Error("no player");
     }
-    console.log(getComponentValue(Matrix, playerEntity)?.matrixArry);
+    //console.log(getComponentValue(Matrix, playerEntity)?.matrixArry);
     
     // const tx = await worldContract.read.getMatrix();
-    // console.log(tx);
+    // //console.log(tx);
     
     // return tx
   };
@@ -80,8 +83,14 @@ export function createSystemCalls(
       throw new Error("no player");
     }
     const tx = await worldContract.write.move([dir]);
-    console.log(tx,656565665)
-return tx
+    // const hashVal=   publicClient.getTransactionReceipt({hash:tx})
+    const hashValpublic=   publicClient.waitForTransactionReceipt({hash:tx})
+    // const WaithashVal=  await waitForTransaction({hash:tx})
+    // console.log(publicClient)
+    // console.log(656565665,hashValpublic)
+    // //console.log(WaithashVal,'WaithashValWaithashVal')
+return [tx,hashValpublic]
+
     // await awaitStreamValue(txReduced$, (txHash) => txHash === tx.hash);
   };
 
