@@ -3,6 +3,7 @@ import { ReactNode, useCallback, useEffect, useState } from "react";
 import { useMUD } from "./MUDContext";
 import { singletonEntity } from "@latticexyz/store-sync/recs";
 import { GameBoard } from "./GameBoard";
+import { GameMap } from "./GameMap";
 import style from "./app.module.css";
 import { SyncState } from "@latticexyz/network";
 import Footer from "../src/footer";

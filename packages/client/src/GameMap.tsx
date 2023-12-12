@@ -93,7 +93,7 @@ export const GameMap = ({
     dataHandle();
   }, [best, dataHandle]);
   const [moveData, setMoveData] = useState(null);
-  const [maveDal, seTmaveDal] = useState(false);
+  const [maveDalType, seTmaveDalType] = useState(false);
 
   const hash = usePromise(moveData as any);
   // //console.log(hash,66666666)
@@ -113,7 +113,9 @@ export const GameMap = ({
     });
     const moveData = move(event.key);
     setDisableBtn(true);
+
     moveData.then((moveDataVal: any) => {
+      console.log(moveDataVal,'moveDataValmoveDataVal')
       moveDataVal[1].then((a: any) => {
         if (a.status === "success") {
           setMoveData(moveDataVal[0]);
@@ -148,7 +150,7 @@ export const GameMap = ({
             // 添加 transactionLi 到 historyElement 中
             const span = document.createElement("span");
             // 将文本节点添加到 span 元素中
-            span.appendChild(textNode);
+            span?.appendChild(textNode);
             // 将 span 元素添加到 transactionLi 中
             span.className=styles.spanText
             transactionLi.appendChild(span);
@@ -160,14 +162,18 @@ export const GameMap = ({
             transactionLi.style.display = "flex";
             transactionLi.style.alignItems = "center"; // Ensure vertical alignment
             transactionLi.style.flexDirection = "row"; // Ensure elements flow horizontally
-
+              // 添加点击事件监听器
+              transactionLi.addEventListener("click", function() {
+                // 在这里编写跳转逻辑，比如跳转到指定的 URL
+                window.open(  `https://explorer.holesky.redstone.xyz/tx/${ moveDataVal[0]}` )// 替换成你想要跳转的 URL
+              });
           // transactionLi.textContent = maveDal;
 
           historyElement?.appendChild(transactionLi);
           const firstChild = historyElement?.firstChild as any;
           historyElement?.insertBefore(transactionLi, firstChild);
           if (transactionLi) {
-            seTmaveDal(true);
+            seTmaveDalType(true);
             1;
           }
           if (moveDataVal) {
@@ -290,7 +296,7 @@ export const GameMap = ({
               // 添加 transactionLi 到 historyElement 中
               const span = document.createElement("span");
               // 将文本节点添加到 span 元素中
-              span.appendChild(textNode);
+              span?.appendChild(textNode);
               // 将 span 元素添加到 transactionLi 中
               span.className=styles.spanText
               transactionLi.appendChild(span);
@@ -324,7 +330,7 @@ transactionLi.addEventListener("click", function() {
 
               historyElement?.appendChild(transactionLi);
               if (transactionLi) {
-                seTmaveDal(true);
+                seTmaveDalType(true);
                 1;
               }
               const firstChild = historyElement?.firstChild as any;
@@ -381,6 +387,7 @@ transactionLi.addEventListener("click", function() {
 
   const newGame = () => {
     // console.log(3333)
+
     const resultGame = init_game();
     setResultVal(true);
     // //console.log(resultGame,654)
@@ -392,10 +399,15 @@ transactionLi.addEventListener("click", function() {
       // if (moveDataVal[1] === true) {
         setResultVal(false);
         const historyElement = document.getElementById("history");
-        if (historyElement) {
-          historyElement.innerHTML = '';
-          seTmaveDal(false); // 更新组件状态，假设 seTmaveDal 是用来更新状态的函数
-        }
+        // console.log(historyElement)
+        // if (historyElement) {
+          if (historyElement) {
+            const lis = Array.from(historyElement.getElementsByTagName('li'));
+            lis.forEach(li => historyElement.removeChild(li));
+          }
+          // historyElement.innerHTML = '';
+          seTmaveDalType(false); // 更新组件状态，假设 seTmaveDal 是用来更新状态的函数
+        // }
 
       // }else{
       //   alert('sssss')
@@ -448,12 +460,14 @@ transactionLi.addEventListener("click", function() {
 
   return (
     <>
+    
       {syncProgress ? (
         syncProgress.step !== SyncStep.LIVE ? (
           <div style={{ color: "#fff" }}>
             {syncProgress.message} ({Math.floor(syncProgress.percentage)}%)
           </div>
         ) : (
+        
           <div className={styles.conta}>
             {/* <div style={{ flexGrow:"1",width:"400px"}}> */}
             <table className={styles.table}>
@@ -466,7 +480,7 @@ transactionLi.addEventListener("click", function() {
                 {dataListSum &&
                   dataListSum.map((item: any, index: number) => (
                     <tr key={item.id} className={styles.trData}>
-                      <td>{index + 1}</td> {/* 添加序号并左对齐 */}
+                      <td>{index + 1}</td>
                       <td
                         className={styles.tr2Data}
                         style={{ textAlign: "left", cursor: "pointer" }}
@@ -490,7 +504,7 @@ transactionLi.addEventListener("click", function() {
                     <div className={styles.tableFooter}>
                       SCORE:
                       {game_con && game_con[0] && (
-                        <span>{game_con[0].currentScore}</span>
+                        <span>{game_con[0]?.currentScore}</span>
                       )}
                       <span style={{ marginLeft: "20px" }}>BEST:{best}</span>
                     </div>
@@ -582,22 +596,22 @@ transactionLi.addEventListener("click", function() {
         </div> */}
               <div>
                 {resultVal===true ? (
-                  <span className={styles.PLAY}>
+                  <div className={styles.PLAY}>
                     <img key={key} src={image} className={styles.commonCls1} />
-                  </span>
+                  </div>
                 ) : (
-                  <span onClick={newGame} className={styles.PLAY}>
+                  <div onClick={newGame} className={styles.PLAY}>
                     New Game
-                  </span>
+                  </div>
                 )}
                 {/* <span onClick={onTileClick2}> check</span> */}
-                <span className={styles.transac} id="history">
-                  {maveDal === false ? (
+                <div className={styles.transac} id="history">
+                  {maveDalType === false ? (
                     <span className={styles.transacq}>
                       Transactions history
                     </span>
                   ) : null}
-                </span>
+                </div>
 
                 <div className={styles.btnmea}>
                   {loading["up"] && isAnyButtonLoading() ? (
@@ -871,7 +885,8 @@ transactionLi.addEventListener("click", function() {
           </div>
         )
       ) : (
-        <div style={{ color: "#fff" }}>Hydrating from RPC(0) </div>
+          <div style={{ color: "#fff" }}>Hydrating from RPC(0) </div>
+      
       )}
     </>
   );

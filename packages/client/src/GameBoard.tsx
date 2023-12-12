@@ -27,13 +27,14 @@ export const GameBoard = (onChildValueChange :any) => {
         }
       : null;
       // useEffect(() => {
-      //   console.log(Matrix_arry,'----------')
-      //   if(!(Matrix_arry&&Matrix_arry.matrixArry)){
-      //     init_game()
+      //   if (!Matrix_arry || !Matrix_arry.matrixArry) {
+      //     init_game();
       //   }
-   
-      // }, []);
-     
+      // }, [Matrix_arry]);
+    
+      // if (!game_con || !game_con.ma) {
+      //   return <div style={{color:"#fff"}}>Loading...</div>; // 或者其他适当的加载状态
+      // }
 
   return <GameMap width={4} height={4}  onTileClick={init_game} onTileClick2={get_metrix} best={Number(score?.record) || 0} gamestate={gamestate} game_con={game_con ? [game_con] : []} />;
 
